@@ -1,0 +1,335 @@
+﻿<html>
+<head>
+    <title>定时发送</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet">
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet">
+    <link href="定时发送_files/axurerp_pagespecificstyles.css" type="text/css" rel="stylesheet">
+<!--[if IE 6]>
+    <link href="定时发送_files/axurerp_pagespecificstyles_ie6.css" type="text/css" rel="stylesheet">
+<![endif]-->
+    <script src="data/sitemap.js"></script>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axurerp_beforepagescript.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+<script src='定时发送_files/data.js'></script>
+</head>
+<body>
+<div id="main_container">
+
+<div id="u0" class="u0_container"   >
+<div id="u0_img" class="u0_normal detectCanvas"></div>
+<div id="u1" class="u1" style="visibility:hidden;"  >
+<div id="u1_rtf"></div>
+</div>
+</div>
+<DIV id="u2container" style="position:absolute; left:105px; top:172px; width:224px; height:16px; ; ; ;" >
+<LABEL for="u2">
+<div id="u3" class="u3"  >
+<div id="u3_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">&nbsp; </span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">开启</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">全部</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">会员生日当天定时发送</span></p></div>
+</div>
+</LABEL>
+<INPUT id="u2" style="position:absolute; left:-3px; top:-2px;" type="checkbox" value="checkbox"  checked >
+</DIV>
+<INPUT id="u4" type=text value="10:00:00" class="u4"     >
+
+<div id="u5" class="u5"  >
+<div id="u5_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">选择</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">模版</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">：</span></p></div>
+</div>
+<SELECT id="u6" class="u6"   >
+<OPTION selected value="M0001">M0001</OPTION>
+<OPTION  value="M0002">M0002</OPTION>
+<OPTION  value="M0003">M0003</OPTION>
+</SELECT>
+<div id="u7" class="u7" >
+<DIV id="u7_line" class="u7_line" ></DIV>
+</div>
+<DIV id="u8container" style="position:absolute; left:105px; top:245px; width:176px; height:16px; ; ; ;" >
+<LABEL for="u8">
+<div id="u9" class="u9"  >
+<div id="u9_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">&nbsp; </span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">开启</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">自定义</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">会员定时发送</span></p></div>
+</div>
+</LABEL>
+<INPUT id="u8" style="position:absolute; left:-3px; top:-2px;" type="checkbox" value="checkbox"  checked >
+</DIV>
+<div id="u10" class="u10"  >
+<div id="u10_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">重复规则</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">：</span></p></div>
+</div>
+<SELECT id="u11" class="u11"   >
+<OPTION  value="每天">每天</OPTION>
+<OPTION  value="每周一">每周一</OPTION>
+<OPTION  value="每周二">每周二</OPTION>
+<OPTION  value="每周三">每周三</OPTION>
+<OPTION  value="每周四">每周四</OPTION>
+<OPTION  value="每周五">每周五</OPTION>
+<OPTION  value="每周六">每周六</OPTION>
+<OPTION selected value="每周日">每周日</OPTION>
+</SELECT>
+
+<div id="u12" class="u12"  >
+<div id="u12_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">发送时间：</span></p></div>
+</div>
+<INPUT id="u13" type=text value="10:00:00" class="u13"     >
+
+<div id="u14" class="u14"  >
+<div id="u14_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">选择</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">模版</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">：</span></p></div>
+</div>
+<SELECT id="u15" class="u15"   >
+<OPTION selected value="M0001">M0001</OPTION>
+<OPTION  value="M0002">M0002</OPTION>
+<OPTION  value="M0003">M0003</OPTION>
+</SELECT>
+
+<div id="u16" class="u16"  >
+<div id="u16_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">发送时间：</span></p></div>
+</div>
+<DIV id="u17container" style="position:absolute; left:72px; top:71px; width:543px; height:26px;; overflow:visible">
+
+<DIV id="u17_menu" class="u17_menu  detectCanvas"></DIV>
+
+<DIV id="u18" class="u18;" >
+
+</DIV>
+
+<DIV id="u18container" style="position:absolute; left:3px; top:3px; width:542px; height:25px; overflow:visible">
+
+<div id="u19" class="u19_container"   >
+<div id="u19_img" class="u19_normal detectCanvas"></div>
+<div id="u20" class="u20"  >
+<div id="u20_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">文件</span></p></div>
+</div>
+</div>
+<div id="u21" class="u21_container"   >
+<div id="u21_img" class="u21_normal detectCanvas"></div>
+<div id="u22" class="u22"  >
+<div id="u22_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">会员管理</span></p></div>
+</div>
+</div>
+<div id="u23" class="u23_container"   >
+<div id="u23_img" class="u23_normal detectCanvas"></div>
+<div id="u24" class="u24"  >
+<div id="u24_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">短</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">信</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">管理</span></p></div>
+</div>
+</div>
+<div id="u25" class="u25_container"   >
+<div id="u25_img" class="u25_normal detectCanvas"></div>
+<div id="u26" class="u26"  >
+<div id="u26_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">管</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">理员</span></p></div>
+</div>
+</div>
+<div id="u27" class="u27_container"   >
+<div id="u27_img" class="u27_normal detectCanvas"></div>
+<div id="u28" class="u28"  >
+<div id="u28_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">关</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">于</span></p></div>
+</div>
+</div>
+</DIV>
+</DIV>
+<DIV id="sm0u17" style="position:absolute; left:72px; top:71px; width:543px; height:26px; visibility:hidden; width:1px; height:1px;" >
+<DIV id="u29container" style="position:absolute; left:3px; top:23px; width:106px; height:66px;; overflow:visible">
+
+<DIV id="u29_menu" class="u29_menu  detectCanvas"></DIV>
+
+<DIV id="u30" class="u30;" >
+
+</DIV>
+
+<DIV id="u30container" style="position:absolute; left:3px; top:3px; width:105px; height:65px; overflow:visible">
+
+<div id="u31" class="u31_container"   >
+<div id="u31_img" class="u31_normal detectCanvas"></div>
+<div id="u32" class="u32"  >
+<div id="u32_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">从excel导入</span></p></div>
+</div>
+</div>
+<div id="u33" class="u33_container"   >
+<div id="u33_img" class="u33_normal detectCanvas"></div>
+<div id="u34" class="u34"  >
+<div id="u34_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">导出excel</span></p></div>
+</div>
+</div>
+<div id="u35" class="u35_container"   >
+<div id="u35_img" class="u35_normal detectCanvas"></div>
+<div id="u36" class="u36"  >
+<div id="u36_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">打</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">印</span></p></div>
+</div>
+</div>
+</DIV>
+</DIV>
+</DIV>
+<script type="text/javascript">
+InitializeSubmenu('sm0u17', 'u19');
+</script>
+<DIV id="sm1u17" style="position:absolute; left:72px; top:71px; width:543px; height:26px; visibility:hidden; width:1px; height:1px;" >
+<DIV id="u37container" style="position:absolute; left:163px; top:23px; width:106px; height:126px;; overflow:visible">
+
+<DIV id="u37_menu" class="u37_menu  detectCanvas"></DIV>
+
+<DIV id="u38" class="u38;" >
+
+</DIV>
+
+<DIV id="u38container" style="position:absolute; left:3px; top:3px; width:105px; height:125px; overflow:visible">
+
+<div id="u39" class="u39_container"   >
+<div id="u39_img" class="u39_normal detectCanvas"></div>
+<div id="u40" class="u40"  >
+<div id="u40_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">点</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">对点短信</span></p></div>
+</div>
+</div>
+<div id="u41" class="u41_container"   >
+<div id="u41_img" class="u41_normal detectCanvas"></div>
+<div id="u42" class="u42"  >
+<div id="u42_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">查</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">看回复</span></p></div>
+</div>
+</div>
+<div id="u43" class="u43_container"   >
+<div id="u43_img" class="u43_normal detectCanvas"></div>
+<div id="u44" class="u44"  >
+<div id="u44_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">历史</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">记录</span></p></div>
+</div>
+</div>
+<div id="u45" class="u45_container"   >
+<div id="u45_img" class="u45_normal detectCanvas"></div>
+<div id="u46" class="u46"  >
+<div id="u46_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">短</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">信模版</span></p></div>
+</div>
+</div>
+<div id="u47" class="u47_container"   >
+<div id="u47_img" class="u47_normal detectCanvas"></div>
+<div id="u48" class="u48"  >
+<div id="u48_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">规</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">则设置</span></p></div>
+</div>
+</div>
+<div id="u49" class="u49_container"   >
+<div id="u49_img" class="u49_normal detectCanvas"></div>
+<div id="u50" class="u50"  >
+<div id="u50_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">定</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">时发送</span></p></div>
+</div>
+</div>
+</DIV>
+</DIV>
+</DIV>
+<script type="text/javascript">
+InitializeSubmenu('sm1u17', 'u23');
+</script>
+<DIV id="sm2u17" style="position:absolute; left:72px; top:71px; width:543px; height:26px; visibility:hidden; width:1px; height:1px;" >
+<DIV id="u51container" style="position:absolute; left:350px; top:23px; width:106px; height:66px;; overflow:visible">
+
+<DIV id="u51_menu" class="u51_menu  detectCanvas"></DIV>
+
+<DIV id="u52" class="u52;" >
+
+</DIV>
+
+<DIV id="u52container" style="position:absolute; left:3px; top:3px; width:105px; height:65px; overflow:visible">
+
+<div id="u53" class="u53_container"   >
+<div id="u53_img" class="u53_normal detectCanvas"></div>
+<div id="u54" class="u54"  >
+<div id="u54_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">关</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">于史山寺</span></p></div>
+</div>
+</div>
+<div id="u55" class="u55_container"   >
+<div id="u55_img" class="u55_normal detectCanvas"></div>
+<div id="u56" class="u56"  >
+<div id="u56_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">关</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">于佛恩会</span></p></div>
+</div>
+</div>
+<div id="u57" class="u57_container"   >
+<div id="u57_img" class="u57_normal detectCanvas"></div>
+<div id="u58" class="u58"  >
+<div id="u58_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">关于本软件</span></p></div>
+</div>
+</div>
+</DIV>
+</DIV>
+</DIV>
+<script type="text/javascript">
+InitializeSubmenu('sm2u17', 'u27');
+</script>
+<DIV id="sm3u17" style="position:absolute; left:72px; top:71px; width:543px; height:26px; visibility:hidden; width:1px; height:1px;" >
+<DIV id="u59container" style="position:absolute; left:263px; top:23px; width:106px; height:86px;; overflow:visible">
+
+<DIV id="u59_menu" class="u59_menu  detectCanvas"></DIV>
+
+<DIV id="u60" class="u60;" >
+
+</DIV>
+
+<DIV id="u60container" style="position:absolute; left:3px; top:3px; width:105px; height:85px; overflow:visible">
+
+<div id="u61" class="u61_container"   >
+<div id="u61_img" class="u61_normal detectCanvas"></div>
+<div id="u62" class="u62"  >
+<div id="u62_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">修</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">改密码</span></p></div>
+</div>
+</div>
+<div id="u63" class="u63_container"   >
+<div id="u63_img" class="u63_normal detectCanvas"></div>
+<div id="u64" class="u64"  >
+<div id="u64_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">用户</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">管理</span></p></div>
+</div>
+</div>
+<div id="u65" class="u65_container"   >
+<div id="u65_img" class="u65_normal detectCanvas"></div>
+<div id="u66" class="u66"  >
+<div id="u66_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">操作历史</span></p></div>
+</div>
+</div>
+<div id="u67" class="u67_container"   >
+<div id="u67_img" class="u67_normal detectCanvas"></div>
+<div id="u68" class="u68"  >
+<div id="u68_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">数</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">据同步</span></p></div>
+</div>
+</div>
+</DIV>
+</DIV>
+</DIV>
+<script type="text/javascript">
+InitializeSubmenu('sm3u17', 'u25');
+</script>
+<DIV id="sm4u17" style="position:absolute; left:72px; top:71px; width:543px; height:26px; visibility:hidden; width:1px; height:1px;" >
+<DIV id="u69container" style="position:absolute; left:63px; top:23px; width:106px; height:66px;; overflow:visible">
+
+<DIV id="u69_menu" class="u69_menu  detectCanvas"></DIV>
+
+<DIV id="u70" class="u70;" >
+
+</DIV>
+
+<DIV id="u70container" style="position:absolute; left:3px; top:3px; width:105px; height:65px; overflow:visible">
+
+<div id="u71" class="u71_container"   >
+<div id="u71_img" class="u71_normal detectCanvas"></div>
+<div id="u72" class="u72"  >
+<div id="u72_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">查</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">看列表</span></p></div>
+</div>
+</div>
+<div id="u73" class="u73_container"   >
+<div id="u73_img" class="u73_normal detectCanvas"></div>
+<div id="u74" class="u74"  >
+<div id="u74_rtf"><p style="text-align:left;"><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">添</span><span style="font-family:Arial;font-size:13px;font-weight:normal;font-style:normal;text-decoration:none;color:#333333;">加会员</span></p></div>
+</div>
+</div>
+<div id="u75" class="u75_container"   >
+<div id="u75_img" class="u75_normal detectCanvas"></div>
+<div id="u76" class="u76" style="visibility:hidden;"  >
+<div id="u76_rtf"></div>
+</div>
+</div>
+</DIV>
+</DIV>
+</DIV>
+<script type="text/javascript">
+InitializeSubmenu('sm4u17', 'u21');
+</script>
+</div>
+<div class="preload"><img src="定时发送_files/u0_normal.png" width="1" height="1"/><img src="定时发送_files/u7_line.png" width="1" height="1"/><img src="定时发送_files/u17_menu.png" width="1" height="1"/><img src="定时发送_files/u19_mouseOver.png" width="1" height="1"/><img src="定时发送_files/u19_normal.png" width="1" height="1"/><img src="定时发送_files/u21_mouseOver.png" width="1" height="1"/><img src="定时发送_files/u21_normal.png" width="1" height="1"/><img src="定时发送_files/u25_mouseOver.png" width="1" height="1"/><img src="定时发送_files/u25_normal.png" width="1" height="1"/><img src="定时发送_files/u27_mouseOver.png" width="1" height="1"/><img src="定时发送_files/u27_normal.png" width="1" height="1"/><img src="定时发送_files/u29_menu.png" width="1" height="1"/><img src="定时发送_files/u37_menu.png" width="1" height="1"/><img src="定时发送_files/u51_menu.png" width="1" height="1"/><img src="定时发送_files/u59_menu.png" width="1" height="1"/><img src="定时发送_files/u69_menu.png" width="1" height="1"/></div>
+</body>
+<script src="resources/scripts/axurerp_pagescript.js"></script>
+<script src="定时发送_files/axurerp_pagespecificscript.js" charset="utf-8"></script>

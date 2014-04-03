@@ -1,0 +1,1668 @@
+﻿body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+#main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+#u0 {
+    position:absolute;
+    left:73px;
+    top:148px;
+    width:537px;
+    height:66px
+}
+
+.u1_normal {
+    background-image: url('../短信模版_files/u1_normal.png');
+}
+
+.u1_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:21px;
+}
+
+#u1_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:27px;
+}
+
+.u2 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u3_normal {
+    background-image: url('../短信模版_files/u3_normal.png');
+}
+
+.u3_container {
+    position:absolute;
+    left:100px;
+    top:0px;
+    width:329px;
+    height:21px;
+}
+
+#u3_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:335px;
+    height:27px;
+}
+
+.u4 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:325px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5_normal {
+    background-image: url('../短信模版_files/u5_normal.png');
+}
+
+.u5_container {
+    position:absolute;
+    left:429px;
+    top:0px;
+    width:103px;
+    height:21px;
+}
+
+#u5_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:109px;
+    height:27px;
+}
+
+.u6 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:99px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_normal {
+    background-image: url('../短信模版_files/u7_normal.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:0px;
+    top:21px;
+    width:100px;
+    height:20px;
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9_normal {
+    background-image: url('../短信模版_files/u9_normal.png');
+}
+
+.u9_container {
+    position:absolute;
+    left:100px;
+    top:21px;
+    width:329px;
+    height:20px;
+}
+
+#u9_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:335px;
+    height:26px;
+}
+
+.u10 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:325px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11_normal {
+    background-image: url('../短信模版_files/u11_normal.png');
+}
+
+.u11_container {
+    position:absolute;
+    left:429px;
+    top:21px;
+    width:103px;
+    height:20px;
+}
+
+#u11_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:109px;
+    height:26px;
+}
+
+.u12 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:99px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13_normal {
+    background-image: url('../短信模版_files/u7_normal.png');
+}
+
+.u13_container {
+    position:absolute;
+    left:0px;
+    top:41px;
+    width:100px;
+    height:20px;
+}
+
+#u13_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u15_normal {
+    background-image: url('../短信模版_files/u9_normal.png');
+}
+
+.u15_container {
+    position:absolute;
+    left:100px;
+    top:41px;
+    width:329px;
+    height:20px;
+}
+
+#u15_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:335px;
+    height:26px;
+}
+
+.u16 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:325px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u17_normal {
+    background-image: url('../短信模版_files/u11_normal.png');
+}
+
+.u17_container {
+    position:absolute;
+    left:429px;
+    top:41px;
+    width:103px;
+    height:20px;
+}
+
+#u17_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:109px;
+    height:26px;
+}
+
+.u18 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:99px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u19_mouseOver {
+    background-image: url('../短信模版_files/u19_mouseOver.png');
+}
+
+.u19_normal {
+    background-image: url('../短信模版_files/u19_normal.png');
+}
+
+.u19_container {
+    position:absolute;
+    left:515px;
+    top:172px;
+    width:79px;
+    height:14px;
+}
+
+#u19_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:85px;
+    height:20px;
+}
+
+.u20 {
+    position:absolute;
+    left:2px;
+    top:-1px;
+    width:75px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21_mouseOver {
+    background-image: url('../短信模版_files/u19_mouseOver.png');
+}
+
+.u21_normal {
+    background-image: url('../短信模版_files/u19_normal.png');
+}
+
+.u21_container {
+    position:absolute;
+    left:515px;
+    top:191px;
+    width:79px;
+    height:14px;
+}
+
+#u21_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:85px;
+    height:20px;
+}
+
+.u22 {
+    position:absolute;
+    left:2px;
+    top:-1px;
+    width:75px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23_mouseOver {
+    background-image: url('../短信模版_files/u19_mouseOver.png');
+}
+
+.u23_normal {
+    background-image: url('../短信模版_files/u19_normal.png');
+}
+
+.u23_container {
+    position:absolute;
+    left:291px;
+    top:220px;
+    width:79px;
+    height:14px;
+}
+
+#u23_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:85px;
+    height:20px;
+}
+
+.u24 {
+    position:absolute;
+    left:2px;
+    top:-1px;
+    width:75px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25_normal {
+    background-image: url('../短信模版_files/u25_normal.png');
+}
+
+.u25_container {
+    position:absolute;
+    left:73px;
+    top:250px;
+    width:532px;
+    height:180px;
+}
+
+#u25_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:538px;
+    height:186px;
+}
+
+.u26 {
+    position:absolute;
+    left:2px;
+    top:82px;
+    width:528px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u27 {
+    position:absolute;
+    left:87px;
+    top:267px;
+    width:64px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28 {
+    position:absolute;
+    left:151px;
+    top:262px;
+    width:80px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u29 {
+    position:absolute;
+    left:151px;
+    top:312px;
+    width:443px;
+    height:80px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u30 {
+    position:absolute;
+    left:87px;
+    top:312px;
+    width:64px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u31_mouseOver {
+    background-image: url('../短信模版_files/u19_mouseOver.png');
+}
+
+.u31_normal {
+    background-image: url('../短信模版_files/u19_normal.png');
+}
+
+.u31_container {
+    position:absolute;
+    left:291px;
+    top:403px;
+    width:79px;
+    height:14px;
+}
+
+#u31_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:85px;
+    height:20px;
+}
+
+.u32 {
+    position:absolute;
+    left:2px;
+    top:-1px;
+    width:75px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u33_menu {
+    background-image: url('../短信模版_files/u33_menu.png');
+}
+
+.u33_menu {
+    position:absolute;
+    left:69px;
+    top:68px;
+    width:552px;
+    height:35px;
+}
+
+#u33_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:549px;
+    height:32px;
+}
+
+#u34 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:542px;
+    height:25px
+}
+
+.u35_mouseOver {
+    background-image: url('../短信模版_files/u35_mouseOver.png');
+}
+
+.u35_normal {
+    background-image: url('../短信模版_files/u35_normal.png');
+}
+
+.u35_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:60px;
+    height:20px;
+}
+
+#u35_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:66px;
+    height:26px;
+}
+
+.u36 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:56px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u37_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u37_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u37_container {
+    position:absolute;
+    left:60px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u37_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u38 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u39_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u39_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u39_container {
+    position:absolute;
+    left:160px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u39_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u40 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u41_mouseOver {
+    background-image: url('../短信模版_files/u41_mouseOver.png');
+}
+
+.u41_normal {
+    background-image: url('../短信模版_files/u41_normal.png');
+}
+
+.u41_container {
+    position:absolute;
+    left:260px;
+    top:0px;
+    width:87px;
+    height:20px;
+}
+
+#u41_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:93px;
+    height:26px;
+}
+
+.u42 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:83px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u43_mouseOver {
+    background-image: url('../短信模版_files/u43_mouseOver.png');
+}
+
+.u43_normal {
+    background-image: url('../短信模版_files/u43_normal.png');
+}
+
+.u43_container {
+    position:absolute;
+    left:347px;
+    top:0px;
+    width:191px;
+    height:20px;
+}
+
+#u43_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:197px;
+    height:26px;
+}
+
+.u44 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:187px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u45_menu {
+    background-image: url('../短信模版_files/u45_menu.png');
+}
+
+.u45_menu {
+    position:absolute;
+    left:347px;
+    top:20px;
+    width:115px;
+    height:75px;
+}
+
+#u45_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:72px;
+}
+
+#u46 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:105px;
+    height:65px
+}
+
+.u47_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u47_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u47_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u47_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u48 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u49_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u49_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u49_container {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:100px;
+    height:20px;
+}
+
+#u49_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u50 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u51_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u51_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u51_container {
+    position:absolute;
+    left:0px;
+    top:40px;
+    width:100px;
+    height:20px;
+}
+
+#u51_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u52 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u53_menu {
+    background-image: url('../短信模版_files/u53_menu.png');
+}
+
+.u53_menu {
+    position:absolute;
+    left:160px;
+    top:20px;
+    width:115px;
+    height:135px;
+}
+
+#u53_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:132px;
+}
+
+#u54 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:105px;
+    height:125px
+}
+
+.u55_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u55_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u55_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u55_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u56 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u57_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u57_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u57_container {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:100px;
+    height:20px;
+}
+
+#u57_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u58 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u59_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u59_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u59_container {
+    position:absolute;
+    left:0px;
+    top:40px;
+    width:100px;
+    height:20px;
+}
+
+#u59_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u60 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u61_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u61_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u61_container {
+    position:absolute;
+    left:0px;
+    top:60px;
+    width:100px;
+    height:20px;
+}
+
+#u61_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u62 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u63_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u63_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u63_container {
+    position:absolute;
+    left:0px;
+    top:80px;
+    width:100px;
+    height:20px;
+}
+
+#u63_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u64 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u65_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u65_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u65_container {
+    position:absolute;
+    left:0px;
+    top:100px;
+    width:100px;
+    height:20px;
+}
+
+#u65_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u66 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u67_menu {
+    background-image: url('../短信模版_files/u67_menu.png');
+}
+
+.u67_menu {
+    position:absolute;
+    left:60px;
+    top:20px;
+    width:115px;
+    height:75px;
+}
+
+#u67_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:72px;
+}
+
+#u68 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:105px;
+    height:65px
+}
+
+.u69_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u69_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u69_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u69_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u70 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u71_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u71_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u71_container {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:100px;
+    height:20px;
+}
+
+#u71_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u72 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u73_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u73_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u73_container {
+    position:absolute;
+    left:0px;
+    top:40px;
+    width:100px;
+    height:20px;
+}
+
+#u73_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u74 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u75_menu {
+    background-image: url('../短信模版_files/u75_menu.png');
+}
+
+.u75_menu {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:115px;
+    height:75px;
+}
+
+#u75_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:72px;
+}
+
+#u76 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:105px;
+    height:65px
+}
+
+.u77_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u77_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u77_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u77_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u78 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u79_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u79_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u79_container {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:100px;
+    height:20px;
+}
+
+#u79_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u80 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u81_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u81_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u81_container {
+    position:absolute;
+    left:0px;
+    top:40px;
+    width:100px;
+    height:20px;
+}
+
+#u81_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u82 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u83_menu {
+    background-image: url('../短信模版_files/u83_menu.png');
+}
+
+.u83_menu {
+    position:absolute;
+    left:260px;
+    top:20px;
+    width:115px;
+    height:95px;
+}
+
+#u83_menu {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:92px;
+}
+
+#u84 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:105px;
+    height:85px
+}
+
+.u85_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u85_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u85_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+#u85_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u86 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u87_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u87_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u87_container {
+    position:absolute;
+    left:0px;
+    top:20px;
+    width:100px;
+    height:20px;
+}
+
+#u87_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u88 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u89_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u89_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u89_container {
+    position:absolute;
+    left:0px;
+    top:40px;
+    width:100px;
+    height:20px;
+}
+
+#u89_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u90 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u91_mouseOver {
+    background-image: url('../短信模版_files/u37_mouseOver.png');
+}
+
+.u91_normal {
+    background-image: url('../短信模版_files/u37_normal.png');
+}
+
+.u91_container {
+    position:absolute;
+    left:0px;
+    top:60px;
+    width:100px;
+    height:20px;
+}
+
+#u91_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:26px;
+}
+
+.u92 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
