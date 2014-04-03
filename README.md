@@ -1,4 +1,4 @@
-VipSMSSystem
+SMS-MMS
 ============
 
-A Member management system with SMS
+A Member Management System with SMS
