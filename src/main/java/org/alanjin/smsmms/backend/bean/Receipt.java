@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Receipt {
+	private int id;
 	private String receiptId;
 	private String memId;
 	private BigDecimal money;
@@ -11,11 +12,21 @@ public class Receipt {
 	private Date createDate;
 	private String description;
 	
+	public Receipt() {
+	}
+	
 	public Receipt(String receiptId, BigDecimal money, Date createDate) {
-		super();
 		this.receiptId = receiptId;
 		this.money = money;
 		this.createDate = createDate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getReceiptId() {

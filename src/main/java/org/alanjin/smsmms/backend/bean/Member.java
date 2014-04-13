@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class Member {
+	private int id;
 	private String memId;
 	private String name;
 	private int gender;
@@ -24,10 +25,12 @@ public class Member {
 	private BigDecimal feeSum;
 	private List<Receipt> receiptList;
 	
-	public Member(String id, String name, int sex, Date birthday, Date joinDate,
+	public Member() {
+	}
+	
+	public Member(String memId, String name, int sex, Date birthday, Date joinDate,
 			BigDecimal feeSum) {
-		super();
-		this.memId = id;
+		this.memId = memId;
 		this.name = name;
 		this.gender = sex;
 		this.birthday = birthday;
@@ -35,6 +38,14 @@ public class Member {
 		this.feeSum = feeSum;
 	}
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getMemId() {
 		return memId;
 	}
