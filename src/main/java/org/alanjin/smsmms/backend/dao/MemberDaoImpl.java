@@ -16,7 +16,7 @@ import org.alanjin.smsmms.backend.db.DBConn;
 public class MemberDaoImpl implements MemberDao {
 
 	@Override
-	public void insertMember(Member member) throws SQLException {
+	public boolean insertMember(Member member) throws SQLException {
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
 		con.setAutoCommit(false);
@@ -68,11 +68,13 @@ public class MemberDaoImpl implements MemberDao {
 			con.rollback();
 			con.close();
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 	@Override
-	public void deleteMember(int id) throws SQLException {
+	public boolean deleteMember(int id) throws SQLException {
 		String sql = "Delete from member where (id = ? );";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
@@ -80,6 +82,7 @@ public class MemberDaoImpl implements MemberDao {
 		ps.setInt(1, id);
 		ps.executeUpdate();
 		con.close();
+		return true;
 	}
 
 	@Override
@@ -122,39 +125,36 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public void updateMember(Member member) throws SQLException {
-		try{
-			String sql = "UPDATE member set name=?, gender=?, birthday=?," +
-					"zip=?, address=?, tel=?, phone=?, email=?, edu=?, industry=?," +
-					"title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?" +
-					"where (id = ? );";
-			System.out.println(sql);
-			DBConn db = new DBConn();
-			Connection con = db.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, member.getName());
-			ps.setInt(2, member.getGender());
-			ps.setDate(3, member.getBirthday());
-			ps.setString(4, member.getZip());
-			ps.setString(5, member.getAddress());
-			ps.setString(6, member.getTel());
-			ps.setString(7, member.getPhone());
-			ps.setString(8, member.getEmail());
-			ps.setString(9, member.getEdu());
-			ps.setString(10, member.getIndustry());
-			ps.setString(11, member.getTitle());
-			ps.setString(12, member.getExpert());
-			ps.setDate(13, member.getJoinDate());
-			ps.setDate(14, member.getLastDate());
-			ps.setDate(15, member.getDisableDate());
-			ps.setBigDecimal(16, member.getFeeSum());
-			ps.setInt(17, member.getId());
-			ps.executeUpdate();
-			ps.close();
-			con.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+	public boolean updateMember(Member member) throws SQLException {
+		String sql = "UPDATE member set name=?, gender=?, birthday=?," +
+				"zip=?, address=?, tel=?, phone=?, email=?, edu=?, industry=?," +
+				"title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?" +
+				"where (id = ? );";
+		System.out.println(sql);
+		DBConn db = new DBConn();
+		Connection con = db.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, member.getName());
+		ps.setInt(2, member.getGender());
+		ps.setDate(3, member.getBirthday());
+		ps.setString(4, member.getZip());
+		ps.setString(5, member.getAddress());
+		ps.setString(6, member.getTel());
+		ps.setString(7, member.getPhone());
+		ps.setString(8, member.getEmail());
+		ps.setString(9, member.getEdu());
+		ps.setString(10, member.getIndustry());
+		ps.setString(11, member.getTitle());
+		ps.setString(12, member.getExpert());
+		ps.setDate(13, member.getJoinDate());
+		ps.setDate(14, member.getLastDate());
+		ps.setDate(15, member.getDisableDate());
+		ps.setBigDecimal(16, member.getFeeSum());
+		ps.setInt(17, member.getId());
+		ps.executeUpdate();
+		ps.close();
+		con.close();
+		return true;
 	}
 
 	@Override

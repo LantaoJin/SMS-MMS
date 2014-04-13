@@ -10,11 +10,16 @@ import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import org.alanjin.smsmms.backend.bean.Member;
+import org.alanjin.smsmms.backend.dao.MemberDao;
+import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
+import org.alanjin.smsmms.backend.service.MemberAction;
 
 /**
  *
@@ -77,7 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         memberPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        memberTable = new javax.swing.JTable();
         buttonPanel1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -208,256 +213,249 @@ public class MainFrame extends javax.swing.JFrame {
         memberPanel.setMinimumSize(new java.awt.Dimension(800, 600));
         memberPanel.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
+        memberTable.setModel(new DefaultTableModel(
             new String [] {
                 "select", "姓名", "性别", "手机号", "出生日期", "入会日期", "累计会费"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
-            };
-            @Override
-            public Class getColumnClass(int c)	{
-                Object value = getValueAt(0, c);
-                if(value!=null)
-                return value.getClass();
-                else return super.getClass();
-            }
-        });
-        jTable1.setMinimumSize(new java.awt.Dimension(780, 500));
-        jTable1.getColumn("select").setHeaderRenderer(check);
-        jTable1.getTableHeader().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if(jTable1.getColumnModel().getColumnIndexAtX(e.getX())==0){//如果点击的是第0列，即checkbox这一列
-                    JCheckBox Checkbox = (JCheckBox)check;
-                    boolean b = !check.isSelected();
-                    check.setSelected(b);
-                    jTable1.getTableHeader().repaint();
-                    for(int i=0;i<jTable1.getRowCount();i++){
-                        jTable1.getModel().setValueAt(b, i, 0);//把这一列都设成和表头一样
+            },0) {
+                Class[] types = new Class [] {
+                    java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+                };
+                @Override
+                public Class getColumnClass(int c)	{
+                    Object value = getValueAt(0, c);
+                    if(value!=null)
+                    return value.getClass();
+                    else return super.getClass();
+                }
+            });
+            memberTable.setMinimumSize(new java.awt.Dimension(780, 500));
+            memberTable.getColumn("select").setHeaderRenderer(check);
+            memberTable.getTableHeader().addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e){
+                    if(memberTable.getColumnModel().getColumnIndexAtX(e.getX())==0){//如果点击的是第0列，即checkbox这一列
+                        JCheckBox Checkbox = (JCheckBox)check;
+                        boolean b = !check.isSelected();
+                        check.setSelected(b);
+                        memberTable.getTableHeader().repaint();
+                        for(int i=0;i<memberTable.getRowCount();i++){
+                            memberTable.getModel().setValueAt(b, i, 0);//把这一列都设成和表头一样
+                        }
                     }
                 }
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
+            });
+            jScrollPane2.setViewportView(memberTable);
 
-        memberPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+            memberPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        buttonPanel1.setMinimumSize(new java.awt.Dimension(800, 33));
+            buttonPanel1.setMinimumSize(new java.awt.Dimension(800, 33));
 
-        jButton5.setText("jButton5");
-        buttonPanel1.add(jButton5);
+            jButton5.setText("jButton5");
+            buttonPanel1.add(jButton5);
 
-        jButton6.setText("jButton6");
-        buttonPanel1.add(jButton6);
+            jButton6.setText("jButton6");
+            buttonPanel1.add(jButton6);
 
-        jButton7.setText("jButton7");
-        buttonPanel1.add(jButton7);
+            jButton7.setText("jButton7");
+            buttonPanel1.add(jButton7);
 
-        jButton8.setText("jButton8");
-        buttonPanel1.add(jButton8);
+            jButton8.setText("jButton8");
+            buttonPanel1.add(jButton8);
 
-        memberPanel.add(buttonPanel1, java.awt.BorderLayout.PAGE_END);
+            memberPanel.add(buttonPanel1, java.awt.BorderLayout.PAGE_END);
 
-        jLabel1.setText("选择出生日期：");
+            jLabel1.setText("选择出生日期：");
 
-        jButton9.setText("筛选");
+            jButton9.setText("筛选");
 
-        javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
-        filterPanel.setLayout(filterPanelLayout);
-        filterPanelLayout.setHorizontalGroup(
-            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(filterPanelLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(351, Short.MAX_VALUE))
-        );
-        filterPanelLayout.setVerticalGroup(
-            filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton9)
-                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+            javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
+            filterPanel.setLayout(filterPanelLayout);
+            filterPanelLayout.setHorizontalGroup(
+                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(filterPanelLayout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(jLabel1)
+                    .addGap(18, 18, 18)
+                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(52, 52, 52)
+                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(357, Short.MAX_VALUE))
+            );
+            filterPanelLayout.setVerticalGroup(
+                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton9)
+                        .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap())
+            );
 
-        memberPanel.add(filterPanel, java.awt.BorderLayout.PAGE_START);
+            memberPanel.add(filterPanel, java.awt.BorderLayout.PAGE_START);
 
-        indexPanel.add(memberPanel, "card2");
+            indexPanel.add(memberPanel, "card2");
 
-        javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
-        addMemberPanel.setLayout(addMemberPanelLayout);
-        addMemberPanelLayout.setHorizontalGroup(
-            addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-        addMemberPanelLayout.setVerticalGroup(
-            addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
+            addMemberPanel.setLayout(addMemberPanelLayout);
+            addMemberPanelLayout.setHorizontalGroup(
+                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 806, Short.MAX_VALUE)
+            );
+            addMemberPanelLayout.setVerticalGroup(
+                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 600, Short.MAX_VALUE)
+            );
 
-        indexPanel.add(addMemberPanel, "card3");
+            indexPanel.add(addMemberPanel, "card3");
 
-        javax.swing.GroupLayout p2pPanelLayout = new javax.swing.GroupLayout(p2pPanel);
-        p2pPanel.setLayout(p2pPanelLayout);
-        p2pPanelLayout.setHorizontalGroup(
-            p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-        p2pPanelLayout.setVerticalGroup(
-            p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout p2pPanelLayout = new javax.swing.GroupLayout(p2pPanel);
+            p2pPanel.setLayout(p2pPanelLayout);
+            p2pPanelLayout.setHorizontalGroup(
+                p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 806, Short.MAX_VALUE)
+            );
+            p2pPanelLayout.setVerticalGroup(
+                p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 600, Short.MAX_VALUE)
+            );
 
-        indexPanel.add(p2pPanel, "card4");
+            indexPanel.add(p2pPanel, "card4");
 
-        javax.swing.GroupLayout messPanelLayout = new javax.swing.GroupLayout(messPanel);
-        messPanel.setLayout(messPanelLayout);
-        messPanelLayout.setHorizontalGroup(
-            messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-        messPanelLayout.setVerticalGroup(
-            messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout messPanelLayout = new javax.swing.GroupLayout(messPanel);
+            messPanel.setLayout(messPanelLayout);
+            messPanelLayout.setHorizontalGroup(
+                messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 806, Short.MAX_VALUE)
+            );
+            messPanelLayout.setVerticalGroup(
+                messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 600, Short.MAX_VALUE)
+            );
 
-        indexPanel.add(messPanel, "card5");
+            indexPanel.add(messPanel, "card5");
 
-        javax.swing.GroupLayout viewReplyPanelLayout = new javax.swing.GroupLayout(viewReplyPanel);
-        viewReplyPanel.setLayout(viewReplyPanelLayout);
-        viewReplyPanelLayout.setHorizontalGroup(
-            viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 806, Short.MAX_VALUE)
-        );
-        viewReplyPanelLayout.setVerticalGroup(
-            viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
+            javax.swing.GroupLayout viewReplyPanelLayout = new javax.swing.GroupLayout(viewReplyPanel);
+            viewReplyPanel.setLayout(viewReplyPanelLayout);
+            viewReplyPanelLayout.setHorizontalGroup(
+                viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 806, Short.MAX_VALUE)
+            );
+            viewReplyPanelLayout.setVerticalGroup(
+                viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 600, Short.MAX_VALUE)
+            );
 
-        indexPanel.add(viewReplyPanel, "card6");
+            indexPanel.add(viewReplyPanel, "card6");
 
-        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        homeMenu.setText("首页");
+            homeMenu.setText("首页");
 
-        showHomeMenu.setText("显示首页");
-        showHomeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                showHomeMenuMouseReleased(evt);
-            }
-        });
-        showHomeMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showHomeMenuActionPerformed(evt);
-            }
-        });
-        homeMenu.add(showHomeMenu);
+            showHomeMenu.setText("显示首页");
+            showHomeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseReleased(java.awt.event.MouseEvent evt) {
+                    showHomeMenuMouseReleased(evt);
+                }
+            });
+            showHomeMenu.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    showHomeMenuActionPerformed(evt);
+                }
+            });
+            homeMenu.add(showHomeMenu);
 
-        jMenuBar1.add(homeMenu);
+            jMenuBar1.add(homeMenu);
 
-        MemberMenu.setText("会员管理");
+            MemberMenu.setText("会员管理");
 
-        ListAllMenuItem.setText("查看全部");
-        ListAllMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListAllMenuItemActionPerformed(evt);
-            }
-        });
-        MemberMenu.add(ListAllMenuItem);
+            ListAllMenuItem.setText("查看全部");
+            ListAllMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    ListAllMenuItemActionPerformed(evt);
+                }
+            });
+            MemberMenu.add(ListAllMenuItem);
 
-        AddNewMenuItem.setText("添加新会员");
-        AddNewMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNewMenuItemActionPerformed(evt);
-            }
-        });
-        MemberMenu.add(AddNewMenuItem);
+            AddNewMenuItem.setText("添加新会员");
+            AddNewMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    AddNewMenuItemActionPerformed(evt);
+                }
+            });
+            MemberMenu.add(AddNewMenuItem);
 
-        jMenuBar1.add(MemberMenu);
+            jMenuBar1.add(MemberMenu);
 
-        SMSMenu.setText("短信管理");
+            SMSMenu.setText("短信管理");
 
-        P2PMenuItem.setText("点对点短信");
-        P2PMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                P2PMenuItemActionPerformed(evt);
-            }
-        });
-        SMSMenu.add(P2PMenuItem);
+            P2PMenuItem.setText("点对点短信");
+            P2PMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    P2PMenuItemActionPerformed(evt);
+                }
+            });
+            SMSMenu.add(P2PMenuItem);
 
-        MessMenuItem.setText("短信群发");
-        SMSMenu.add(MessMenuItem);
+            MessMenuItem.setText("短信群发");
+            SMSMenu.add(MessMenuItem);
 
-        ViewReplyMenuItem.setText("查看回复");
-        SMSMenu.add(ViewReplyMenuItem);
+            ViewReplyMenuItem.setText("查看回复");
+            SMSMenu.add(ViewReplyMenuItem);
 
-        MsgModelMenuItem.setText("短信模版");
-        SMSMenu.add(MsgModelMenuItem);
+            MsgModelMenuItem.setText("短信模版");
+            SMSMenu.add(MsgModelMenuItem);
 
-        TimerMenuItem.setText("定时发送");
-        SMSMenu.add(TimerMenuItem);
+            TimerMenuItem.setText("定时发送");
+            SMSMenu.add(TimerMenuItem);
 
-        jMenuBar1.add(SMSMenu);
+            jMenuBar1.add(SMSMenu);
 
-        AdminMenu.setText("管理员");
+            AdminMenu.setText("管理员");
 
-        PasswdMenuItem.setText("修改密码");
-        AdminMenu.add(PasswdMenuItem);
+            PasswdMenuItem.setText("修改密码");
+            AdminMenu.add(PasswdMenuItem);
 
-        AdminMenuItem.setText("登陆管理");
-        AdminMenu.add(AdminMenuItem);
+            AdminMenuItem.setText("登陆管理");
+            AdminMenu.add(AdminMenuItem);
 
-        HistoryMenuItem.setText("操作记录");
-        AdminMenu.add(HistoryMenuItem);
+            HistoryMenuItem.setText("操作记录");
+            AdminMenu.add(HistoryMenuItem);
 
-        SyncMenuItem.setText("数据同步");
-        AdminMenu.add(SyncMenuItem);
+            SyncMenuItem.setText("数据同步");
+            AdminMenu.add(SyncMenuItem);
 
-        jMenuBar1.add(AdminMenu);
+            jMenuBar1.add(AdminMenu);
 
-        AboutMenu.setText("关于");
+            AboutMenu.setText("关于");
 
-        AboutAppMenuItem.setText("关于本软件");
-        AboutMenu.add(AboutAppMenuItem);
+            AboutAppMenuItem.setText("关于本软件");
+            AboutMenu.add(AboutAppMenuItem);
 
-        jMenuBar1.add(AboutMenu);
+            jMenuBar1.add(AboutMenu);
 
-        setJMenuBar(jMenuBar1);
+            setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 466, Short.MAX_VALUE)
-                .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 467, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 240, Short.MAX_VALUE)
-                .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 239, Short.MAX_VALUE))
-        );
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 466, Short.MAX_VALUE)
+                    .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 467, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 240, Short.MAX_VALUE)
+                    .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 239, Short.MAX_VALUE))
+            );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
 
     private void P2PMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_P2PMenuItemActionPerformed
         // TODO add your handling code here:
@@ -472,7 +470,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void ListAllMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListAllMenuItemActionPerformed
         // TODO add your handling code here:
-         //if(JOptionPane.showConfirmDialog(null, "确定删除所选则的N个会员？", "删除会员", JOptionPane.OK_CANCEL_OPTION) == 0)
+        //if(JOptionPane.showConfirmDialog(null, "确定删除所选则的N个会员？", "删除会员", JOptionPane.OK_CANCEL_OPTION) == 0)
+        
+        List<Member> allMembers = memberAction.getAllMembers();
+        Util.fillMemberTable(memberTable, allMembers);
+        
         LayoutManager layout = this.indexPanel.getLayout();
         if(layout instanceof CardLayout) {
             CardLayout card = (CardLayout) layout;
@@ -534,6 +536,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+    MemberDao memberDao = new MemberDaoImpl();
+    MemberAction memberAction = new MemberAction(memberDao);
     private static final String DefaultFormat = "yyyy-MM-dd hh:mm:ss";
     private static final String BirthDayFormat = "yyyy-MM-dd";
     private static final Font datePickerFont=new Font("Times New Roman", Font.PLAIN, 14);
@@ -574,10 +578,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    final CheckBoxRenderer check = new CheckBoxRenderer();
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel memberPanel;
+    private javax.swing.JTable memberTable;
+    final CheckBoxRenderer check = new CheckBoxRenderer();
     private javax.swing.JPanel messPanel;
     private javax.swing.JPanel p2pPanel;
     private javax.swing.JMenuItem showHomeMenu;

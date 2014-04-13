@@ -330,10 +330,10 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="memberTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;select&quot;, &quot;&#x59d3;&#x540d;&quot;, &quot;&#x6027;&#x522b;&quot;, &quot;&#x624b;&#x673a;&#x53f7;&quot;, &quot;&#x51fa;&#x751f;&#x65e5;&#x671f;&quot;, &quot;&#x5165;&#x4f1a;&#x65e5;&#x671f;&quot;, &quot;&#x7d2f;&#x8ba1;&#x4f1a;&#x8d39;&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class&#xa;    };&#xa;    @Override&#xa;    public Class getColumnClass(int c)&#x9;{&#xa;        Object value = getValueAt(0, c);&#xa;        if(value!=null)&#xa;        return value.getClass();&#xa;        else return super.getClass();&#xa;    }&#xa;}" type="code"/>
+                      <Connection code="new DefaultTableModel(&#xd;&#xa;       new String [] {&#xd;&#xa;                &quot;select&quot;, &quot;&#x59d3;&#x540d;&quot;, &quot;&#x6027;&#x522b;&quot;, &quot;&#x624b;&#x673a;&#x53f7;&quot;, &quot;&#x51fa;&#x751f;&#x65e5;&#x671f;&quot;, &quot;&#x5165;&#x4f1a;&#x65e5;&#x671f;&quot;, &quot;&#x7d2f;&#x8ba1;&#x4f1a;&#x8d39;&quot;&#xd;&#xa;       },0) {&#xd;&#xa;            Class[] types = new Class [] {&#xd;&#xa;                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class&#xd;&#xa;            };&#xd;&#xa;            @Override&#xd;&#xa;            public Class getColumnClass(int c)&#x9;{&#xd;&#xa;                Object value = getValueAt(0, c);&#xd;&#xa;                if(value!=null)&#xd;&#xa;                return value.getClass();&#xd;&#xa;                else return super.getClass();&#xd;&#xa;            }&#xd;&#xa;        }" type="code"/>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0"/>
@@ -341,7 +341,7 @@
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[780, 500]"/>
                     </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor" preCode="jTable1.getColumn(&quot;select&quot;).setHeaderRenderer(check);&#xa;jTable1.getTableHeader().addMouseListener(new MouseAdapter() {&#xa;&#x9;@Override&#xa;&#x9;public void mouseClicked(MouseEvent e){&#xa;&#x9;&#x9;if(jTable1.getColumnModel().getColumnIndexAtX(e.getX())==0){//&#x5982;&#x679c;&#x70b9;&#x51fb;&#x7684;&#x662f;&#x7b2c;0&#x5217;&#xff0c;&#x5373;checkbox&#x8fd9;&#x4e00;&#x5217;&#xa;&#x9;&#x9;&#x9;JCheckBox Checkbox = (JCheckBox)check;&#xa;&#x9;&#x9;&#x9;boolean b = !check.isSelected();&#xa;&#x9;&#x9;&#x9;check.setSelected(b);&#xa;&#x9;&#x9;&#x9;jTable1.getTableHeader().repaint();&#xa;&#x9;&#x9;&#x9;for(int i=0;i&lt;jTable1.getRowCount();i++){&#xa;&#x9;&#x9;&#x9;&#x9;jTable1.getModel().setValueAt(b, i, 0);//&#x628a;&#x8fd9;&#x4e00;&#x5217;&#x90fd;&#x8bbe;&#x6210;&#x548c;&#x8868;&#x5934;&#x4e00;&#x6837;&#xa;&#x9;&#x9;&#x9;}&#xa;&#x9;&#x9;}&#xa;&#x9;}&#xa;});">
+                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor" preCode="memberTable.getColumn(&quot;select&quot;).setHeaderRenderer(check);&#xa;memberTable.getTableHeader().addMouseListener(new MouseAdapter() {&#xa;&#x9;@Override&#xa;&#x9;public void mouseClicked(MouseEvent e){&#xa;&#x9;&#x9;if(memberTable.getColumnModel().getColumnIndexAtX(e.getX())==0){//&#x5982;&#x679c;&#x70b9;&#x51fb;&#x7684;&#x662f;&#x7b2c;0&#x5217;&#xff0c;&#x5373;checkbox&#x8fd9;&#x4e00;&#x5217;&#xa;&#x9;&#x9;&#x9;JCheckBox Checkbox = (JCheckBox)check;&#xa;&#x9;&#x9;&#x9;boolean b = !check.isSelected();&#xa;&#x9;&#x9;&#x9;check.setSelected(b);&#xa;&#x9;&#x9;&#x9;memberTable.getTableHeader().repaint();&#xa;&#x9;&#x9;&#x9;for(int i=0;i&lt;memberTable.getRowCount();i++){&#xa;&#x9;&#x9;&#x9;&#x9;memberTable.getModel().setValueAt(b, i, 0);//&#x628a;&#x8fd9;&#x4e00;&#x5217;&#x90fd;&#x8bbe;&#x6210;&#x548c;&#x8868;&#x5934;&#x4e00;&#x6837;&#xa;&#x9;&#x9;&#x9;}&#xa;&#x9;&#x9;}&#xa;&#x9;}&#xa;});">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
@@ -404,7 +404,7 @@
                           <Component id="datePicker1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                           <Component id="jButton9" min="-2" pref="86" max="-2" attributes="0"/>
-                          <EmptySpace pref="351" max="32767" attributes="0"/>
+                          <EmptySpace pref="357" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
