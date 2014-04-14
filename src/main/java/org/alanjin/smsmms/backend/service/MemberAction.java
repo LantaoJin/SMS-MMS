@@ -22,9 +22,10 @@ public class MemberAction {
 		}
 	}
 	
-	public List<Member> getMembersByBirthDay(String birthdayString) {
+	public List<Member> getMembersByBirthDay(String fullBirthdayString) {
+		String tmp = fullBirthdayString.replace("-", "");
 		try {
-			return memberDao.getMembersByBirthday(birthdayString);
+			return memberDao.getMembersByBirthday(tmp.substring(4));
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			return new ArrayList<Member>();

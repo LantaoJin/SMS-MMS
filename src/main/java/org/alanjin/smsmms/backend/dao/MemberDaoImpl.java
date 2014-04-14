@@ -1,17 +1,16 @@
 package org.alanjin.smsmms.backend.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.db.DBConn;
+import org.alanjin.smsmms.backend.util.Util;
 
 public class MemberDaoImpl implements MemberDao {
 
@@ -25,8 +24,8 @@ public class MemberDaoImpl implements MemberDao {
 					+ "memId,name,gender,birthday,"
 					+ "zip,address,tel,phone,email,"
 					+ "edu,industry,title,expert,"
-					+ "joindate,lastdate,disabledate,feesum"
-					+ ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+					+ "joindate,lastdate,disabledate,feesum,birthdaystr"
+					+ ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, member.getMemId());
 			ps.setString(2, member.getName());
@@ -45,6 +44,7 @@ public class MemberDaoImpl implements MemberDao {
 			ps.setDate(15, member.getLastDate());
 			ps.setDate(16, member.getDisableDate());
 			ps.setBigDecimal(17, member.getFeeSum());
+			ps.setString(18, Util.toBirthDayStr(member.getBirthday()));
 			ps.executeUpdate();
 			ps.close();
 			
@@ -128,7 +128,7 @@ public class MemberDaoImpl implements MemberDao {
 	public boolean updateMember(Member member) throws SQLException {
 		String sql = "UPDATE member set name=?, gender=?, birthday=?," +
 				"zip=?, address=?, tel=?, phone=?, email=?, edu=?, industry=?," +
-				"title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?" +
+				"title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?, birthdaystr=? " +
 				"where (id = ? );";
 		System.out.println(sql);
 		DBConn db = new DBConn();
@@ -150,7 +150,8 @@ public class MemberDaoImpl implements MemberDao {
 		ps.setDate(14, member.getLastDate());
 		ps.setDate(15, member.getDisableDate());
 		ps.setBigDecimal(16, member.getFeeSum());
-		ps.setInt(17, member.getId());
+		ps.setString(17, Util.toBirthDayStr(member.getBirthday()));
+		ps.setInt(18, member.getId());
 		ps.executeUpdate();
 		ps.close();
 		con.close();
@@ -218,22 +219,15 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<Member> getMembersByBirthday(String birthdayString)
+	public List<Member> getMembersByBirthday(String birthdayStr)
 			throws SQLException {
-		String sql = "Select * from member where (birthday = ? );";
+		String sql = "Select * from member where (birthdaystr = ? );";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
 		PreparedStatement ps = null;
 		ps = con.prepareStatement(sql);
 		List<Member> memList = new ArrayList<Member>();
-		Date birthday = null;
-		try {
-			birthday = org.alanjin.smsmms.backend.util.Util.toSQLDate(birthdayString);
-		} catch (ParseException e) {
-			System.err.println(e.getMessage());
-			return memList;
-		}
-		ps.setDate(1, birthday);
+		ps.setString(1, birthdayStr);
 		ResultSet r = ps.executeQuery();
 		if(r!=null){
 			while(r.next()){

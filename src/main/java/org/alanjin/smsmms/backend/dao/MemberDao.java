@@ -11,6 +11,6 @@ public interface MemberDao {
 	public Member selectMember(int id)throws SQLException;
 	public boolean updateMember(Member member) throws SQLException;
 	public List<Member> getAllMembers() throws SQLException;
-	public List<Member> getMembersByBirthday(String birthday) throws SQLException;
+	public List<Member> getMembersByBirthday(String birthdaystr) throws SQLException;
 	public int count() throws SQLException;
 }

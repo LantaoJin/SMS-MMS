@@ -65,5 +65,20 @@
       <artifactId>beansbinding</artifactId>
       <version>1.2.1</version>
     </dependency>
+    <dependency>
+      <groupId>Alan</groupId>
+      <artifactId>comm</artifactId>
+      <version>0.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>Alan</groupId>
+      <artifactId>smslib</artifactId>
+      <version>3.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>Alan</groupId>
+      <artifactId>ofbizentity</artifactId>
+      <version>0.0.1</version>
+    </dependency>
   </dependencies>
 </project>
