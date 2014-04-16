@@ -4,7 +4,6 @@ public class MessageModel {
 	private int id;
 	private String modelName;
 	private String content;
-	private String head;
 	private boolean usePoliteness;
 	
 	public int getId() {
@@ -29,14 +28,6 @@ public class MessageModel {
 	
 	public void setContent(String content) {
 		this.content = content;
-	}
-	
-	public String getHead() {
-		return head;
-	}
-	
-	public void setHead(String head) {
-		this.head = head;
 	}
 	
 	public boolean isUsePoliteness() {

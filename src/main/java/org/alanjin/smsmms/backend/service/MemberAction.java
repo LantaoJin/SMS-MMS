@@ -6,11 +6,20 @@ import java.util.List;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.dao.MemberDao;
+import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
 
 public class MemberAction {
-	private MemberDao memberDao;
-	public MemberAction(MemberDao dao) {
-		this.memberDao = dao;
+	private static MemberAction action;
+	private static MemberDao memberDao;
+	
+	private MemberAction() {}
+	
+	public static MemberAction newInstance () {
+		if (action == null) {
+			memberDao = new MemberDaoImpl();
+			action = new MemberAction();
+		}
+		return action;
 	}
 	
 	public List<Member> getAllMembers() {
