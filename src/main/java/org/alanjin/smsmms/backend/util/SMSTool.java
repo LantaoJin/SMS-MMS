@@ -23,30 +23,36 @@ import org.smslib.Message.MessageTypes;
 import org.smslib.modem.SerialModemGateway;
 
 public class SMSTool {
-	// ×ÔÉíÀà
+	// è‡ªèº«ç±»
 	static SMSTool smwps = null;
-	// ¶ÁÈ¡È«²¿ÏûÏ¢
-	public static final org.smslib.InboundMessage.MessageClasses ALL_MESSAGE = org.smslib.InboundMessage.MessageClasses.ALL;
-	// ¶ÁÈ¡ÒÑ¶ÁÏûÏ¢
-	public static final org.smslib.InboundMessage.MessageClasses READ_MESSAGE = org.smslib.InboundMessage.MessageClasses.READ;
-	// ¶ÁÈ¡Î´¶ÁÏûÏ¢
-	public static final org.smslib.InboundMessage.MessageClasses UNREAD_MESSAGE = org.smslib.InboundMessage.MessageClasses.UNREAD;
-	// ÏûÏ¢·şÎñ
+	// è¯»å–å…¨éƒ¨æ¶ˆæ¯
+	public static final org.smslib.InboundMessage.MessageClasses ALL_MESSAGE = 
+
+org.smslib.InboundMessage.MessageClasses.ALL;
+	// è¯»å–å·²è¯»æ¶ˆæ¯
+	public static final org.smslib.InboundMessage.MessageClasses READ_MESSAGE = 
+
+org.smslib.InboundMessage.MessageClasses.READ;
+	// è¯»å–æœªè¯»æ¶ˆæ¯
+	public static final org.smslib.InboundMessage.MessageClasses UNREAD_MESSAGE = 
+
+org.smslib.InboundMessage.MessageClasses.UNREAD;
+	// æ¶ˆæ¯æœåŠ¡
 	private static Service srv = null;
-	// ·¢ËÍÏûÏ¢»Øµ÷ÊµÏÖÀà
+	// å‘é€æ¶ˆæ¯å›è°ƒå®ç°ç±»
 	OutboundNotification outboundNotification = new OutboundNotification();
-	// ¶ÁÈ¡ÏûÏ¢»Øµ÷ÊµÏÖÀà
+	// è¯»å–æ¶ˆæ¯å›è°ƒå®ç°ç±»
 	InboundNotification inboundNotification = new InboundNotification();
-	// Êı¾İ¿â±ú
+	// æ•°æ®åº“æŸ„
 	private GenericDelegator delegator = null;
 
-	// Éè±¸Ãû³Æ
+	// è®¾å¤‡åç§°
 	private static String gateName = "SMS";
 
 	private SMSTool() {
 	}
 
-	// ¹¹ÔìÀàµÄÊµÀı£¬Ö»²úÉúÒ»¸ö¶ÔÏóÊµÀı
+	// æ„é€ ç±»çš„å®ä¾‹ï¼Œåªäº§ç”Ÿä¸€ä¸ªå¯¹è±¡å®ä¾‹
 
 	public static SMSTool newInstance(String com)
 			throws TimeoutException, GatewayException, SMSLibException,
@@ -83,16 +89,16 @@ public class SMSTool {
 		return smwps;
 	}
 
-	// ´ò¿ª¶Ë¿Ú£¬¿ªÆô·şÎñ
+	// æ‰“å¼€ç«¯å£ï¼Œå¼€å¯æœåŠ¡
 	private void open(String com, String gateName) throws TimeoutException,
 			GatewayException, SMSLibException, IOException,
 			InterruptedException {
 		srv = new Service();
-		// comPort ´®¿ÚÃû£¬±ÈÈçCOM1»òÕß/dev/ttyS1
-		// baudRate ¶Ë¿ÚËÙ¶È£¬WAVECOMÊÇ9600
-		// manufacturer,model ÖÆÔìÉÌºÍĞÍºÅËæ±ãÌî
+		// comPort ä¸²å£åï¼Œæ¯”å¦‚COM1æˆ–è€…/dev/ttyS1
+		// baudRate ç«¯å£é€Ÿåº¦ï¼ŒWAVECOMæ˜¯9600
+		// manufacturer,model åˆ¶é€ å•†å’Œå‹å·éšä¾¿å¡«
 		SerialModemGateway gateway = new SerialModemGateway(gateName, com,
-				9600, "", srv.getLogger().toString());
+				9600, "", "");
 		gateway.setInbound(true);
 		gateway.setOutbound(true);
 		// gateway.setSimPin("0000");
@@ -107,7 +113,7 @@ public class SMSTool {
 		srv.startService();
 	}
 
-	// ¶ÁÈ¡ĞÅÏ¢
+	// è¯»å–ä¿¡æ¯
 	public static List<org.smslib.InboundMessage> readSms(
 			org.smslib.InboundMessage.MessageClasses messageType)
 			throws TimeoutException, GatewayException, IOException,
@@ -120,7 +126,7 @@ public class SMSTool {
 		return smss;
 	}
 
-	// ·¢ËÍµ¥ÌõÏûÏ¢
+	// å‘é€å•æ¡æ¶ˆæ¯
 	public static boolean sendSms(String mobile, String content,
 			boolean tryAgain) {
 		OutboundMessage msg = new OutboundMessage(mobile, content);
@@ -147,7 +153,7 @@ public class SMSTool {
 		return true;
 	}
 
-	// Èº·¢ÏûÏ¢
+	// ç¾¤å‘æ¶ˆæ¯
 	public static List<Map<String, String>> sendSms(
 			List<Map<String, String>> messages, boolean tryAgain) {
 		List<Map<String, String>> failList = new ArrayList<Map<String, String>>();
@@ -163,7 +169,7 @@ public class SMSTool {
 		return failList;
 	}
 
-	// ¹Ø±Õ·şÎñ
+	// å…³é—­æœåŠ¡
 	public static void close() {
 		try {
 			srv.stopService();
@@ -195,7 +201,7 @@ public class SMSTool {
 	public static void main(String[] args) throws TimeoutException,
 			GatewayException, IOException, InterruptedException {
 		String mob = "13636316288";
-		String content = "Ò»Ö»Ğ¡ĞÜÈ¥É½Àï´´Òµ£¬Å©·ò¸øÁËËûÒ»°ÑÁ­µ¶£¬Ä¾½³¸øÁËËûÒ»°Ñ´¸×Ó£¬ Ğ¡ĞÜÀ´µ½É½ÀïÓöµ½ÀÏ»¢£¬ÏÅµÃ°ÑÁ­µ¶¡¢´¸×Ó¾ÙÔÚÍ·¶¥£¬ ÀÏ»¢Ëµ£ºÃ»¿´³öÀ´£¬¾ÍÄãÕâĞÜÑù»¹ÊÇ¸öµ³Ô±À´£¡";
+		String content = "ä¸€åªå°ç†Šå»å±±é‡Œåˆ›ä¸šï¼Œå†œå¤«ç»™äº†ä»–ä¸€æŠŠé•°åˆ€ï¼Œæœ¨åŒ ç»™äº†ä»–ä¸€æŠŠé”¤å­ï¼Œ å°ç†Šæ¥åˆ°å±±é‡Œé‡åˆ°è€è™ï¼Œå“å¾—æŠŠé•°åˆ€ã€é”¤å­ä¸¾åœ¨å¤´é¡¶ï¼Œ è€è™è¯´ï¼šæ²¡çœ‹å‡ºæ¥ï¼Œå°±ä½ è¿™ç†Šæ ·è¿˜æ˜¯ä¸ªå…šå‘˜æ¥ï¼";
 		SMSTool sms = new SMSTool();// newInstance();
 		try {
 			sms.open("COM6", "SMS");
@@ -215,15 +221,15 @@ public class SMSTool {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("1¡¢·¢ËÍ¶ÌÏûÏ¢");
-		System.out.println("quit¡¢ÍË³ö");
+		System.out.println("1ã€å‘é€çŸ­æ¶ˆæ¯");
+		System.out.println("quitã€é€€å‡º");
 		String str = "";
-		System.out.println("1¡¢·¢ËÍ¶ÌÏûÏ¢");
+		System.out.println("1ã€å‘é€çŸ­æ¶ˆæ¯");
 
-		System.out.println("quit¡¢ÍË³ö");
+		System.out.println("quitã€é€€å‡º");
 		while (true) {
-			System.out.print("ÇëÑ¡Ôñ£º   ");
-			InputStreamReader stdin = new InputStreamReader(System.in);// ¼üÅÌÊäÈë
+			System.out.print("è¯·é€‰æ‹©ï¼š   ");
+			InputStreamReader stdin = new InputStreamReader(System.in);// é”®ç›˜è¾“å…¥
 			BufferedReader bufin = new BufferedReader(stdin);
 			try {
 				str = bufin.readLine();
@@ -238,7 +244,7 @@ public class SMSTool {
 				System.out.println(SMSTool.sendSms(mob,
 						content, false));
 			else {
-				System.out.println("¶ÌÏûÏ¢!");
+				System.out.println("çŸ­æ¶ˆæ¯!");
 				SMSTool.readSms(SMSTool.ALL_MESSAGE);
 			}
 		}

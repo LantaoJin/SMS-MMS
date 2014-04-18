@@ -23,6 +23,7 @@ public class Util {
             content[i][1] = members.get(i).getMemId();
             content[i][2] = members.get(i).getName();
             content[i][3] = members.get(i).getGender();
+            content[i][3] = members.get(i).getGender()==1?"男":"女";
             content[i][4] = members.get(i).getPhone();
             content[i][5] = members.get(i).getBirthday();
             content[i][6] = members.get(i).getJoinDate();

@@ -94,6 +94,8 @@ public class MainFrame extends javax.swing.JFrame {
         datePicker1 = new com.eltima.components.ui.DatePicker(initDate, BirthDayFormat, datePickerFont, null);
         jButton9 = new javax.swing.JButton();
         addMemberPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         p2pPanel = new javax.swing.JPanel();
         messPanel = new javax.swing.JPanel();
         viewReplyPanel = new javax.swing.JPanel();
@@ -176,12 +178,14 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("史山寺佛恩互助会会员管理系统");
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(804, 650));
+        setResizable(false);
 
         indexPanel.setMinimumSize(new java.awt.Dimension(780, 560));
         indexPanel.setLayout(new java.awt.CardLayout());
 
         welcomePanel.setMinimumSize(new java.awt.Dimension(780, 560));
+        welcomePanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jTextField1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jTextField1.setText("Hello World!");
@@ -198,19 +202,20 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(239, 239, 239)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         welcomePanelLayout.setVerticalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(218, 218, 218)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         indexPanel.add(welcomePanel, "card7");
 
         memberPanel.setMinimumSize(new java.awt.Dimension(800, 600));
+        memberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         memberPanel.setLayout(new java.awt.BorderLayout());
 
         memberTable.setModel(new DefaultTableModel(
@@ -228,7 +233,6 @@ public class MainFrame extends javax.swing.JFrame {
                     else return super.getClass();
                 }
             });
-            memberTable.setMinimumSize(new java.awt.Dimension(780, 500));
             memberTable.getColumn("select").setHeaderRenderer(check);
             memberTable.getTableHeader().addMouseListener(new MouseAdapter() {
                 @Override
@@ -279,7 +283,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(52, 52, 52)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(357, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
             filterPanelLayout.setVerticalGroup(
                 filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,54 +301,71 @@ public class MainFrame extends javax.swing.JFrame {
 
             indexPanel.add(memberPanel, "card2");
 
+            addMemberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+
+            jLabel3.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
+            jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jLabel3.setText("会员删除/修改");
+
             javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
             addMemberPanel.setLayout(addMemberPanelLayout);
             addMemberPanelLayout.setHorizontalGroup(
                 addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 806, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1)
             );
             addMemberPanelLayout.setVerticalGroup(
                 addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGroup(addMemberPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel3)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
             );
 
             indexPanel.add(addMemberPanel, "card3");
+
+            p2pPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
             javax.swing.GroupLayout p2pPanelLayout = new javax.swing.GroupLayout(p2pPanel);
             p2pPanel.setLayout(p2pPanelLayout);
             p2pPanelLayout.setHorizontalGroup(
                 p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 806, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
             p2pPanelLayout.setVerticalGroup(
                 p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
 
             indexPanel.add(p2pPanel, "card4");
+
+            messPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
             javax.swing.GroupLayout messPanelLayout = new javax.swing.GroupLayout(messPanel);
             messPanel.setLayout(messPanelLayout);
             messPanelLayout.setHorizontalGroup(
                 messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 806, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
             messPanelLayout.setVerticalGroup(
                 messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
 
             indexPanel.add(messPanel, "card5");
+
+            viewReplyPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
             javax.swing.GroupLayout viewReplyPanelLayout = new javax.swing.GroupLayout(viewReplyPanel);
             viewReplyPanel.setLayout(viewReplyPanelLayout);
             viewReplyPanelLayout.setHorizontalGroup(
                 viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 806, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
             viewReplyPanelLayout.setVerticalGroup(
                 viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
             );
 
             indexPanel.add(viewReplyPanel, "card6");
@@ -442,16 +463,16 @@ public class MainFrame extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 466, Short.MAX_VALUE)
+                    .addGap(0, 864, Short.MAX_VALUE)
                     .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 467, Short.MAX_VALUE))
+                    .addGap(0, 865, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 240, Short.MAX_VALUE)
+                    .addGap(0, 535, Short.MAX_VALUE)
                     .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 239, Short.MAX_VALUE))
+                    .addGap(0, 534, Short.MAX_VALUE))
             );
 
             pack();
@@ -484,11 +505,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void AddNewMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewMenuItemActionPerformed
         // TODO add your handling code here:
+        LayoutManager layout = this.indexPanel.getLayout();
+        if(layout instanceof CardLayout) {
+            CardLayout card = (CardLayout) layout;
+            card.show(indexPanel, "card3");
+        }
     }//GEN-LAST:event_AddNewMenuItemActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void showHomeMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showHomeMenuMouseReleased
         LayoutManager layout = this.indexPanel.getLayout();
@@ -501,6 +523,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void showHomeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showHomeMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_showHomeMenuActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,8 +562,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    MemberDao memberDao = new MemberDaoImpl();
-    MemberAction memberAction = new MemberAction(memberDao);
+    MemberAction memberAction = MemberAction.newInstance();
     private static final String DefaultFormat = "yyyy-MM-dd hh:mm:ss";
     private static final String BirthDayFormat = "yyyy-MM-dd";
     private static final Font datePickerFont=new Font("Times New Roman", Font.PLAIN, 14);
@@ -575,9 +600,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel memberPanel;
     private javax.swing.JTable memberTable;
