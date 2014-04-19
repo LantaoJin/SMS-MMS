@@ -4,7 +4,11 @@
  */
 package org.alanjin.smsmms.frontend;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,5 +50,36 @@ public class Util {
         };
         model.setDataVector(content, columnIdentifiers);
         memberTable.setModel(model);
+    }
+    
+    public static void verifyAlert(String message, String title) {
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.CLOSED_OPTION);
+    }
+
+    public static boolean isMobileNO(String mobiles){
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+    
+    public static boolean isEmail(String mobiles){
+        Pattern p = Pattern.compile("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$");
+        Matcher m = p.matcher(mobiles);
+        return m.matches();
+    }
+    
+    public static boolean isDigit(String digit){
+        Pattern p = Pattern.compile("[0-9]+(.[0-9]+)?");
+        Matcher m = p.matcher(digit);
+        return m.matches();
+    }
+
+    public static void main(String[] args) throws IOException {
+        System.out.println(Util.isMobileNO("15921778090"));
+        System.out.println(Util.isMobileNO("1592177090"));
+        System.out.println(Util.isEmail("w232@dfd.dsfd"));
+        System.out.println(Util.isEmail("232@dfd.ds. fd"));
+        System.out.println(Util.isDigit("23.03"));
+        System.out.println(Util.isDigit("1dsa.1e"));
     }
 }
