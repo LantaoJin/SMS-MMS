@@ -93,9 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
         Date initDate = new Date(0);
         datePicker1 = new com.eltima.components.ui.DatePicker(initDate, BirthDayFormat, datePickerFont, null);
         jButton9 = new javax.swing.JButton();
-        addMemberPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
+        addMemberPanel = new MemberJForm();
         p2pPanel = new javax.swing.JPanel();
         messPanel = new javax.swing.JPanel();
         viewReplyPanel = new javax.swing.JPanel();
@@ -202,14 +200,14 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(239, 239, 239)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         welcomePanelLayout.setVerticalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(218, 218, 218)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         indexPanel.add(welcomePanel, "card7");
@@ -283,7 +281,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(52, 52, 52)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(351, Short.MAX_VALUE))
             );
             filterPanelLayout.setVerticalGroup(
                 filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,28 +299,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             indexPanel.add(memberPanel, "card2");
 
-            addMemberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
-
-            jLabel3.setFont(new java.awt.Font("宋体", 1, 24)); // NOI18N
-            jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            jLabel3.setText("会员删除/修改");
-
-            javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
-            addMemberPanel.setLayout(addMemberPanelLayout);
-            addMemberPanelLayout.setHorizontalGroup(
-                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator1)
-            );
-            addMemberPanelLayout.setVerticalGroup(
-                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(addMemberPanelLayout.createSequentialGroup()
-                    .addComponent(jLabel3)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
-            );
-
             indexPanel.add(addMemberPanel, "card3");
 
             p2pPanel.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -331,11 +307,11 @@ public class MainFrame extends javax.swing.JFrame {
             p2pPanel.setLayout(p2pPanelLayout);
             p2pPanelLayout.setHorizontalGroup(
                 p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 800, Short.MAX_VALUE)
             );
             p2pPanelLayout.setVerticalGroup(
                 p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 600, Short.MAX_VALUE)
             );
 
             indexPanel.add(p2pPanel, "card4");
@@ -346,11 +322,11 @@ public class MainFrame extends javax.swing.JFrame {
             messPanel.setLayout(messPanelLayout);
             messPanelLayout.setHorizontalGroup(
                 messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 800, Short.MAX_VALUE)
             );
             messPanelLayout.setVerticalGroup(
                 messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 600, Short.MAX_VALUE)
             );
 
             indexPanel.add(messPanel, "card5");
@@ -361,11 +337,11 @@ public class MainFrame extends javax.swing.JFrame {
             viewReplyPanel.setLayout(viewReplyPanelLayout);
             viewReplyPanelLayout.setHorizontalGroup(
                 viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 800, Short.MAX_VALUE)
             );
             viewReplyPanelLayout.setVerticalGroup(
                 viewReplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 600, Short.MAX_VALUE)
             );
 
             indexPanel.add(viewReplyPanel, "card6");
@@ -463,16 +439,16 @@ public class MainFrame extends javax.swing.JFrame {
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 864, Short.MAX_VALUE)
+                    .addGap(0, 2, Short.MAX_VALUE)
                     .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 865, Short.MAX_VALUE))
+                    .addGap(0, 2, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 535, Short.MAX_VALUE)
+                    .addGap(0, 15, Short.MAX_VALUE)
                     .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 534, Short.MAX_VALUE))
+                    .addGap(0, 14, Short.MAX_VALUE))
             );
 
             pack();
@@ -584,7 +560,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem SyncMenuItem;
     private javax.swing.JMenuItem TimerMenuItem;
     private javax.swing.JMenuItem ViewReplyMenuItem;
-    private javax.swing.JPanel addMemberPanel;
+    private MemberJForm addMemberPanel;
     private javax.swing.JPanel buttonPanel1;
     private com.eltima.components.ui.DatePicker datePicker1;
     private javax.swing.JPanel filterPanel;
@@ -600,11 +576,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel memberPanel;
     private javax.swing.JTable memberTable;
