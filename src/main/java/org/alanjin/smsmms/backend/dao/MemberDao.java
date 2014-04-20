@@ -13,4 +13,5 @@ public interface MemberDao {
 	public List<Member> getAllMembers() throws SQLException;
 	public List<Member> getMembersByBirthday(String birthdaystr) throws SQLException;
 	public int count() throws SQLException;
+        public String getLastMemberId() throws SQLException;
 }

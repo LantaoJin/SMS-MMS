@@ -13,22 +13,21 @@ import org.alanjin.smsmms.backend.util.SMSTool;
 import org.alanjin.smsmms.backend.util.Util;
 
 public class MassSendTask extends TimerTask {
-	private String scheduleName;
+	private String taskName;
 	private MessageModel messageModel;
 	
-	public MassSendTask(String scheduleName,
-			MessageModel messageModel,
-			SMSAction smsAction) {
-		this.scheduleName = scheduleName;
+	public MassSendTask(String taskName,
+			MessageModel messageModel) {
+		this.taskName = taskName;
 		this.messageModel = messageModel;
 	}
 	
-	public String getScheduleName() {
-		return scheduleName;
+	public String getTaskName() {
+		return taskName;
 	}
 
-	public void setScheduleName(String scheduleName) {
-		this.scheduleName = scheduleName;
+	public void setTaskName(String taskeName) {
+		this.taskName = taskName;
 	}
 
 	public MessageModel getMessageModel() {
@@ -42,12 +41,9 @@ public class MassSendTask extends TimerTask {
 	@Override
 	public void run() {
 		MemberAction memberAction = MemberAction.newInstance();
-		// 找到今天生日的列表，读数据库。
 		String fullBirthdayString = Util.fromNormalDate(new Date());
 		List<Member> memberToSend = memberAction.getMembersByBirthDay(fullBirthdayString);
-		// 获取需要发的短信模版
 		
-		// 发短信
 		List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
 		for (Member toSend : memberToSend) {
 			Map<String, String> senderPair = new HashMap<String, String>();
@@ -66,7 +62,7 @@ public class MassSendTask extends TimerTask {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((scheduleName == null) ? 0 : scheduleName.hashCode());
+				+ ((taskName == null) ? 0 : taskName.hashCode());
 		return result;
 	}
 
@@ -79,10 +75,10 @@ public class MassSendTask extends TimerTask {
 		if (getClass() != obj.getClass())
 			return false;
 		MassSendTask other = (MassSendTask) obj;
-		if (scheduleName == null) {
-			if (other.scheduleName != null)
+		if (taskName == null) {
+			if (other.taskName != null)
 				return false;
-		} else if (!scheduleName.equals(other.scheduleName))
+		} else if (!taskName.equals(other.taskName))
 			return false;
 		return true;
 	}

@@ -12,9 +12,11 @@ import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.alanjin.smsmms.backend.bean.Member;
@@ -48,7 +50,12 @@ public class MemberJForm extends JPanel {
             } else if (!Util.isDigit(textFee.getText().trim())) {
                 Util.verifyAlert("会费必须是有效金额数字", TITLE);
             } else {// else if (birthday.ge) 
-                String memId = "12345";//TODO 生成会员号
+                String memId = null;
+                try {
+                    memId = Util.generateMemberId(); //TODO 生成会员号,异常处理
+                } catch (SQLException ex) {
+                    Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 int sex = radioButton1.isSelected()? 1:0;
                 java.sql.Date birthDate = null;
                 java.sql.Date joinDate = null;

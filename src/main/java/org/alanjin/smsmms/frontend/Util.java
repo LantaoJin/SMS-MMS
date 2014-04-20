@@ -5,6 +5,7 @@
 package org.alanjin.smsmms.frontend;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.alanjin.smsmms.backend.bean.Member;
+import org.alanjin.smsmms.backend.dao.MemberDao;
+import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
 
 /**
  *
@@ -73,6 +76,28 @@ public class Util {
         Matcher m = p.matcher(digit);
         return m.matches();
     }
+    
+    public static String generateMemberId() throws SQLException {
+        MemberDao memDao = new MemberDaoImpl();
+        String newest = memDao.getLastMemberId();
+        if (newest == null) return "000001";
+        int beginNum = Integer.parseInt(newest);
+        return nextGoodNum(beginNum);
+    }
+    
+    private static String nextGoodNum(int i) {
+        String tmp = Integer.toString(++i);
+        int place = tmp.length();
+        while(tmp.indexOf('4') != -1) {
+            int fact = place - tmp.indexOf('4') - 1;//1-0-1=0(4), 3-0-1=2(401), 3-2-1=0(224)
+            i = i + (int)Math.pow(10, fact);
+            tmp = Integer.toString(i);
+        }
+        for (int j = 0; j < 6 - place; j++) {
+            tmp = "0" + tmp;
+        }
+        return tmp;
+    }
 
     public static void main(String[] args) throws IOException {
         System.out.println(Util.isMobileNO("15921778090"));
@@ -81,5 +106,19 @@ public class Util {
         System.out.println(Util.isEmail("232@dfd.ds. fd"));
         System.out.println(Util.isDigit("23.03"));
         System.out.println(Util.isDigit("1dsa.1e"));
+        
+        String tmp = "1234";
+        System.out.println(tmp.lastIndexOf('4'));
+        System.out.println(tmp.indexOf('4'));
+        
+        System.out.println(Util.nextGoodNum(3));
+        System.out.println(Util.nextGoodNum(13));
+        System.out.println(Util.nextGoodNum(33));
+        System.out.println(Util.nextGoodNum(39));
+        System.out.println(Util.nextGoodNum(339));
+        System.out.println(Util.nextGoodNum(399));
+        System.out.println(Util.nextGoodNum(3999));
+        
+        System.out.println(Integer.parseInt("000011"));
     }
 }

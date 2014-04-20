@@ -90,8 +90,7 @@ public class MemberDaoImpl implements MemberDao {
 		String sql = "Select * from member where (id = ? );";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
-		PreparedStatement ps = null;
-		ps = con.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setInt(1, id);
 		
 		ResultSet r = ps.executeQuery();
@@ -224,8 +223,7 @@ public class MemberDaoImpl implements MemberDao {
 		String sql = "Select * from member where (birthdaystr = ? );";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
-		PreparedStatement ps = null;
-		ps = con.prepareStatement(sql);
+		PreparedStatement ps = con.prepareStatement(sql);
 		List<Member> memList = new ArrayList<Member>();
 		ps.setString(1, birthdayStr);
 		ResultSet r = ps.executeQuery();
@@ -257,4 +255,24 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return memList;
 	}
+
+    public String getLastMemberId() throws SQLException {
+    	String sql = "SELECT * FROM member WHERE id=(SELECT MAX(id) FROM member);";
+		DBConn db = new DBConn();
+		Connection con = db.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		
+		ResultSet r = ps.executeQuery();
+		String maxId = null;
+		if(r!=null){
+			if(r.next()){
+				maxId = r.getString("memId");
+			}
+			r.close();
+			ps.close();
+			con.close();
+		}
+		return maxId;
+		//return null;
+    }
 }

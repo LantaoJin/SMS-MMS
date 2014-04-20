@@ -52,6 +52,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		Receipt e = new Receipt();
 		if(r!=null){
 			if(r.next()){
+                                e.setId(r.getInt("id"));
 				e.setAttnName(r.getString("attnname"));
 				e.setCreateDate(r.getDate("createdate"));
 				e.setDescription(r.getString("description"));
@@ -99,6 +100,7 @@ public class ReceiptDaoImpl implements ReceiptDao {
 		if(r!=null){
 			while(r.next()){
 				Receipt e = new Receipt();
+                                e.setId(r.getInt("id"));
 				e.setAttnName(r.getString("attnname"));
 				e.setCreateDate(r.getDate("createdate"));
 				e.setDescription(r.getString("description"));

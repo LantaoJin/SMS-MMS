@@ -9,17 +9,25 @@ import java.awt.Font;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
 import org.alanjin.smsmms.backend.bean.Member;
+import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.dao.MemberDao;
 import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
+import org.alanjin.smsmms.backend.dao.MessageModelDao;
+import org.alanjin.smsmms.backend.dao.MessageModelDaoImpl;
+import org.alanjin.smsmms.backend.service.MassSendTask;
 import org.alanjin.smsmms.backend.service.MemberAction;
+import org.alanjin.smsmms.backend.service.SMSAction;
 
 /**
  *
@@ -504,10 +512,30 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    
+    private static void initBackendMassSendTask(Properties prop) throws SQLException {
+        SMSAction smsAction = new SMSAction();
+        String[] defaultTime = prop.getProperty("SMS.massSendTask.time", "10:00:00").split(":");
+        int defaultHour = Integer.parseInt(defaultTime[0]);
+        int defaultMinute = Integer.parseInt(defaultTime[1]);
+        String defaultTaskName = prop.getProperty("SMS.massSendTask.taskName");
+        String defaultModelName = prop.getProperty("SMS.massSendTask.modelName");
+        MessageModelDao mmDao = new MessageModelDaoImpl();
+        MessageModel defaultMessageModel = mmDao.selectMessageModel(defaultModelName);
+        MassSendTask task = new MassSendTask(defaultTaskName, defaultMessageModel);
+        smsAction.addFixedTimeTaskAndRun(task, defaultHour, defaultMinute, 0);
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, SQLException {
+        Properties prop = new Properties();
+        prop.load(ClassLoader.getSystemResourceAsStream("config.properties"));
+        boolean hasSetted = Boolean.parseBoolean(prop.getProperty("SMS.massSendTask.setted", "false"));
+        if (hasSetted) {
+            initBackendMassSendTask(prop);
+        }
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -538,7 +566,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-    MemberAction memberAction = MemberAction.newInstance();
+    private static MemberAction memberAction = MemberAction.newInstance();
     private static final String DefaultFormat = "yyyy-MM-dd hh:mm:ss";
     private static final String BirthDayFormat = "yyyy-MM-dd";
     private static final Font datePickerFont=new Font("Times New Roman", Font.PLAIN, 14);
