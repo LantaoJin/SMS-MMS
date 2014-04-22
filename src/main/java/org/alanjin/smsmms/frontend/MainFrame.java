@@ -85,22 +85,41 @@ public class MainFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         indexPanel = new javax.swing.JPanel();
         welcomePanel = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         memberPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         memberTable = new javax.swing.JTable();
+        filterPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Date initDate = new Date(0);
+        birthdayPicker = new com.eltima.components.ui.DatePicker(initDate, BirthDayQueryFormat, datePickerFont, null);
+        selectByBirthday = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        nameFilterTextField = new javax.swing.JTextField();
+        selectByName = new javax.swing.JButton();
+        listAllMemberButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        joindayFrom = new com.eltima.components.ui.DatePicker(new Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+        jLabel5 = new javax.swing.JLabel();
+        joindayTo = new com.eltima.components.ui.DatePicker(new Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+        selectByJoinday = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        phoneFilterTextField = new javax.swing.JTextField();
+        selectByPhone = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        feeFromTextField = new javax.swing.JTextField();
+        feeToTextField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        selectByFee = new javax.swing.JButton();
         buttonPanel1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        filterPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Date initDate = new Date(0);
-        datePicker1 = new com.eltima.components.ui.DatePicker(initDate, BirthDayFormat, datePickerFont, null);
-        jButton9 = new javax.swing.JButton();
         addMemberPanel = new MemberJForm();
         p2pPanel = new javax.swing.JPanel();
         messPanel = new javax.swing.JPanel();
@@ -184,7 +203,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("史山寺佛恩互助会会员管理系统");
-        setPreferredSize(new java.awt.Dimension(804, 650));
         setResizable(false);
 
         indexPanel.setMinimumSize(new java.awt.Dimension(780, 560));
@@ -232,11 +250,14 @@ public class MainFrame extends javax.swing.JFrame {
                     java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
                 };
                 @Override
-                public Class getColumnClass(int c)	{
+                public Class getColumnClass(int c) {
                     Object value = getValueAt(0, c);
                     if(value!=null)
                     return value.getClass();
                     else return super.getClass();
+                }
+                public boolean isCellEditable(int row, int column) {
+                    return false;
                 }
             });
             memberTable.getColumn("select").setHeaderRenderer(check);
@@ -258,6 +279,167 @@ public class MainFrame extends javax.swing.JFrame {
 
             memberPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
+            jLabel1.setText("选择生日：");
+
+            selectByBirthday.setText("查找");
+            selectByBirthday.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectByBirthdayActionPerformed(evt);
+                }
+            });
+
+            jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+            jLabel2.setText("说明：生日忽略年份");
+
+            jLabel3.setText("选择姓名：");
+
+            selectByName.setText("查找");
+            selectByName.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectByNameActionPerformed(evt);
+                }
+            });
+
+            listAllMemberButton.setText("查看全部");
+            listAllMemberButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    listAllMemberButtonActionPerformed(evt);
+                }
+            });
+
+            jLabel4.setText("入会日期从");
+
+            jLabel5.setText("到");
+
+            selectByJoinday.setText("查找");
+            selectByJoinday.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectByJoindayActionPerformed(evt);
+                }
+            });
+
+            jLabel6.setText("手机号码：");
+
+            selectByPhone.setText("查找");
+            selectByPhone.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectByPhoneActionPerformed(evt);
+                }
+            });
+
+            jLabel7.setText("累积会费从");
+
+            jLabel9.setText("到");
+
+            selectByFee.setText("查找");
+            selectByFee.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    selectByFeeActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
+            filterPanel.setLayout(filterPanelLayout);
+            filterPanelLayout.setHorizontalGroup(
+                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(filterPanelLayout.createSequentialGroup()
+                    .addGap(18, 18, 18)
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(birthdayPicker, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel2)
+                            .addGap(7, 7, 7))
+                        .addGroup(filterPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(feeFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(feeToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(filterPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(joindayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(joindayTo, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(selectByJoinday)
+                            .addComponent(selectByBirthday))
+                        .addComponent(selectByFee))
+                    .addGap(32, 32, 32)
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(filterPanelLayout.createSequentialGroup()
+                            .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel6))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(nameFilterTextField)
+                                .addComponent(phoneFilterTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(selectByName)
+                                .addComponent(selectByPhone)))
+                        .addComponent(listAllMemberButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(193, Short.MAX_VALUE))
+            );
+
+            filterPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {birthdayPicker, feeFromTextField, feeToTextField, joindayFrom, joindayTo, nameFilterTextField, phoneFilterTextField});
+
+            filterPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {selectByBirthday, selectByFee, selectByJoinday, selectByName, selectByPhone});
+
+            filterPanelLayout.setVerticalGroup(
+                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(filterPanelLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(selectByJoinday)
+                        .addGroup(filterPanelLayout.createSequentialGroup()
+                            .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(selectByBirthday)
+                                    .addComponent(jLabel3)
+                                    .addComponent(nameFilterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selectByName)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(birthdayPicker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(joindayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(joindayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(phoneFilterTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(selectByPhone))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(feeFromTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(feeToTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(selectByFee))
+                        .addComponent(listAllMemberButton))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            );
+
+            filterPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {birthdayPicker, feeFromTextField, feeToTextField, joindayFrom, joindayTo, nameFilterTextField, phoneFilterTextField});
+
+            filterPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {listAllMemberButton, selectByBirthday, selectByFee, selectByJoinday, selectByName, selectByPhone});
+
+            memberPanel.add(filterPanel, java.awt.BorderLayout.PAGE_START);
+
             buttonPanel1.setMinimumSize(new java.awt.Dimension(800, 33));
 
             jButton5.setText("jButton5");
@@ -273,37 +455,6 @@ public class MainFrame extends javax.swing.JFrame {
             buttonPanel1.add(jButton8);
 
             memberPanel.add(buttonPanel1, java.awt.BorderLayout.PAGE_END);
-
-            jLabel1.setText("选择出生日期：");
-
-            jButton9.setText("筛选");
-
-            javax.swing.GroupLayout filterPanelLayout = new javax.swing.GroupLayout(filterPanel);
-            filterPanel.setLayout(filterPanelLayout);
-            filterPanelLayout.setHorizontalGroup(
-                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(filterPanelLayout.createSequentialGroup()
-                    .addGap(49, 49, 49)
-                    .addComponent(jLabel1)
-                    .addGap(18, 18, 18)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(52, 52, 52)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(351, Short.MAX_VALUE))
-            );
-            filterPanelLayout.setVerticalGroup(
-                filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterPanelLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton9)
-                        .addGroup(filterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addContainerGap())
-            );
-
-            memberPanel.add(filterPanel, java.awt.BorderLayout.PAGE_START);
 
             indexPanel.add(memberPanel, "card2");
 
@@ -454,7 +605,7 @@ public class MainFrame extends javax.swing.JFrame {
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 15, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 14, Short.MAX_VALUE))
             );
@@ -512,6 +663,46 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void selectByBirthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectByBirthdayActionPerformed
+        List<Member> filterMembers = memberAction.getMembersByBirthDay(this.birthdayPicker.getText());
+        Util.fillMemberTable(memberTable, filterMembers);
+    }//GEN-LAST:event_selectByBirthdayActionPerformed
+
+    private void selectByNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectByNameActionPerformed
+        List<Member> filterMembers = memberAction.getMembersByName(this.nameFilterTextField.getText().trim());
+        Util.fillMemberTable(memberTable, filterMembers);
+    }//GEN-LAST:event_selectByNameActionPerformed
+
+    private void listAllMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listAllMemberButtonActionPerformed
+        List<Member> allMembers = memberAction.getAllMembers();
+        Util.fillMemberTable(memberTable, allMembers);
+        this.nameFilterTextField.setText("");
+        this.phoneFilterTextField.setText("");
+        this.feeFromTextField.setText("");
+        this.feeToTextField.setText("");
+    }//GEN-LAST:event_listAllMemberButtonActionPerformed
+
+    private void selectByPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectByPhoneActionPerformed
+        List<Member> filterMembers = memberAction.getMembersByPhone(this.phoneFilterTextField.getText().trim());
+        Util.fillMemberTable(memberTable, filterMembers);
+    }//GEN-LAST:event_selectByPhoneActionPerformed
+
+    private void selectByJoindayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectByJoindayActionPerformed
+        List<Member> filterMembers = memberAction.getMembersBetweenJoinday(this.joindayFrom.getText(), this.joindayTo.getText());
+        Util.fillMemberTable(memberTable, filterMembers);
+    }//GEN-LAST:event_selectByJoindayActionPerformed
+
+    private void selectByFeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectByFeeActionPerformed
+        String from = this.feeFromTextField.getText().trim();
+        String to = this.feeToTextField.getText().trim();
+        if (Util.isDigit(from) && Util.isDigit(to)) {
+            List<Member> filterMembers = memberAction.getMembersBetweenFeesum(from, to);
+            Util.fillMemberTable(memberTable, filterMembers);
+        } else {
+            Util.verifyAlert("\"累积会费\"必须是数字", "查询列表");
+        }
+    }//GEN-LAST:event_selectByFeeActionPerformed
+
     
     private static void initBackendMassSendTask(Properties prop) throws SQLException {
         SMSAction smsAction = new SMSAction();
@@ -567,8 +758,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
     private static MemberAction memberAction = MemberAction.newInstance();
-    private static final String DefaultFormat = "yyyy-MM-dd hh:mm:ss";
-    private static final String BirthDayFormat = "yyyy-MM-dd";
+    private static final String BirthDayQueryFormat = "MM-dd";
     private static final Font datePickerFont=new Font("Times New Roman", Font.PLAIN, 14);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AboutAppMenuItem;
@@ -588,9 +778,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem SyncMenuItem;
     private javax.swing.JMenuItem TimerMenuItem;
     private javax.swing.JMenuItem ViewReplyMenuItem;
-    private MemberJForm addMemberPanel;
+    private javax.swing.JPanel addMemberPanel;
+    private com.eltima.components.ui.DatePicker birthdayPicker;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel1;
-    private com.eltima.components.ui.DatePicker datePicker1;
+    private javax.swing.JTextField feeFromTextField;
+    private javax.swing.JTextField feeToTextField;
     private javax.swing.JPanel filterPanel;
     private javax.swing.JMenu homeMenu;
     private javax.swing.JPanel indexPanel;
@@ -602,17 +795,33 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
+    private com.eltima.components.ui.DatePicker joindayFrom;
+    private com.eltima.components.ui.DatePicker joindayTo;
+    private javax.swing.JButton listAllMemberButton;
     private javax.swing.JPanel memberPanel;
     private javax.swing.JTable memberTable;
     final CheckBoxRenderer check = new CheckBoxRenderer();
     private javax.swing.JPanel messPanel;
+    private javax.swing.JTextField nameFilterTextField;
     private javax.swing.JPanel p2pPanel;
+    private javax.swing.JTextField phoneFilterTextField;
+    private javax.swing.JButton selectByBirthday;
+    private javax.swing.JButton selectByFee;
+    private javax.swing.JButton selectByJoinday;
+    private javax.swing.JButton selectByName;
+    private javax.swing.JButton selectByPhone;
     private javax.swing.JMenuItem showHomeMenu;
     private javax.swing.JPanel viewReplyPanel;
     private javax.swing.JPanel welcomePanel;

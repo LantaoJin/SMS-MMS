@@ -1,5 +1,7 @@
 package org.alanjin.smsmms.backend.dao;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,6 +14,10 @@ public interface MemberDao {
 	public boolean updateMember(Member member) throws SQLException;
 	public List<Member> getAllMembers() throws SQLException;
 	public List<Member> getMembersByBirthday(String birthdaystr) throws SQLException;
+	public List<Member> getMembersByName(String name) throws SQLException;
 	public int count() throws SQLException;
-        public String getLastMemberId() throws SQLException;
+	public String getLastMemberId() throws SQLException;
+	public List<Member> getMembersByPhone(String phone) throws SQLException;
+	public List<Member> getMembersBetweenJoinday(Date from, Date to) throws SQLException;
+	public List<Member> getMembersBetweenFeesum(BigDecimal from, BigDecimal to) throws SQLException;
 }

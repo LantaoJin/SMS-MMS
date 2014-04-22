@@ -1,5 +1,7 @@
 package org.alanjin.smsmms.backend.service;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.dao.MemberDao;
 import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
+import org.alanjin.smsmms.backend.util.Util;
 
 public class MemberAction {
 	private static MemberAction action;
@@ -31,10 +34,15 @@ public class MemberAction {
 		}
 	}
 	
-	public List<Member> getMembersByBirthDay(String fullBirthdayString) {
-		String tmp = fullBirthdayString.replace("-", "");
+	public List<Member> getMembersByBirthDay(String birthdayString) {
+		String tmp = birthdayString.replace("-", "");
+		int beginIndex = 0;
+		if (tmp.length() == 10) {
+			beginIndex = 4;
+		}
+		
 		try {
-			return memberDao.getMembersByBirthday(tmp.substring(4));
+			return memberDao.getMembersByBirthday(tmp.substring(beginIndex));
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			return new ArrayList<Member>();
@@ -76,6 +84,48 @@ public class MemberAction {
 				System.err.println(e.getMessage());
 				continue;
 			}
+		}
+	}
+
+	public List<Member> getMembersByName(String name) {
+		try {
+			return memberDao.getMembersByName(name);
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return new ArrayList<Member>();
+		}
+	}
+
+	public List<Member> getMembersByPhone(String phone) {
+		try {
+			return memberDao.getMembersByPhone(phone);
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return new ArrayList<Member>();
+		}
+	}
+
+	public List<Member> getMembersBetweenJoinday(String fromStr, String toStr) {
+		Date from, to;
+		try {
+			from = Util.toSQLDate(fromStr);
+			to = Util.toSQLDate(toStr);
+			return memberDao.getMembersBetweenJoinday(from, to);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return new ArrayList<Member>();
+		}
+	}
+
+	public List<Member> getMembersBetweenFeesum(String fromStr, String toStr) {
+		BigDecimal from, to;
+		try {
+			from = BigDecimal.valueOf(Double.parseDouble(fromStr));
+			to = BigDecimal.valueOf(Double.parseDouble(toStr));
+			return memberDao.getMembersBetweenFeesum(from, to);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			return new ArrayList<Member>();
 		}
 	}
 }

@@ -1,6 +1,8 @@
 package org.alanjin.smsmms.backend.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -159,14 +161,93 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public List<Member> getAllMembers() throws SQLException {
-		List<Member> memList = new ArrayList<Member>();
 		String sql = "Select * from member;";
+		return filterBySql(null, sql);
+	}
+
+	@Override
+	public int count() throws SQLException {
+		String sql = "Select count(*) from member;";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		
 		ResultSet r = ps.executeQuery();
+		int count = 0;
+		if(r!=null){
+			while(r.next()){
+				count = r.getInt(0);
+			}
+			r.close();
+			ps.close();
+			con.close();
+		}
+		return count;
+	}
+
+	@Override
+	public List<Member> getMembersByBirthday(String birthdayStr)
+			throws SQLException {
+		String sql = "Select * from member where (birthdaystr = ? );";
+		return filterBySql(birthdayStr, sql);
+	}
+
+    public String getLastMemberId() throws SQLException {
+    	String sql = "SELECT * FROM member WHERE id=(SELECT MAX(id) FROM member);";
+		DBConn db = new DBConn();
+		Connection con = db.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
 		
+		ResultSet r = ps.executeQuery();
+		String maxId = null;
+		if(r!=null){
+			if(r.next()){
+				maxId = r.getString("memId");
+			}
+			r.close();
+			ps.close();
+			con.close();
+		}
+		return maxId;
+		//return null;
+    }
+
+	@Override
+	public List<Member> getMembersByName(String name) throws SQLException {
+		String sql = "Select * from member where (name = ? );";
+		return filterBySql(name, sql);
+	}
+
+	@Override
+	public List<Member> getMembersByPhone(String phone) throws SQLException {
+		String sql = "Select * from member where (phone = ? );";
+		return filterBySql(phone, sql);
+	}
+
+	@Override
+	public List<Member> getMembersBetweenJoinday(Date from, Date to)
+			throws SQLException {
+		String sql = "Select * from member where (joindate between ? and ?);";
+		return filterBySql(from, to, sql);
+	}
+
+	@Override
+	public List<Member> getMembersBetweenFeesum(BigDecimal from, BigDecimal to)
+			throws SQLException {
+		String sql = "Select * from member where (feesum between ? and ?);";
+		return filterBySql(from, to, sql);
+	}
+
+	private List<Member> filterBySql(String condition, String sql)
+			throws SQLException {
+		DBConn db = new DBConn();
+		Connection con = db.getConnection();
+		PreparedStatement ps = con.prepareStatement(sql);
+		List<Member> memList = new ArrayList<Member>();
+		if (condition != null) {
+			ps.setString(1, condition);
+		}
+		ResultSet r = ps.executeQuery();
 		if(r!=null){
 			while(r.next()){
 				Member e = new Member();
@@ -196,40 +277,28 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return memList;
 	}
-
-	@Override
-	public int count() throws SQLException {
-		String sql = "Select count(*) from member;";
-		DBConn db = new DBConn();
-		Connection con = db.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ResultSet r = ps.executeQuery();
-		int count = 0;
-		if(r!=null){
-			while(r.next()){
-				count = r.getInt(0);
-			}
-			r.close();
-			ps.close();
-			con.close();
-		}
-		return count;
-	}
-
-	@Override
-	public List<Member> getMembersByBirthday(String birthdayStr)
+	
+	private List<Member> filterBySql(Object from, Object to, String sql)
 			throws SQLException {
-		String sql = "Select * from member where (birthdaystr = ? );";
 		DBConn db = new DBConn();
 		Connection con = db.getConnection();
 		PreparedStatement ps = con.prepareStatement(sql);
 		List<Member> memList = new ArrayList<Member>();
-		ps.setString(1, birthdayStr);
+		if (from instanceof Date) {
+			ps.setDate(1, (Date)from);
+			ps.setDate(2, (Date)to);
+		} else if (from instanceof BigDecimal) {
+			ps.setBigDecimal(1, (BigDecimal)from);
+			ps.setBigDecimal(2, (BigDecimal)to);
+		} else {
+			ps.setString(1, (String)from);
+			ps.setString(2, (String)to);
+		}
 		ResultSet r = ps.executeQuery();
 		if(r!=null){
 			while(r.next()){
 				Member e = new Member();
+				e.setId(r.getInt("id"));
 				e.setMemId(r.getString("memId"));
 				e.setName(r.getString("name"));
 				e.setGender(r.getInt("gender"));
@@ -255,24 +324,4 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return memList;
 	}
-
-    public String getLastMemberId() throws SQLException {
-    	String sql = "SELECT * FROM member WHERE id=(SELECT MAX(id) FROM member);";
-		DBConn db = new DBConn();
-		Connection con = db.getConnection();
-		PreparedStatement ps = con.prepareStatement(sql);
-		
-		ResultSet r = ps.executeQuery();
-		String maxId = null;
-		if(r!=null){
-			if(r.next()){
-				maxId = r.getString("memId");
-			}
-			r.close();
-			ps.close();
-			con.close();
-		}
-		return maxId;
-		//return null;
-    }
 }

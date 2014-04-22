@@ -23,7 +23,10 @@ import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
  */
 public class Util {
     public static void fillMemberTable(JTable memberTable, List<Member> members) {
-        if (members.size() == 0) return;
+//        if (members.size() == 0) {
+//            memberTable.set
+//            return;
+//        }
         Object[][] content = new Object[members.size()][8];
         for(int i = 0; i<members.size(); i++) {
             content[i] = new Object[8];
@@ -46,6 +49,10 @@ public class Util {
                 if(value!=null)
                 return value.getClass();
                 else return super.getClass();
+            }
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
             }
         };
         String[] columnIdentifiers = new String [] {
