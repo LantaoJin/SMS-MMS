@@ -520,7 +520,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="listAllMemberButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x5168;&#x90e8;"/>
+                    <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x5168;&#x90e8;(&#x5237;&#x65b0;)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listAllMemberButtonActionPerformed"/>
@@ -637,6 +637,9 @@
               <Dimension value="[800, 600]"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new MemberJForm(this.memberAction)"/>
+          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card3"/>

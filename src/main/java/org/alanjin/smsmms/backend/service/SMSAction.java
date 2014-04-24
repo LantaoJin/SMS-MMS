@@ -11,12 +11,14 @@ public class SMSAction {
     private Map<String, MassSendTask> runingSchedules;
     private Timer timer;
 
-    public SMSAction () {
-        this.runingSchedules = Collections.synchronizedMap(new HashMap<String, MassSendTask>());
+    public SMSAction() {
+        this.runingSchedules = Collections
+                .synchronizedMap(new HashMap<String, MassSendTask>());
         this.timer = new Timer();
     }
 
-    public void addFixedTimeTaskAndRun(MassSendTask task, int hour, int min, int second) {
+    public void addFixedTimeTaskAndRun(MassSendTask task, int hour, int min,
+            int second) {
         if (runingSchedules.containsKey(task.getTaskName())) {
             return;
         }
@@ -30,7 +32,8 @@ public class SMSAction {
         runingSchedules.put(task.getTaskName(), task);
     }
 
-    public void addPeroidTaskAndRun(MassSendTask task, Date firstTime, long peroid) {
+    public void addPeroidTaskAndRun(MassSendTask task, Date firstTime,
+            long peroid) {
         if (runingSchedules.containsKey(task.getTaskName())) {
             return;
         }
@@ -43,6 +46,6 @@ public class SMSAction {
     }
 
     public Map<String, MassSendTask> listRuningTasks() {
-        return  runingSchedules;
+        return runingSchedules;
     }
 }

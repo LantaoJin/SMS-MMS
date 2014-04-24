@@ -8,25 +8,25 @@ import java.sql.Statement;
 public class SqlHelper {
 
     /**
-     * This class is not the actual class that is to be used
-     * this is designed for the purpose of being used by dBaseClass2
-     * to connect to the minorProject
+     * This class is not the actual class that is to be used this is designed
+     * for the purpose of being used by dBaseClass2 to connect to the
+     * minorProject
      */
-    String dbUrl;//="jdbc:mysql://localhost:3306/SMS-MMS";
-    String beClass;//="com.mysql.jdbc.Driver";
-    String dbUserName;//="nepalwatch";
-    String dbPassword;//="nepalwatch";
-    //String dbtime="";
+    String dbUrl;// ="jdbc:mysql://localhost:3306/SMS-MMS";
+    String beClass;// ="com.mysql.jdbc.Driver";
+    String dbUserName;// ="nepalwatch";
+    String dbPassword;// ="nepalwatch";
+    // String dbtime="";
     Connection con;
-    
-    public void setDefaultParameters() {//working
-    /*
-         * ie this method sets the variables to the database 
-         * for which, this class was actually created
+
+    public void setDefaultParameters() {// working
+        /*
+         * ie this method sets the variables to the database for which, this
+         * class was actually created
          */
         dbUrl = "jdbc:mysql://localhost/SMS-MMS";
         beClass = "com.mysql.jdbc.Driver";
-        //String query="Select * from rss";   
+        // String query="Select * from rss";
         dbUserName = "root";
         dbPassword = "";
 
@@ -36,16 +36,16 @@ public class SqlHelper {
         return con;
     }
 
-    public boolean setConnection(boolean option) {//working
-        //this.setDefaultParameters();
+    public boolean setConnection(boolean option) {// working
+        // this.setDefaultParameters();
         try {
             if (option) {
                 /**
                  * if true create the connection to the database
                  */
                 Class.forName(beClass);
-                con = (Connection) DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-                
+                con = (Connection) DriverManager.getConnection(dbUrl,
+                        dbUserName, dbPassword);
 
             } else {
                 /**
@@ -55,15 +55,15 @@ public class SqlHelper {
             }
             return true;
         } catch (Exception e) {
-            //the database is not created
+            // the database is not created
             return false;
         }
     }
 
-    public boolean executeQuery(String q) {//working
-    	/*
-         * This class is used for inserting and deleting 
-         * from inside this class not outside;
+    public boolean executeQuery(String q) {// working
+        /*
+         * This class is used for inserting and deleting from inside this class
+         * not outside;
          */
         try {
             Statement stmt;
@@ -74,16 +74,16 @@ public class SqlHelper {
                 return true;
             } else {
                 return false;
-            }//else
-        }//try
+            }// else
+        }// try
         catch (Exception e) {
             System.out.println("The query " + q + " could not be executed ");
             System.out.println(e.getMessage());
             return false;
-        }//catch
-    }//function
-    
-    public ResultSet executeAndReturnResult(String q) {//working
+        }// catch
+    }// function
+
+    public ResultSet executeAndReturnResult(String q) {// working
         try {
             Statement stmt;
             stmt = (Statement) con.createStatement();
@@ -95,5 +95,5 @@ public class SqlHelper {
             return null;
         }
     }
-    
-}//end of class
+
+}// end of class
