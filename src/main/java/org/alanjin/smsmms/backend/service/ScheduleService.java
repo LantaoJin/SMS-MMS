@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 
-public class SMSAction {
+public class ScheduleService {
     private Map<String, MassSendTask> runingSchedules;
     private Timer timer;
 
-    public SMSAction() {
+    public ScheduleService() {
         this.runingSchedules = Collections
                 .synchronizedMap(new HashMap<String, MassSendTask>());
         this.timer = new Timer();

@@ -9,16 +9,29 @@ import java.awt.Font;
 import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+
 import javax.swing.JCheckBox;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.dao.MemberDao;
@@ -27,7 +40,14 @@ import org.alanjin.smsmms.backend.dao.MessageModelDao;
 import org.alanjin.smsmms.backend.dao.MessageModelDaoImpl;
 import org.alanjin.smsmms.backend.service.MassSendTask;
 import org.alanjin.smsmms.backend.service.MemberAction;
-import org.alanjin.smsmms.backend.service.SMSAction;
+import org.alanjin.smsmms.backend.service.MessageService;
+import org.alanjin.smsmms.backend.service.ScheduleService;
+import org.alanjin.smsmms.backend.service.SenderAndReceiverService;
+import org.alanjin.smsmms.frontend.bean.SMSEntity;
+import org.alanjin.smsmms.frontend.util.Util;
+import org.smslib.GatewayException;
+import org.smslib.SMSLibException;
+import org.smslib.TimeoutException;
 
 /**
  * 
@@ -117,10 +137,10 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         selectByFee = new javax.swing.JButton();
         buttonPanel1 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        viewDetailButton = new javax.swing.JButton();
+        modifyDetailButton = new javax.swing.JButton();
+        addFeeButton = new javax.swing.JButton();
+        broadcastButton = new javax.swing.JButton();
         addMemberPanel = new MemberJForm(this.memberAction);
         p2pPanel = new javax.swing.JPanel();
         messPanel = new javax.swing.JPanel();
@@ -443,17 +463,37 @@ public class MainFrame extends javax.swing.JFrame {
 
             buttonPanel1.setMinimumSize(new java.awt.Dimension(800, 33));
 
-            jButton5.setText("jButton5");
-            buttonPanel1.add(jButton5);
+            viewDetailButton.setText("查看详细");
+            viewDetailButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    viewDetailButtonActionPerformed(evt);
+                }
+            });
+            buttonPanel1.add(viewDetailButton);
 
-            jButton6.setText("jButton6");
-            buttonPanel1.add(jButton6);
+            modifyDetailButton.setText("修改资料");
+            modifyDetailButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    modifyDetailButtonActionPerformed(evt);
+                }
+            });
+            buttonPanel1.add(modifyDetailButton);
 
-            jButton7.setText("jButton7");
-            buttonPanel1.add(jButton7);
+            addFeeButton.setText("缴纳会费");
+            addFeeButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    addFeeButtonActionPerformed(evt);
+                }
+            });
+            buttonPanel1.add(addFeeButton);
 
-            jButton8.setText("jButton8");
-            buttonPanel1.add(jButton8);
+            broadcastButton.setText("短信群发");
+            broadcastButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    broadcastButtonActionPerformed(evt);
+                }
+            });
+            buttonPanel1.add(broadcastButton);
 
             memberPanel.add(buttonPanel1, java.awt.BorderLayout.PAGE_END);
 
@@ -607,12 +647,53 @@ public class MainFrame extends javax.swing.JFrame {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(indexPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             );
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
+
+    private void viewDetailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDetailButtonActionPerformed
+        String memId = (String)this.memberTable.getValueAt(this.memberTable.getSelectedRow(), 1);
+        Object[] options = new Object[1];
+        options[0] = new VeiwDetailJForm(memberAction, memId);
+        JOptionPane.showOptionDialog(this, null, "查看详细", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options, null);
+    }//GEN-LAST:event_viewDetailButtonActionPerformed
+
+    private void modifyDetailButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyDetailButtonActionPerformed
+        String memId = (String)this.memberTable.getValueAt(this.memberTable.getSelectedRow(), 1);
+        Object[] options = new Object[1];
+        options[0] = new ModifyDetailJForm(memberAction, memId);
+        JOptionPane.showOptionDialog(this, null, "修改资料", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options, null);
+    }//GEN-LAST:event_modifyDetailButtonActionPerformed
+
+    private void addFeeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFeeButtonActionPerformed
+        String memId = (String)this.memberTable.getValueAt(this.memberTable.getSelectedRow(), 1);
+        Object[] options = new Object[1];
+        options[0] = new AddFeeJForm(memberAction, memId);
+        JOptionPane.showOptionDialog(this, null, "续费", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options, null);
+    }//GEN-LAST:event_addFeeButtonActionPerformed
+
+    private void broadcastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_broadcastButtonActionPerformed
+        // TODO add your handling code here:
+//        String[] memIds = new String[this.memberTable.getSelectedRowCount()];
+//        String[] names = new String[this.memberTable.getSelectedRowCount()];
+//        String[] phones = new String[this.memberTable.getSelectedRowCount()];
+        int[] selected = this.memberTable.getSelectedRows();
+        List<SMSEntity> entitys = new ArrayList<SMSEntity>();
+        for (int i = 0; i < this.memberTable.getSelectedRowCount(); i++) {
+            String memIdSelected = (String)this.memberTable.getValueAt(selected[i], 1);
+            String nameSelected = (String)this.memberTable.getValueAt(selected[i], 2);
+            String sexSelected = (String)this.memberTable.getValueAt(selected[i], 3);
+            String phoneSelected = (String)this.memberTable.getValueAt(selected[i], 4);
+            SMSEntity entity = new SMSEntity(memIdSelected, nameSelected, sexSelected, phoneSelected);
+            entitys.add(entity);
+        }
+        
+        Object[] options = new Object[1];
+        options[0] = new BroadcastJForm(messageService, senderAndReceiverService, entitys);
+        JOptionPane.showOptionDialog(this, null, "短信群发 ", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options, null);
+    }//GEN-LAST:event_broadcastButtonActionPerformed
 
     private void P2PMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_P2PMenuItemActionPerformed
         // TODO add your handling code here:
@@ -714,7 +795,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private static void initBackendMassSendTask(Properties prop)
             throws SQLException {
-        SMSAction smsAction = new SMSAction();
+        ScheduleService smsAction = new ScheduleService();
         String[] defaultTime = prop.getProperty("SMS.massSendTask.time",
                 "10:00:00").split(":");
         int defaultHour = Integer.parseInt(defaultTime[0]);
@@ -731,16 +812,32 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     /**
+     * @throws InterruptedException 
+     * @throws SMSLibException 
+     * @throws GatewayException 
+     * @throws TimeoutException 
      * @param args
      *            the command line arguments
+     * @throws  
      */
-    public static void main(String args[]) throws IOException, SQLException {
+    public static void main(String args[]) throws URISyntaxException, IOException, SQLException, TimeoutException, GatewayException, SMSLibException, InterruptedException {
         Properties prop = new Properties();
         prop.load(ClassLoader.getSystemResourceAsStream("config.properties"));
         boolean hasSetted = Boolean.parseBoolean(prop.getProperty(
                 "SMS.massSendTask.setted", "false"));
+        //TODO debug
+//        String com = prop.getProperty("SMS.com", "COM1");
+//        senderAndReceiverService = SenderAndReceiverService.newInstance(com);
         if (hasSetted) {
             initBackendMassSendTask(prop);
+        }
+        String titilFilePath = prop.getProperty("SMS.model.titlePath");
+        File file = new File(titilFilePath);
+        titleReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+        System.out.println(titleReader.readLine());
+        String title;
+        while((title = titleReader.readLine()) != null) {
+            titleList.add(title);
         }
 
         /* Set the Nimbus look and feel */
@@ -782,11 +879,20 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static List<String> getTitleList() {
+        return titleList;
+    }
 
+    public static BufferedReader titleReader;
+    public static BufferedWriter titleWriter;
     private static MemberAction memberAction = MemberAction.newInstance();
+    private static MessageService messageService = MessageService.newInstance();
+    private static SenderAndReceiverService senderAndReceiverService;
     private static final String BirthDayQueryFormat = "MM-dd";
     private static final Font datePickerFont = new Font("Times New Roman",
             Font.PLAIN, 14);
+    private static List<String> titleList = new ArrayList<String>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AboutAppMenuItem;
     private javax.swing.JMenu AboutMenu;
@@ -805,8 +911,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem SyncMenuItem;
     private javax.swing.JMenuItem TimerMenuItem;
     private javax.swing.JMenuItem ViewReplyMenuItem;
+    private javax.swing.JButton addFeeButton;
     private javax.swing.JPanel addMemberPanel;
     private com.eltima.components.ui.DatePicker birthdayPicker;
+    private javax.swing.JButton broadcastButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel1;
     private javax.swing.JTextField feeFromTextField;
@@ -818,10 +926,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -841,6 +945,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTable memberTable;
     final CheckBoxRenderer check = new CheckBoxRenderer();
     private javax.swing.JPanel messPanel;
+    private javax.swing.JButton modifyDetailButton;
     private javax.swing.JTextField nameFilterTextField;
     private javax.swing.JPanel p2pPanel;
     private javax.swing.JTextField phoneFilterTextField;
@@ -850,6 +955,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton selectByName;
     private javax.swing.JButton selectByPhone;
     private javax.swing.JMenuItem showHomeMenu;
+    private javax.swing.JButton viewDetailButton;
     private javax.swing.JPanel viewReplyPanel;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables

@@ -5,7 +5,7 @@ import java.util.List;
 import org.alanjin.smsmms.backend.bean.MessageModel;
 
 public interface MessageModelDao {
-    public void insertMessageModel(MessageModel model) throws SQLException;
+    public boolean insertMessageModel(MessageModel model) throws SQLException;
 
     public MessageModel selectMessageModel(int id) throws SQLException;
 

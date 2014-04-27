@@ -33,118 +33,77 @@ import org.alanjin.smsmms.backend.service.MemberAction;
 /**
  * @author AlanJin
  */
-public class MemberJForm extends JPanel {
-    private static final String TITLE = "新增会员";
+public class ModifyDetailJForm extends JPanel {
+    private static final String TITLE = "修改信息";
     private MemberAction memberAction;
-    private java.util.Date nextYearDate;
-    private java.util.Date nextYearNextMonthDate;
+    private Member m;
 
-    public MemberJForm(MemberAction memberAction) {
+    public ModifyDetailJForm(MemberAction memberAction, String memId) {
         this.memberAction = memberAction;
-        this.nextYearDate = Util.getNextYearFromNow();
-        this.nextYearNextMonthDate = Util.getNextMonthFromDate(nextYearDate);
+        this.m = memberAction.getMemberByMemId(memId);
         initComponents();
+        initValue();
+    }
+    
+    private void initValue() {
+        fillAllComponent(m);
     }
 
-    private void addMemberActionPerformed(ActionEvent e) {
-        // TODO add your code here
+    private void fillAllComponent(Member m) {
+        memIdJTextField.setText(m.getMemId());
+        textName.setText(m.getName());
+        textZip.setText(m.getZip());
+        textAddress.setText(m.getAddress());
+        textTel.setText(m.getTel());
+        textPhone.setText(m.getPhone());
+        textEmail.setText(m.getEmail());
+        eduComboBox.setSelectedItem(m.getEdu());
+        if (m.getGender() == 1) { radioButton1.setSelected(true);} else {radioButton2.setSelected(true);}
+        textIndustry.setText(m.getIndustry());
+        textTitle.setText(m.getTitle());
+        noteTextField.setText("");//TODO
+    }
+
+    private void confirmJButtonActionPerformed(ActionEvent e) {
         if (basicCheck()) {
-            String memId = null;
-            try {
-                memId = Util.generateMemberId(); // TODO 生成会员号,异常处理
-            } catch (SQLException ex) {
-                Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE,
-                        null, ex);
-            }
             int sex = radioButton1.isSelected() ? 1 : 0;
+            m.setGender(sex);
             java.sql.Date birthDate = null;
-            java.sql.Date joinDate = null;
-            java.sql.Date disableDate = null;
-            java.sql.Date lastDate = null;
             try {
                 birthDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(birthday.getText());
-                joinDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(joinday.getText());
-                disableDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(disableday.getText());
-                lastDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(lastday.getText());
+                        .toSQLDate(birthdayPicker.getText());
             } catch (ParseException ex) {
                 Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE,
                         null, ex);
             }
-            BigDecimal feeSum = new BigDecimal(textFee.getText().trim());
-            Member m = new Member(memId, textName.getText().trim(), sex,
-                    birthDate, joinDate, feeSum);
+            m.setName(textName.getText().trim());
+            m.setBirthday(birthDate);
             m.setAddress(this.textAddress.getText().trim());
-            m.setDisableDate(disableDate);
             m.setEdu((String) this.eduComboBox.getSelectedItem());
             m.setEmail(this.textEmail.getText().trim());
             m.setExpert("");
             m.setIndustry(this.textIndustry.getText().trim());
-            m.setLastDate(lastDate);
             m.setTel(this.textTel.getText().trim());
             m.setPhone(this.textPhone.getText().trim());
             m.setTitle(this.textTitle.getText().trim());
             m.setZip(this.textZip.getText().trim());
             System.out.println(m.toString());
-            List<Receipt> receipts;
-            if ((receipts = m.getReceiptList()) == null) {
-                receipts = new ArrayList<Receipt>();
-                m.setReceiptList(receipts);
-            }
-            Receipt r = new Receipt(textReceipt.getText().trim(), feeSum,
-                    joinDate);
-            r.setMemId(memId);
-            r.setAttnName(textAttnName.getText().trim());
-            r.setDescription(this.textDescription.getText().trim());
-            receipts.add(r);
-            m.setReceiptList(receipts);
 
             if (JOptionPane.showConfirmDialog(null, "确定保存？", TITLE,
                     JOptionPane.OK_CANCEL_OPTION) == 0) {
                 //TODO
-                memberAction.addMember(m);
-                this.confirmAddJButton.setEnabled(false);
-                this.resetAddJButton.setEnabled(false);
-                this.nextAddJButton.setEnabled(true);
-                this.memIdJTextField.setText(memId);
-                this.successJLabel.setText("保存成功！请记住会员号。");
+                memberAction.modifyMember(m);
+                this.successJLabel.setText("修改成功！");
             } else {
 
             }
         }
     }
 
-    private void clearAllComponent() {
-        this.nextYearDate = Util.getNextYearFromNow();
-        this.nextYearNextMonthDate = Util.getNextMonthFromDate(nextYearDate);
-        memIdJTextField.setText("");
-        textName.setText("");
-        birthday = new DatePicker(new java.util.Date(0),
-                org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
-        textZip.setText("");
-        textAddress.setText("");
-        textTel.setText("");
-        textPhone.setText("");
-        textEmail.setText("");
-        eduComboBox.setSelectedIndex(0);
-        textIndustry.setText("");
-        textTitle.setText("");
-        textFee.setText("");
-        textReceipt.setText("");
-        textAttnName.setText("");
-        textDescription.setText("");
-        successJLabel.setText("");
-    }
-
     private boolean basicCheck() {
         if (textName.getText().trim().equals("")
-                || textPhone.getText().trim().equals("")
-                || textReceipt.getText().trim().equals("")
-                || textAttnName.getText().trim().equals("")) {
-            Util.verifyAlert("姓名|手机|收据单号|经办人员 不得为空", TITLE);
+                || textPhone.getText().trim().equals("")) {
+            Util.verifyAlert("姓名|手机| 不得为空", TITLE);
             return false;
         } else if (!Util.isMobileNO(textPhone.getText().trim())) {
             Util.verifyAlert("手机号格式不对", TITLE);
@@ -153,28 +112,10 @@ public class MemberJForm extends JPanel {
                 && !Util.isEmail(textEmail.getText().trim())) {
             Util.verifyAlert("电子邮箱格式不对", TITLE);
             return false;
-        } else if (!Util.isDigit(textFee.getText().trim())) {
-            Util.verifyAlert("会费必须是有效金额数字", TITLE);
-            return false;
         }
         return true;
     }
-
-    private void nextAddJButtonActionPerformed(ActionEvent e) {
-        clearAllComponent();
-        this.nextAddJButton.setEnabled(false);
-        this.confirmAddJButton.setEnabled(true);
-        this.resetAddJButton.setEnabled(true);
-    }
-
-    private void confirmAddJButtonActionPerformed(ActionEvent e) {
-        // TODO add your code here
-    }
-
-    private void resetAddJButtonActionPerformed(ActionEvent e) {
-        clearAllComponent();
-    }
-
+    
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY
         // //GEN-BEGIN:initComponents
@@ -192,7 +133,8 @@ public class MemberJForm extends JPanel {
         radioButton1 = new JRadioButton();
         radioButton2 = new JRadioButton();
         label6 = new JLabel();
-        birthday = new DatePicker(new java.util.Date(0), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+        birthdayPicker = new DatePicker(org.alanjin.smsmms.backend.util.Util.dateConvert(m.getBirthday()),
+                        org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
         label5 = new JLabel();
         textZip = new JTextField();
         label7 = new JLabel();
@@ -210,26 +152,9 @@ public class MemberJForm extends JPanel {
         label13 = new JLabel();
         textTitle = new JTextField();
         label21 = new JLabel();
-        textNote = new JTextField();
-        panel4 = new JPanel();
-        label14 = new JLabel();
-        joinday = new DatePicker(new java.util.Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
-        label15 = new JLabel();
-        lastday = new DatePicker(nextYearDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
-        label16 = new JLabel();
-        disableday = new DatePicker(nextYearNextMonthDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
-        label17 = new JLabel();
-        textFee = new JTextField();
-        label18 = new JLabel();
-        textReceipt = new JTextField();
-        label19 = new JLabel();
-        textAttnName = new JTextField();
-        label20 = new JLabel();
-        textDescription = new JTextField();
+        noteTextField = new JTextField();
         panel5 = new JPanel();
-        confirmAddJButton = new JButton();
-        resetAddJButton = new JButton();
-        nextAddJButton = new JButton();
+        confirmJButton = new JButton();
 
         //======== this ========
 
@@ -242,10 +167,10 @@ public class MemberJForm extends JPanel {
 
         setLayout(new FormLayout(
             "default",
-            "20dlu, $lgap, default, $lgap, 15dlu, $lgap, 135dlu, 10dlu, default, 92dlu, 10dlu, default"));
+            "20dlu, $lgap, default, $lgap, 15dlu, $lgap, 135dlu, 10dlu, 2*(default)"));
 
         //---- label1 ----
-        label1.setText("\u4f5b\u6069\u4e92\u52a9\u4f1a \u4f1a\u5458\u767b\u8bb0\u8868");
+        label1.setText("\u4f5b\u6069\u4e92\u52a9\u4f1a \u8d44\u6599\u4fee\u6539");
         label1.setFont(new Font("\u6977\u4f53", Font.BOLD, 26));
         label1.setHorizontalAlignment(SwingConstants.CENTER);
         add(label1, CC.xy(1, 3));
@@ -311,7 +236,7 @@ public class MemberJForm extends JPanel {
             label6.setText("\u51fa\u751f\u65e5\u671f");
             label6.setHorizontalAlignment(SwingConstants.CENTER);
             panel2.add(label6, CC.xy(1, 3));
-            panel2.add(birthday, CC.xy(3, 3));
+            panel2.add(birthdayPicker, CC.xy(3, 3));
 
             //---- label5 ----
             label5.setText("\u90ae    \u7f16");
@@ -376,91 +301,26 @@ public class MemberJForm extends JPanel {
             label21.setHorizontalTextPosition(SwingConstants.LEADING);
             label21.setHorizontalAlignment(SwingConstants.CENTER);
             panel2.add(label21, CC.xy(1, 13));
-            panel2.add(textNote, CC.xywh(3, 13, 5, 1));
+            panel2.add(noteTextField, CC.xywh(3, 13, 5, 1));
         }
         add(panel2, CC.xywh(1, 7, 1, 2));
-
-        //======== panel4 ========
-        {
-            panel4.setBorder(new TitledBorder(null, "\u4f1a\u5458\u4fe1\u606f", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, Color.gray));
-            panel4.setLayout(new FormLayout(
-                "50dlu, $lcgap, 100dlu, $lcgap, 50dlu, $lcgap, 100dlu",
-                "4*(default, 5dlu)"));
-
-            //---- label14 ----
-            label14.setText("\u5165\u4f1a\u65e5\u671f");
-            label14.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label14, CC.xy(1, 1));
-            panel4.add(joinday, CC.xy(3, 1));
-
-            //---- label15 ----
-            label15.setText("\u5165\u4f1a\u5e74\u9650");
-            label15.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label15, CC.xy(5, 1));
-            panel4.add(lastday, CC.xy(7, 1));
-
-            //---- label16 ----
-            label16.setText("\u7eed\u4f1a\u65f6\u9650");
-            label16.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label16, CC.xy(1, 3));
-            panel4.add(disableday, CC.xy(3, 3));
-
-            //---- label17 ----
-            label17.setText("\u4f1a\u8d39\u6570\u989d");
-            label17.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label17, CC.xy(5, 3));
-            panel4.add(textFee, CC.xy(7, 3));
-
-            //---- label18 ----
-            label18.setText("\u6536\u636e\u5355\u53f7");
-            label18.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label18, CC.xy(1, 5));
-            panel4.add(textReceipt, CC.xy(3, 5));
-
-            //---- label19 ----
-            label19.setText("\u7ecf\u529e\u4eba\u5458");
-            label19.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label19, CC.xy(5, 5));
-            panel4.add(textAttnName, CC.xy(7, 5));
-
-            //---- label20 ----
-            label20.setText("\u6536\u636e\u8bf4\u660e");
-            label20.setHorizontalAlignment(SwingConstants.CENTER);
-            panel4.add(label20, CC.xy(1, 7));
-            panel4.add(textDescription, CC.xywh(3, 7, 5, 1));
-        }
-        add(panel4, CC.xy(1, 10, CC.DEFAULT, CC.FILL));
 
         //======== panel5 ========
         {
             panel5.setLayout(new FormLayout(
-                "76dlu, $lcgap, 2*(50dlu, 10dlu), $lcgap, 55dlu, $lcgap, default:grow",
+                "133dlu, $lcgap, 50dlu, $lcgap, default:grow",
                 "fill:default"));
 
-            //---- confirmAddJButton ----
-            confirmAddJButton.setText("\u786e  \u8ba4");
-            confirmAddJButton.addActionListener(new ActionListener() {
+            //---- confirmJButton ----
+            confirmJButton.setText("\u4fee  \u6539");
+            confirmJButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    addMemberActionPerformed(e);
+                    confirmJButtonActionPerformed(e);
                 }
             });
-            panel5.add(confirmAddJButton, CC.xy(3, 1));
-
-            //---- resetAddJButton ----
-            resetAddJButton.setText("\u91cd  \u7f6e");
-            panel5.add(resetAddJButton, CC.xy(5, 1));
-
-            //---- nextAddJButton ----
-            nextAddJButton.setText("\u7ee7\u7eed\u6dfb\u52a0");
-            nextAddJButton.setEnabled(false);
-            nextAddJButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    nextAddJButtonActionPerformed(e);
-                }
-            });
-            panel5.add(nextAddJButton, CC.xy(8, 1));
+            panel5.add(confirmJButton, CC.xy(3, 1));
         }
-        add(panel5, CC.xy(1, 12));
+        add(panel5, CC.xy(1, 10));
 
         //---- genderGroup ----
         ButtonGroup genderGroup = new ButtonGroup();
@@ -485,7 +345,7 @@ public class MemberJForm extends JPanel {
     private JRadioButton radioButton1;
     private JRadioButton radioButton2;
     private JLabel label6;
-    private DatePicker birthday;
+    private DatePicker birthdayPicker;
     private JLabel label5;
     private JTextField textZip;
     private JLabel label7;
@@ -503,25 +363,8 @@ public class MemberJForm extends JPanel {
     private JLabel label13;
     private JTextField textTitle;
     private JLabel label21;
-    private JTextField textNote;
-    private JPanel panel4;
-    private JLabel label14;
-    private DatePicker joinday;
-    private JLabel label15;
-    private DatePicker lastday;
-    private JLabel label16;
-    private DatePicker disableday;
-    private JLabel label17;
-    private JTextField textFee;
-    private JLabel label18;
-    private JTextField textReceipt;
-    private JLabel label19;
-    private JTextField textAttnName;
-    private JLabel label20;
-    private JTextField textDescription;
+    private JTextField noteTextField;
     private JPanel panel5;
-    private JButton confirmAddJButton;
-    private JButton resetAddJButton;
-    private JButton nextAddJButton;
+    private JButton confirmJButton;
     // JFormDesigner - End of variables declaration //GEN-END:variables
 }

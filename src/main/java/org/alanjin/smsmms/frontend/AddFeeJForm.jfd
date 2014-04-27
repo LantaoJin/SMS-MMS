@@ -5,12 +5,12 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
 			"$columnSpecs": "default"
-			"$rowSpecs": "20dlu, linegap, default, linegap, 15dlu, linegap, 135dlu, 10dlu, default, 92dlu, 10dlu, default"
+			"$rowSpecs": "13dlu, linegap, default, linegap, 15dlu, linegap, 135dlu, 10dlu, 10dlu, 137dlu, 10dlu, default"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"text": "佛恩互助会 会员登记表"
+				"text": "佛恩互助会 续费"
 				"font": new java.awt.Font( "楷体", 1, 26 )
 				"horizontalAlignment": 0
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
@@ -65,6 +65,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textName"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 1
@@ -87,6 +88,7 @@ new FormModel {
 						"text": "男"
 						"$buttonGroup": new FormReference( "genderGroup" )
 						"selected": true
+						"enabled": false
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 1
 						"gridY": 1
@@ -95,6 +97,7 @@ new FormModel {
 						name: "radioButton2"
 						"text": "女"
 						"$buttonGroup": new FormReference( "genderGroup" )
+						"enabled": false
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 3
 						"gridY": 1
@@ -111,11 +114,9 @@ new FormModel {
 					"gridX": 1
 					"gridY": 3
 				} )
-				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
-					name: "birthday"
-					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(new java.util.Date(0), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
-					}
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "birthdayTextField"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 3
@@ -130,6 +131,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textZip"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 3
@@ -144,6 +146,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textAddress"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 5
@@ -159,6 +162,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textTel"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 7
@@ -173,6 +177,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textPhone"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 7
@@ -187,6 +192,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textEmail"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 9
@@ -210,6 +216,7 @@ new FormModel {
 						addElement( "硕士" )
 						addElement( "博士" )
 					}
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 9
@@ -224,6 +231,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textIndustry"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 11
@@ -238,6 +246,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textTitle"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 11
@@ -252,7 +261,8 @@ new FormModel {
 					"gridY": 13
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textNote"
+					name: "noteTextField"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 13
@@ -264,7 +274,7 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
 				"$columnSpecs": "50dlu, labelcompgap, 100dlu, labelcompgap, 50dlu, labelcompgap, 100dlu"
-				"$rowSpecs": "default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu"
+				"$rowSpecs": "default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, 12dlu, 5dlu, default, 5dlu, default"
 			} ) {
 				name: "panel4"
 				"border": new javax.swing.border.TitledBorder( null, "会员信息", 4, 0, null, sfield java.awt.Color gray )
@@ -276,61 +286,83 @@ new FormModel {
 					"gridX": 1
 					"gridY": 1
 				} )
-				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
-					name: "joinday"
-					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(new java.util.Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
-					}
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "joindayTextField"
+					"enabled": false
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 1
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label17"
+					"text": "累积会费"
+					"horizontalAlignment": 0
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 5
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textFee"
+					"enabled": false
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 7
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "noteLabel"
+					"text": "下面内容请谨慎填写，一经填写不得修改！"
+					"horizontalAlignment": 0
+					"foreground": sfield java.awt.Color red
+					"font": new java.awt.Font( "宋体", 1, 16 )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridY": 3
+					"gridWidth": 7
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label22"
+					"text": "新增会费"
+					"horizontalAlignment": 0
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 1
+					"gridY": 5
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "addFeeTextField"
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 3
+					"gridY": 5
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label15"
 					"text": "入会年限"
 					"horizontalAlignment": 0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 5
-					"gridY": 1
+					"gridY": 7
 				} )
 				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
 					name: "lastday"
 					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(nextYearDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
+						"JavaCodeGenerator.customCreateCode": "new DatePicker(org.alanjin.smsmms.backend.util.Util.dateConvert(m.getLastDate()),\n                org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
 					}
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 7
+					"gridX": 3
+					"gridY": 7
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label16"
 					"text": "续会时限"
 					"horizontalAlignment": 0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 1
-					"gridY": 3
+					"gridY": 7
+					"gridX": 5
 				} )
 				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
 					name: "disableday"
 					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(nextYearNextMonthDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
+						"JavaCodeGenerator.customCreateCode": "new DatePicker(org.alanjin.smsmms.backend.util.Util.dateConvert(m.getDisableDate()),\n                org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
 					}
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 3
-					"gridY": 3
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label17"
-					"text": "会费数额"
-					"horizontalAlignment": 0
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 5
-					"gridY": 3
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textFee"
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
-					"gridY": 3
+					"gridY": 7
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label18"
@@ -338,41 +370,59 @@ new FormModel {
 					"horizontalAlignment": 0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
-					"gridY": 5
+					"gridY": 9
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textReceipt"
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
-					"gridY": 5
+					"gridY": 9
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label19"
-					"text": "经办人员"
+					"text": "经办人"
 					"horizontalAlignment": 0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
-					"gridY": 5
+					"gridY": 9
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textAttnName"
+					name: "attnName"
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
-					"gridY": 5
+					"gridY": 9
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label20"
+					name: "label23"
+					"text": "续费时间"
+					"horizontalTextPosition": 10
+					"horizontalAlignment": 0
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 1
+					"gridY": 11
+				} )
+				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
+					name: "addFeedatePicker"
+					auxiliary() {
+						"JavaCodeGenerator.customCreateCode": "new DatePicker(new java.util.Date(),org.alanjin.smsmms.backend.util.Util.timeFormatStr, null, null);"
+					}
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 3
+					"gridY": 11
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label24"
 					"text": "收据说明"
 					"horizontalAlignment": 0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
-					"gridY": 7
+					"gridY": 13
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textDescription"
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
-					"gridY": 7
+					"gridY": 13
 					"gridWidth": 5
 				} )
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
@@ -381,31 +431,16 @@ new FormModel {
 				"vAlign": sfield com.jgoodies.forms.layout.CellConstraints FILL
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-				"$columnSpecs": "76dlu, labelcompgap, 50dlu, 10dlu, 50dlu, 10dlu, labelcompgap, 55dlu, labelcompgap, default:grow"
+				"$columnSpecs": "137dlu, labelcompgap, 50dlu, labelcompgap, default:grow"
 				"$rowSpecs": "fill:default"
 			} ) {
 				name: "panel5"
 				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "confirmAddJButton"
-					"text": "确  认"
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addMemberActionPerformed", true ) )
+					name: "addJButton"
+					"text": "续  费"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addJButtonActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "resetAddJButton"
-					"text": "重  置"
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 5
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "nextAddJButton"
-					"text": "继续添加"
-					"enabled": false
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "nextAddJButtonActionPerformed", true ) )
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 8
-					"gridY": 1
 				} )
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"gridX": 1
@@ -413,7 +448,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 485, 565 )
+			"size": new java.awt.Dimension( 485, 630 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "genderGroup"

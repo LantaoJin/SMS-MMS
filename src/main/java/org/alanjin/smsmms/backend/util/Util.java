@@ -31,4 +31,12 @@ public class Util {
     public static String fromNormalDate(java.util.Date date) {
         return dayFormat.format(date);
     }
+
+    public static java.util.Date dateConvert(java.sql.Date date) {
+        return new java.util.Date(date.getTime());
+    }
+
+    public static java.sql.Date dateConvert(java.util.Date date) {
+        return new java.sql.Date(date.getTime());
+    }
 }

@@ -7,13 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.alanjin.smsmms.backend.bean.Member;
+import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.dao.MemberDao;
 import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
+import org.alanjin.smsmms.backend.dao.ReceiptDao;
+import org.alanjin.smsmms.backend.dao.ReceiptDaoImpl;
 import org.alanjin.smsmms.backend.util.Util;
 
 public class MemberAction {
     private static MemberAction action;
     private static MemberDao memberDao;
+    private static ReceiptDao receiptDao;
 
     private MemberAction() {
     }
@@ -21,6 +25,7 @@ public class MemberAction {
     public static MemberAction newInstance() {
         if (action == null) {
             memberDao = new MemberDaoImpl();
+            receiptDao = new ReceiptDaoImpl();
             action = new MemberAction();
         }
         return action;
@@ -53,6 +58,15 @@ public class MemberAction {
     public Member getMemberById(int id) {
         try {
             return memberDao.selectMember(id);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+    
+    public Member getMemberByMemId(String memId) {
+        try {
+            return memberDao.selectMember(memId);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             return null;
@@ -127,6 +141,15 @@ public class MemberAction {
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return new ArrayList<Member>();
+        }
+    }
+    
+    public boolean addReceipt(Receipt receipt) {
+        try {
+            return receiptDao.insertReceipt(receipt);
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+            return false;
         }
     }
 }

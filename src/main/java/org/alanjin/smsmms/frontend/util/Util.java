@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.alanjin.smsmms.frontend;
+package org.alanjin.smsmms.frontend.util;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -90,7 +90,21 @@ public class Util {
         return nextGoodNum(beginNum);
     }
     
-    private static String nextGoodNum(int i) {
+    public static String preGoodNum(int i) {
+        String tmp = Integer.toString(--i);
+        int place = tmp.length();
+        while(tmp.indexOf('4') != -1) {
+            int fact = place - tmp.indexOf('4') - 1;//1-0-1=0(4), 3-0-1=2(401), 3-2-1=0(224)
+            i = i - (int)Math.pow(10, fact);
+            tmp = Integer.toString(i);
+        }
+        for (int j = 0; j < 6 - place; j++) {
+            tmp = "0" + tmp;
+        }
+        return tmp;
+    }
+    
+    public static String nextGoodNum(int i) {
         String tmp = Integer.toString(++i);
         int place = tmp.length();
         while(tmp.indexOf('4') != -1) {

@@ -9,7 +9,6 @@ import java.util.TimerTask;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
-import org.alanjin.smsmms.backend.util.SMSTool;
 import org.alanjin.smsmms.backend.util.Util;
 
 public class MassSendTask extends TimerTask {
@@ -48,10 +47,10 @@ public class MassSendTask extends TimerTask {
         for (Member toSend : memberToSend) {
             Map<String, String> senderPair = new HashMap<String, String>();
             senderPair.put("mobile", toSend.getPhone());
-            senderPair.put("content", toSend.getName());
+            senderPair.put("content", messageModel.getContent());
             messages.add(senderPair);
         }
-        List<Map<String, String>> failList = SMSTool.sendSms(messages, true);
+        List<Map<String, String>> failList = SenderAndReceiverService.sendSms(messages, true);
         if (failList.size() != 0) {
             // TODO
         }

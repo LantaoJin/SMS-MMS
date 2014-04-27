@@ -13,12 +13,12 @@ import org.alanjin.smsmms.backend.db.DBConn;
 public class ReceiptDaoImpl implements ReceiptDao {
 
     @Override
-    public void insertReceipt(Receipt receipt) throws SQLException {
+    public boolean insertReceipt(Receipt receipt) throws SQLException {
         DBConn db = new DBConn();
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
-            String sql = "insert into receipt (receiptId, memId, money, attnname, createdate, descriptioin) values (?,?,?,?,?,?);";
+            String sql = "insert into receipt (receiptId, memId, money, attnname, createdate, description) values (?,?,?,?,?,?);";
             PreparedStatement ps2 = con.prepareStatement(sql);
             ps2.setString(1, receipt.getReceiptId());
             ps2.setString(2, receipt.getMemId());
@@ -36,7 +36,9 @@ public class ReceiptDaoImpl implements ReceiptDao {
             con.rollback();
             con.close();
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override

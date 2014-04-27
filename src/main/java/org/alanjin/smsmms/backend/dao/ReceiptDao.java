@@ -6,7 +6,7 @@ import java.util.List;
 import org.alanjin.smsmms.backend.bean.Receipt;
 
 public interface ReceiptDao {
-    public void insertReceipt(Receipt receipt) throws SQLException;
+    public boolean insertReceipt(Receipt receipt) throws SQLException;
 
     public Receipt selectReceipt(int id) throws SQLException;
 

@@ -1,4 +1,4 @@
-package org.alanjin.smsmms.backend.util;
+package org.alanjin.smsmms.backend.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,9 +22,9 @@ import org.smslib.Message.MessageEncodings;
 import org.smslib.Message.MessageTypes;
 import org.smslib.modem.SerialModemGateway;
 
-public class SMSTool {
+public class SenderAndReceiverService {
     // 自身类
-    static SMSTool smwps = null;
+    static SenderAndReceiverService smwps = null;
     // 读取全部消息
     public static final org.smslib.InboundMessage.MessageClasses ALL_MESSAGE =
 
@@ -49,41 +49,41 @@ public class SMSTool {
     // 设备名称
     private static String gateName = "SMS";
 
-    private SMSTool() {
+    private SenderAndReceiverService() {
     }
 
     // 构造类的实例，只产生一个对象实例
 
-    public static SMSTool newInstance(String com) throws TimeoutException,
+    public static SenderAndReceiverService newInstance(String com) throws TimeoutException,
             GatewayException, SMSLibException, IOException,
             InterruptedException {
         if (smwps == null)
-            smwps = new SMSTool();
+            smwps = new SenderAndReceiverService();
         if (srv == null)
             smwps.open(com, gateName);
         return smwps;
     }
 
-    public static SMSTool newInstance(String com, GenericDelegator delegator)
+    public static SenderAndReceiverService newInstance(String com, GenericDelegator delegator)
             throws TimeoutException, GatewayException, SMSLibException,
             IOException, InterruptedException {
         if (smwps == null)
-            smwps = new SMSTool();
+            smwps = new SenderAndReceiverService();
         if (srv == null)
             smwps.open(com, gateName);
         smwps.delegator = delegator;
         return smwps;
     }
 
-    public static SMSTool newInstance(String com, GenericDelegator delegator,
+    public static SenderAndReceiverService newInstance(String com, GenericDelegator delegator,
             String gateName) throws TimeoutException, GatewayException,
             SMSLibException, IOException, InterruptedException {
         if (smwps == null)
-            smwps = new SMSTool();
+            smwps = new SenderAndReceiverService();
         if (srv == null)
             smwps.open(com, gateName);
         smwps.delegator = delegator;
-        SMSTool.gateName = gateName;
+        SenderAndReceiverService.gateName = gateName;
         return smwps;
     }
 
@@ -200,7 +200,7 @@ public class SMSTool {
             GatewayException, IOException, InterruptedException {
         String mob = "13636316288";
         String content = "一只小熊去山里创业，农夫给了他一把镰刀，木匠给了他一把锤子， 小熊来到山里遇到老虎，吓得把镰刀、锤子举在头顶， 老虎说：没看出来，就你这熊样还是个党员来！";
-        SMSTool sms = new SMSTool();// newInstance();
+        SenderAndReceiverService sms = new SenderAndReceiverService();// newInstance();
         try {
             sms.open("COM6", "SMS");
         } catch (TimeoutException e) {
@@ -236,13 +236,13 @@ public class SMSTool {
                 e.printStackTrace();
             }
             if (str.equals("quit")) {
-                SMSTool.close();
+                SenderAndReceiverService.close();
                 break;
             } else if (str.equals("1"))
-                System.out.println(SMSTool.sendSms(mob, content, false));
+                System.out.println(SenderAndReceiverService.sendSms(mob, content, false));
             else {
                 System.out.println("短消息!");
-                SMSTool.readSms(SMSTool.ALL_MESSAGE);
+                SenderAndReceiverService.readSms(SenderAndReceiverService.ALL_MESSAGE);
             }
         }
         // sms.readSms();

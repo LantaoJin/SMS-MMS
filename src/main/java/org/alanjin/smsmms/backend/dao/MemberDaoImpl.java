@@ -95,9 +95,10 @@ public class MemberDaoImpl implements MemberDao {
         ps.setInt(1, id);
 
         ResultSet r = ps.executeQuery();
-        Member e = new Member();
+        Member e = null;
         if (r != null) {
             if (r.next()) {
+                e = new Member();
                 e.setMemId(r.getString("memId"));
                 e.setName(r.getString("name"));
                 e.setGender(r.getInt("gender"));
@@ -115,6 +116,48 @@ public class MemberDaoImpl implements MemberDao {
                 e.setLastDate(r.getDate("lastdate"));
                 e.setDisableDate(r.getDate("disabledate"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
+                e.setReceiptList(getAllReceiptsByMemberId(r.getString("memId")));
+            }
+            r.close();
+            ps.close();
+            con.close();
+        }
+        return e;
+        // return null;
+    }
+
+    @Override
+    public Member selectMember(String memId) throws SQLException {
+        String sql = "Select * from member where (memId = ? );";
+        DBConn db = new DBConn();
+        Connection con = db.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, memId);
+
+        ResultSet r = ps.executeQuery();
+        Member e = null;
+        if (r != null) {
+            if (r.next()) {
+                e = new Member();
+                e.setId(r.getInt("id"));
+                e.setMemId(r.getString("memId"));
+                e.setName(r.getString("name"));
+                e.setGender(r.getInt("gender"));
+                e.setBirthday(r.getDate("birthday"));
+                e.setZip(r.getString("zip"));
+                e.setAddress(r.getString("address"));
+                e.setTel(r.getString("tel"));
+                e.setPhone(r.getString("phone"));
+                e.setEmail(r.getString("email"));
+                e.setEdu(r.getString("edu"));
+                e.setIndustry(r.getString("industry"));
+                e.setTitle(r.getString("title"));
+                e.setExpert(r.getString("expert"));
+                e.setJoinDate(r.getDate("joindate"));
+                e.setLastDate(r.getDate("lastdate"));
+                e.setDisableDate(r.getDate("disabledate"));
+                e.setFeeSum(r.getBigDecimal("feesum"));
+                e.setReceiptList(getAllReceiptsByMemberId(memId));
             }
             r.close();
             ps.close();
@@ -268,6 +311,7 @@ public class MemberDaoImpl implements MemberDao {
                 e.setLastDate(r.getDate("lastdate"));
                 e.setDisableDate(r.getDate("disabledate"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
+                e.setReceiptList(getAllReceiptsByMemberId(r.getString("memId")));
                 memList.add(e);
             }
             r.close();
@@ -322,5 +366,36 @@ public class MemberDaoImpl implements MemberDao {
             con.close();
         }
         return memList;
+    }
+    
+    private List<Receipt> getAllReceiptsByMemberId(String memId)
+            throws SQLException {
+        String sql = "Select * from receipt where (memId = ? );";
+        DBConn db = new DBConn();
+        Connection con = db.getConnection();
+        PreparedStatement ps = null;
+        ps = con.prepareStatement(sql);
+        ps.setString(1, memId);
+
+        ResultSet r = ps.executeQuery();
+        List<Receipt> recList = new ArrayList<Receipt>();
+        if (r != null) {
+            while (r.next()) {
+                Receipt e = new Receipt();
+                e.setId(r.getInt("id"));
+                e.setAttnName(r.getString("attnname"));
+                e.setCreateDate(r.getDate("createdate"));
+                e.setDescription(r.getString("description"));
+                e.setMemId(r.getString("memId"));
+                e.setMoney(r.getBigDecimal("money"));
+                e.setReceiptId(r.getString("receiptId"));
+                recList.add(e);
+            }
+            r.close();
+            ps.close();
+            con.close();
+        }
+        return recList;
+        // return null;
     }
 }

@@ -9,22 +9,21 @@ import java.util.List;
 
 import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.db.DBConn;
-import org.alanjin.smsmms.backend.util.Util;
-import sun.nio.cs.MS1250;
 
 public class MessageModelDaoImpl implements MessageModelDao {
 
     @Override
-    public void insertMessageModel(MessageModel model) throws SQLException {
+    public boolean insertMessageModel(MessageModel model) throws SQLException {
         DBConn db = new DBConn();
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
-            String sql = "insert into model (modelname, content, politeness) values (?,?,?);";
+            String sql = "insert into model (modelname, content, politeness, description) values (?,?,?,?);";
             PreparedStatement ps2 = con.prepareStatement(sql);
             ps2.setString(1, model.getModelName());
             ps2.setString(2, model.getContent());
             ps2.setInt(3, model.isUsePoliteness() ? 1 : 0);
+            ps2.setString(4, model.getDescription());
             ps2.executeUpdate();
             ps2.close();
             con.commit();
@@ -35,7 +34,9 @@ public class MessageModelDaoImpl implements MessageModelDao {
             con.rollback();
             con.close();
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override
@@ -54,6 +55,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
                 e.setModelName(r.getString("modelname"));
                 e.setContent(r.getString("content"));
                 e.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
+                e.setDescription(r.getString("description"));
             }
             r.close();
             ps.close();
@@ -80,6 +82,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
                 e.setModelName(r.getString("modelname"));
                 e.setContent(r.getString("content"));
                 e.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
+                e.setDescription(r.getString("description"));
             }
             r.close();
             ps.close();
@@ -91,7 +94,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
 
     @Override
     public boolean updateMessageModel(MessageModel model) throws SQLException {
-        String sql = "UPDATE model set content=?, politeness=? where (id = ? );";
+        String sql = "UPDATE model set content=?, politeness=?, description where (id = ? );";
         System.out.println(sql);
         DBConn db = new DBConn();
         Connection con = db.getConnection();
@@ -99,6 +102,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
         ps.setString(1, model.getContent());
         ps.setInt(2, model.isUsePoliteness() ? 1 : 0);
         ps.setInt(3, model.getId());
+        ps.setString(4, model.getDescription());
         ps.executeUpdate();
         ps.close();
         con.close();
@@ -133,6 +137,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
                 m.setModelName(r.getString("modelname"));
                 m.setContent(r.getString("content"));
                 m.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
+                m.setDescription(r.getString("description"));
                 modelList.add(m);
             }
             r.close();
