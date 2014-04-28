@@ -82,29 +82,16 @@ public class BroadcastJForm extends JPanel {
             this.titleComboBox.addItem(title);
         }
     }
-    
-    private String getModelContentFromModelComboBox() {
-        if(this.modelComboBox.getSelectedIndex() == 0) {
-            return "";
-        } else {
-            String modelName = (String)this.modelComboBox.getSelectedItem();
-            MessageModel model = modelsMap.get(modelName);
-            if (model == null) {
-                return "";
-            } else {
-                return model.getContent();
-            }
-        }
-    }
 
     private void sendButtonActionPerformed(ActionEvent e) {
-        String content = null;
+        String content = "";
         String finalContent;
         boolean useCustom = false;
         boolean useHead = false;
-        String title = null;
+        String title = "";
         String[] titleSplit = null;
         if (this.tabbedPane.getSelectedIndex() == 0) {
+            useHead = false;
             useCustom = true;
             if ( this.useHeadCheckBox.isSelected()) {
                 useHead = true;
@@ -115,7 +102,6 @@ public class BroadcastJForm extends JPanel {
                     titleSplit = title.split("/");
                 }
             } else {
-                title = "";
             }
             content = messageTextArea.getText();
             if (content.equals("")) {
@@ -123,7 +109,17 @@ public class BroadcastJForm extends JPanel {
                 return;
             }
         } else if (this.tabbedPane.getSelectedIndex() == 1) {
-            content = getModelContentFromModelComboBox();
+            useHead = false;
+            if(this.modelComboBox.getSelectedIndex() != 0) {
+                String modelName = (String)this.modelComboBox.getSelectedItem();
+                MessageModel model = modelsMap.get(modelName);
+                if (model != null) {
+                    useHead = model.isUseHead();
+                    titleSplit = model.getTitle().split("/");
+                    content = model.getContent();
+                }
+            }
+            
             if (content.equals("")) {
                 JOptionPane.showMessageDialog(this, "未选择模版，请选择。如未创建模版，请先至【模版管理】进行创建。", TITLE, JOptionPane.OK_OPTION);
                 return;
@@ -137,7 +133,7 @@ public class BroadcastJForm extends JPanel {
             Map<String, String> senderPair = new HashMap<String, String>();
             StringBuilder contentBuilder = new StringBuilder();
             senderPair.put("mobile", entity.getPhone());
-            if (useCustom && useHead) {
+            if (useHead) {
                 if (titleSplit != null && titleSplit.length == 2) {
                     if (entity.getSexString().equals("男")) {
                         title = titleSplit[0];
@@ -146,8 +142,6 @@ public class BroadcastJForm extends JPanel {
                     }
                 }
                 finalContent = contentBuilder.append(entity.getName()).append(title).append(",").append(content).toString();
-            } else if (useCustom){
-                finalContent = contentBuilder.append(content).toString();
             } else {
                 finalContent = contentBuilder.append(content).toString();
             }

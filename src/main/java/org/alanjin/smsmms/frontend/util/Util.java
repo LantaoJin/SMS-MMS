@@ -14,8 +14,10 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.alanjin.smsmms.backend.bean.Member;
+import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.dao.MemberDao;
 import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
 
@@ -24,19 +26,54 @@ import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
  * @author Administrator
  */
 public class Util {
+    public static void fillModelTable(JTable modelTable, List<MessageModel> messageModels) {
+        Object[][] content = new Object[messageModels.size()][6];
+        for(int i = 0; i<messageModels.size(); i++) {
+            content[i] = new Object[8];
+            content[i][0] = messageModels.get(i).getId();
+            content[i][1] = messageModels.get(i).getModelName();
+            content[i][2] = messageModels.get(i).isUseHead()?"是":"否";
+            content[i][3] = messageModels.get(i).getTitle();
+            content[i][4] = messageModels.get(i).getContent();
+            content[i][5] = messageModels.get(i).getDescription();
+        }
+        
+        String[] columnIdentifiers = new String [] {
+            "编号", "模版名称", "使用抬头", "后接称谓", "内容", "说明"
+        };
+        DefaultTableModel model = new DefaultTableModel(content, columnIdentifiers);
+        model.setDataVector(content, columnIdentifiers);
+        modelTable.setModel(model);
+        TableColumn column1 = modelTable.getColumnModel().getColumn(0);
+        TableColumn column2 = modelTable.getColumnModel().getColumn(1);
+        TableColumn column3 = modelTable.getColumnModel().getColumn(2);
+        TableColumn column4 = modelTable.getColumnModel().getColumn(3);
+        TableColumn column6 = modelTable.getColumnModel().getColumn(5);
+        column1.setPreferredWidth(50);
+        column1.setMaxWidth(50);
+        column2.setPreferredWidth(120);
+        column2.setMaxWidth(120);
+        column3.setPreferredWidth(80);
+        column3.setMaxWidth(80);
+        column4.setPreferredWidth(80);
+        column4.setMaxWidth(80);
+        column6.setPreferredWidth(200);
+        column6.setMaxWidth(200);
+    }
+    
     public static void fillMemberTable(JTable memberTable, List<Member> members) {
         Object[][] content = new Object[members.size()][8];
         for(int i = 0; i<members.size(); i++) {
             content[i] = new Object[8];
             content[i][1] = members.get(i).getMemId();
             content[i][2] = members.get(i).getName();
-            content[i][3] = members.get(i).getGender();
             content[i][3] = members.get(i).getGender()==1?"男":"女";
             content[i][4] = members.get(i).getPhone();
             content[i][5] = members.get(i).getBirthday();
             content[i][6] = members.get(i).getJoinDate();
             content[i][7] = members.get(i).getFeeSum();
         }
+
         DefaultTableModel model = new DefaultTableModel() {
             Class[] types = new Class [] {
                 java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class

@@ -2,6 +2,7 @@ package org.alanjin.smsmms.backend.dao;
 
 import java.sql.SQLException;
 import java.util.List;
+
 import org.alanjin.smsmms.backend.bean.MessageModel;
 
 public interface MessageModelDao {
@@ -14,9 +15,11 @@ public interface MessageModelDao {
 
     public boolean updateMessageModel(MessageModel model) throws SQLException;
 
-    public void deleteMessageModel(int id) throws SQLException;
+    public boolean deleteMessageModel(int id) throws SQLException;
 
     public List<MessageModel> getAllMessageModels() throws SQLException;
 
     public int count() throws SQLException;
+
+    public boolean modelNameExist(String modelName) throws SQLException;
 }

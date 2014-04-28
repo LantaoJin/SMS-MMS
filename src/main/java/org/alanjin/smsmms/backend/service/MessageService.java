@@ -40,5 +40,31 @@ public class MessageService {
             return false;
         }
     }
+    
+    public boolean modelNameExist(String modelName) {
+        try {
+            return dao.modelNameExist(modelName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
+    public boolean deleteModelById(int id) {
+        try {
+            return dao.deleteMessageModel(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public MessageModel getMessageModelById(int id) {
+        try {
+            return dao.selectMessageModel(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

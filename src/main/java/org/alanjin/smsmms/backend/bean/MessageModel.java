@@ -3,8 +3,9 @@ package org.alanjin.smsmms.backend.bean;
 public class MessageModel {
     private int id;
     private String modelName;
+    private boolean useHead;
+    private String title;
     private String content;
-    private boolean usePoliteness;
     private String description;
 
     public int getId() {
@@ -23,25 +24,28 @@ public class MessageModel {
         this.modelName = modelName;
     }
 
+    public boolean isUseHead() {
+        return useHead;
+    }
+
+    public void setUseHead(boolean useHead) {
+        this.useHead = useHead;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public boolean isUsePoliteness() {
-        return usePoliteness;
-    }
-
-    /**
-     * if usePolitness is true, head will be replace by Mr. XX
-     * 
-     * @param usePoliteness
-     */
-    public void setUsePoliteness(boolean usePoliteness) {
-        this.usePoliteness = usePoliteness;
     }
 
     public String getDescription() {

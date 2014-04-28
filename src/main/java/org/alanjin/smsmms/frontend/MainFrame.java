@@ -31,6 +31,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
@@ -142,8 +143,31 @@ public class MainFrame extends javax.swing.JFrame {
         addFeeButton = new javax.swing.JButton();
         broadcastButton = new javax.swing.JButton();
         addMemberPanel = new MemberJForm(this.memberAction);
-        p2pPanel = new javax.swing.JPanel();
-        messPanel = new javax.swing.JPanel();
+        modelPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        modelName = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        modelContent = new javax.swing.JTextArea();
+        jLabel13 = new javax.swing.JLabel();
+        modelDescription = new javax.swing.JTextField();
+        addModel = new javax.swing.JButton();
+        resetModel = new javax.swing.JButton();
+        modelUseHead = new javax.swing.JCheckBox();
+        jLabel12 = new javax.swing.JLabel();
+        titlesOfModel = new javax.swing.JComboBox();
+        modelAddSuccess = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        deleteModel = new javax.swing.JButton();
+        viewModel = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        modelTable = new javax.swing.JTable();
+        schedulePanel = new javax.swing.JPanel();
         viewReplyPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
@@ -152,8 +176,6 @@ public class MainFrame extends javax.swing.JFrame {
         ListAllMenuItem = new javax.swing.JMenuItem();
         AddNewMenuItem = new javax.swing.JMenuItem();
         SMSMenu = new javax.swing.JMenu();
-        P2PMenuItem = new javax.swing.JMenuItem();
-        MessMenuItem = new javax.swing.JMenuItem();
         ViewReplyMenuItem = new javax.swing.JMenuItem();
         MsgModelMenuItem = new javax.swing.JMenuItem();
         TimerMenuItem = new javax.swing.JMenuItem();
@@ -499,37 +521,213 @@ public class MainFrame extends javax.swing.JFrame {
 
             indexPanel.add(memberPanel, "card2");
 
+            addMemberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+
+            javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
+            addMemberPanel.setLayout(addMemberPanelLayout);
+            addMemberPanelLayout.setHorizontalGroup(
+                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 800, Short.MAX_VALUE)
+            );
+            addMemberPanelLayout.setVerticalGroup(
+                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 600, Short.MAX_VALUE)
+            );
+
             indexPanel.add(addMemberPanel, "card3");
 
-            p2pPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+            modelPanel.setPreferredSize(new java.awt.Dimension(800, 600));
+            modelPanel.setLayout(new java.awt.BorderLayout());
 
-            javax.swing.GroupLayout p2pPanelLayout = new javax.swing.GroupLayout(p2pPanel);
-            p2pPanel.setLayout(p2pPanelLayout);
-            p2pPanelLayout.setHorizontalGroup(
-                p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2.setPreferredSize(new java.awt.Dimension(800, 300));
+
+            jLabel10.setText("模版名称：");
+
+            jLabel11.setText("模版内容：");
+
+            modelContent.setColumns(20);
+            modelContent.setLineWrap(true);
+            modelContent.setRows(5);
+            jScrollPane3.setViewportView(modelContent);
+
+            jLabel13.setText("模版说明：");
+
+            addModel.setText(" 添  加");
+            addModel.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    addModelActionPerformed(evt);
+                }
+            });
+
+            resetModel.setText("重  置");
+            resetModel.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    resetModelActionPerformed(evt);
+                }
+            });
+
+            modelUseHead.setText("使用抬头：");
+            modelUseHead.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+            jLabel12.setText("后接称谓：");
+
+            titlesOfModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "不使用称谓" }));
+
+            modelAddSuccess.setFont(new java.awt.Font("宋体", 1, 12)); // NOI18N
+            modelAddSuccess.setForeground(java.awt.Color.red);
+
+            javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+            jPanel2.setLayout(jPanel2Layout);
+            jPanel2Layout.setHorizontalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(94, 94, 94)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel13))
+                            .addGap(28, 28, 28)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(modelName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(modelUseHead)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(titlesOfModel, 0, 119, Short.MAX_VALUE))
+                                .addComponent(modelDescription)
+                                .addComponent(jScrollPane3)))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(302, 302, 302)
+                            .addComponent(addModel)
+                            .addGap(35, 35, 35)
+                            .addComponent(resetModel))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(262, 262, 262)
+                            .addComponent(modelAddSuccess)))
+                    .addContainerGap(198, Short.MAX_VALUE))
+            );
+            jPanel2Layout.setVerticalGroup(
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(modelName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(modelUseHead)
+                        .addComponent(jLabel12)
+                        .addComponent(titlesOfModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(17, 17, 17)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(modelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(addModel)
+                        .addComponent(resetModel))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(modelAddSuccess)
+                    .addContainerGap(81, Short.MAX_VALUE))
+            );
+
+            modelPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+            jPanel3.setPreferredSize(new java.awt.Dimension(800, 50));
+            jPanel3.setLayout(new java.awt.GridLayout());
+
+            jLabel8.setFont(new java.awt.Font("楷体", 1, 28)); // NOI18N
+            jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jLabel8.setText("佛恩互助会 短信模版管理");
+            jPanel3.add(jLabel8);
+
+            modelPanel.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+
+            jPanel4.setPreferredSize(new java.awt.Dimension(800, 300));
+            jPanel4.setLayout(new java.awt.BorderLayout());
+
+            jPanel5.setPreferredSize(new java.awt.Dimension(800, 50));
+
+            deleteModel.setText("删  除");
+            deleteModel.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    deleteModelActionPerformed(evt);
+                }
+            });
+
+            viewModel.setText("查  看");
+            viewModel.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    viewModelActionPerformed(evt);
+                }
+            });
+
+            javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+            jPanel5.setLayout(jPanel5Layout);
+            jPanel5Layout.setHorizontalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(307, 307, 307)
+                    .addComponent(deleteModel)
+                    .addGap(32, 32, 32)
+                    .addComponent(viewModel)
+                    .addContainerGap())
+            );
+            jPanel5Layout.setVerticalGroup(
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(viewModel)
+                        .addComponent(deleteModel)))
+            );
+
+            jPanel4.add(jPanel5, java.awt.BorderLayout.SOUTH);
+
+            jPanel6.setLayout(new java.awt.GridLayout());
+
+            modelTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null},
+                    {null, null, null, null, null, null}
+                },
+                new String [] {
+                    "编号", "模版名称", "是否抬头", "后接称谓", "内容", "说明"
+                }
+            ));
+            modelTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+            jScrollPane1.setViewportView(modelTable);
+
+            jPanel6.add(jScrollPane1);
+
+            jPanel4.add(jPanel6, java.awt.BorderLayout.NORTH);
+
+            modelPanel.add(jPanel4, java.awt.BorderLayout.PAGE_END);
+
+            indexPanel.add(modelPanel, "card4");
+
+            schedulePanel.setPreferredSize(new java.awt.Dimension(800, 600));
+
+            javax.swing.GroupLayout schedulePanelLayout = new javax.swing.GroupLayout(schedulePanel);
+            schedulePanel.setLayout(schedulePanelLayout);
+            schedulePanelLayout.setHorizontalGroup(
+                schedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGap(0, 800, Short.MAX_VALUE)
             );
-            p2pPanelLayout.setVerticalGroup(
-                p2pPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            schedulePanelLayout.setVerticalGroup(
+                schedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGap(0, 600, Short.MAX_VALUE)
             );
 
-            indexPanel.add(p2pPanel, "card4");
-
-            messPanel.setPreferredSize(new java.awt.Dimension(800, 600));
-
-            javax.swing.GroupLayout messPanelLayout = new javax.swing.GroupLayout(messPanel);
-            messPanel.setLayout(messPanelLayout);
-            messPanelLayout.setHorizontalGroup(
-                messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 800, Short.MAX_VALUE)
-            );
-            messPanelLayout.setVerticalGroup(
-                messPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
-            );
-
-            indexPanel.add(messPanel, "card5");
+            indexPanel.add(schedulePanel, "card5");
 
             viewReplyPanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -587,21 +785,15 @@ public class MainFrame extends javax.swing.JFrame {
 
             SMSMenu.setText("短信管理");
 
-            P2PMenuItem.setText("点对点短信");
-            P2PMenuItem.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    P2PMenuItemActionPerformed(evt);
-                }
-            });
-            SMSMenu.add(P2PMenuItem);
-
-            MessMenuItem.setText("短信群发");
-            SMSMenu.add(MessMenuItem);
-
             ViewReplyMenuItem.setText("查看回复");
             SMSMenu.add(ViewReplyMenuItem);
 
             MsgModelMenuItem.setText("短信模版");
+            MsgModelMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    MsgModelMenuItemActionPerformed(evt);
+                }
+            });
             SMSMenu.add(MsgModelMenuItem);
 
             TimerMenuItem.setText("定时发送");
@@ -695,9 +887,89 @@ public class MainFrame extends javax.swing.JFrame {
         JOptionPane.showOptionDialog(this, null, "短信群发 ", JOptionPane.NO_OPTION, JOptionPane.NO_OPTION, null, options, null);
     }//GEN-LAST:event_broadcastButtonActionPerformed
 
-    private void P2PMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_P2PMenuItemActionPerformed
+    private void MsgModelMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsgModelMenuItemActionPerformed
+        resetModelActionPerformed(null);
+        List<MessageModel> messageModels = messageService.getAllMessageModel();
+        Util.fillModelTable(this.modelTable, messageModels);
+        for(String title : titleList) {
+            this.titlesOfModel.addItem(title);
+        }
+        LayoutManager layout = this.indexPanel.getLayout();
+        if (layout instanceof CardLayout) {
+            CardLayout card = (CardLayout) layout;
+            card.show(indexPanel, "card4");
+        }
+    }//GEN-LAST:event_MsgModelMenuItemActionPerformed
+
+    private void addModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addModelActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_P2PMenuItemActionPerformed
+        if (this.modelName.getText().trim().isEmpty()
+            || this.modelContent.getText().trim().isEmpty()) {
+            Util.verifyAlert("模版名称|模版内容 不得为空", "模版管理");
+            return;
+        } else if (messageService.modelNameExist(this.modelName.getText().trim())) {
+            Util.verifyAlert("模版名称重复！", "模版管理");
+            return;
+        } else {
+            MessageModel mm = new MessageModel();
+            mm.setModelName(this.modelName.getText().trim());
+            mm.setContent(this.modelContent.getText());
+            mm.setDescription(this.modelDescription.getText().trim());
+            if (!this.modelUseHead.isSelected() || this.titlesOfModel.getSelectedIndex() == 0) {
+                mm.setTitle("");
+            } else {
+                mm.setTitle((String)this.titlesOfModel.getSelectedItem());
+            }
+            if (this.modelUseHead.isSelected()) {
+                mm.setUseHead(true);
+            } else {
+                mm.setUseHead(false);
+            }
+            messageService.addMessageModel(mm);
+            this.modelAddSuccess.setText("模版添加成功！请点击菜单\"短信管理\"下\"短信模版\"刷新查看。");
+        }
+    }//GEN-LAST:event_addModelActionPerformed
+
+    private void resetModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetModelActionPerformed
+        this.modelName.setText("");
+        this.modelContent.setText("");
+        this.modelDescription.setText("");
+        this.modelUseHead.setSelected(false);
+        this.titlesOfModel.removeAllItems();
+        this.titlesOfModel.addItem("不使用称谓");
+        this.titlesOfModel.setSelectedIndex(0);
+        this.modelAddSuccess.setText("");
+    }//GEN-LAST:event_resetModelActionPerformed
+
+    private void deleteModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteModelActionPerformed
+        if (JOptionPane.showConfirmDialog(this, "确定删除所选则的短信模版？", "模版管理",
+                JOptionPane.OK_CANCEL_OPTION) == 0) {
+            int id = (Integer)this.modelTable.getValueAt(this.modelTable.getSelectedRow(), 0);
+            if (!messageService.deleteModelById(id)) {
+                Util.verifyAlert("模版删除失败！", "模版管理");
+            } else {
+                this.modelAddSuccess.setText("模版删除成功！请点击菜单\"短信管理\"下\"短信模版\"刷新查看。");
+            }
+        }
+    }//GEN-LAST:event_deleteModelActionPerformed
+
+    private void viewModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewModelActionPerformed
+        // TODO add your handling code here:
+        int id = (Integer)this.modelTable.getValueAt(this.modelTable.getSelectedRow(), 0);
+        MessageModel model = messageService.getMessageModelById(id);
+        if (model == null) {
+            Util.verifyAlert("无法查看，可能是数据库连接错误！", "模版管理");
+        } else {
+            this.modelName.setText(model.getModelName());
+            this.modelContent.setText(model.getContent());
+            this.modelDescription.setText(model.getDescription());
+            this.modelUseHead.setSelected(model.isUseHead());
+            this.titlesOfModel.removeAllItems();
+            this.titlesOfModel.addItem(model.getTitle());
+            this.titlesOfModel.setSelectedIndex(0);
+            this.modelAddSuccess.setText("");
+        }
+    }//GEN-LAST:event_viewModelActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO 获得所选择的memberId list， 并拿到个数
@@ -903,9 +1175,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem HistoryMenuItem;
     private javax.swing.JMenuItem ListAllMenuItem;
     private javax.swing.JMenu MemberMenu;
-    private javax.swing.JMenuItem MessMenuItem;
     private javax.swing.JMenuItem MsgModelMenuItem;
-    private javax.swing.JMenuItem P2PMenuItem;
     private javax.swing.JMenuItem PasswdMenuItem;
     private javax.swing.JMenu SMSMenu;
     private javax.swing.JMenuItem SyncMenuItem;
@@ -913,10 +1183,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem ViewReplyMenuItem;
     private javax.swing.JButton addFeeButton;
     private javax.swing.JPanel addMemberPanel;
+    private javax.swing.JButton addModel;
     private com.eltima.components.ui.DatePicker birthdayPicker;
     private javax.swing.JButton broadcastButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JPanel buttonPanel1;
+    private javax.swing.JButton deleteModel;
     private javax.swing.JTextField feeFromTextField;
     private javax.swing.JTextField feeToTextField;
     private javax.swing.JPanel filterPanel;
@@ -927,16 +1199,28 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private com.eltima.components.ui.DatePicker joindayFrom;
     private com.eltima.components.ui.DatePicker joindayTo;
@@ -944,18 +1228,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel memberPanel;
     private javax.swing.JTable memberTable;
     final CheckBoxRenderer check = new CheckBoxRenderer();
-    private javax.swing.JPanel messPanel;
+    private javax.swing.JLabel modelAddSuccess;
+    private javax.swing.JTextArea modelContent;
+    private javax.swing.JTextField modelDescription;
+    private javax.swing.JTextField modelName;
+    private javax.swing.JPanel modelPanel;
+    private javax.swing.JTable modelTable;
+    private javax.swing.JCheckBox modelUseHead;
     private javax.swing.JButton modifyDetailButton;
     private javax.swing.JTextField nameFilterTextField;
-    private javax.swing.JPanel p2pPanel;
     private javax.swing.JTextField phoneFilterTextField;
+    private javax.swing.JButton resetModel;
+    private javax.swing.JPanel schedulePanel;
     private javax.swing.JButton selectByBirthday;
     private javax.swing.JButton selectByFee;
     private javax.swing.JButton selectByJoinday;
     private javax.swing.JButton selectByName;
     private javax.swing.JButton selectByPhone;
     private javax.swing.JMenuItem showHomeMenu;
+    private javax.swing.JComboBox titlesOfModel;
     private javax.swing.JButton viewDetailButton;
+    private javax.swing.JButton viewModel;
     private javax.swing.JPanel viewReplyPanel;
     private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables

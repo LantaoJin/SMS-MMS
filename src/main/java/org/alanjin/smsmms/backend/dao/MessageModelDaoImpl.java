@@ -18,12 +18,13 @@ public class MessageModelDaoImpl implements MessageModelDao {
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
-            String sql = "insert into model (modelname, content, politeness, description) values (?,?,?,?);";
+            String sql = "insert into model (modelname, usehead, title, content, description) values (?,?,?,?,?);";
             PreparedStatement ps2 = con.prepareStatement(sql);
             ps2.setString(1, model.getModelName());
-            ps2.setString(2, model.getContent());
-            ps2.setInt(3, model.isUsePoliteness() ? 1 : 0);
-            ps2.setString(4, model.getDescription());
+            ps2.setInt(2, model.isUseHead() ? 1 : 0);
+            ps2.setString(3, model.getTitle());
+            ps2.setString(4, model.getContent());
+            ps2.setString(5, model.getDescription());
             ps2.executeUpdate();
             ps2.close();
             con.commit();
@@ -53,8 +54,9 @@ public class MessageModelDaoImpl implements MessageModelDao {
             if (r.next()) {
                 e.setId(r.getInt("id"));
                 e.setModelName(r.getString("modelname"));
+                e.setUseHead(r.getInt("usehead") == 1 ? true : false);
+                e.setTitle(r.getString("title"));
                 e.setContent(r.getString("content"));
-                e.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
                 e.setDescription(r.getString("description"));
             }
             r.close();
@@ -80,8 +82,9 @@ public class MessageModelDaoImpl implements MessageModelDao {
             if (r.next()) {
                 e.setId(r.getInt("id"));
                 e.setModelName(r.getString("modelname"));
+                e.setUseHead(r.getInt("usehead") == 1 ? true : false);
+                e.setTitle(r.getString("title"));
                 e.setContent(r.getString("content"));
-                e.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
                 e.setDescription(r.getString("description"));
             }
             r.close();
@@ -94,15 +97,16 @@ public class MessageModelDaoImpl implements MessageModelDao {
 
     @Override
     public boolean updateMessageModel(MessageModel model) throws SQLException {
-        String sql = "UPDATE model set content=?, politeness=?, description where (id = ? );";
+        String sql = "UPDATE model set usehead=?, title=?, content=?, description=? where (id = ? );";
         System.out.println(sql);
         DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, model.getContent());
-        ps.setInt(2, model.isUsePoliteness() ? 1 : 0);
-        ps.setInt(3, model.getId());
+        ps.setInt(1, model.isUseHead() ? 1 : 0);
+        ps.setString(2, model.getTitle());
+        ps.setString(3, model.getContent());
         ps.setString(4, model.getDescription());
+        ps.setInt(5, model.getId());
         ps.executeUpdate();
         ps.close();
         con.close();
@@ -110,8 +114,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
     }
 
     @Override
-    public void deleteMessageModel(int id) throws SQLException {
-        // TODO Auto-generated method stub
+    public boolean deleteMessageModel(int id) throws SQLException {
         String sql = "Delete from model where (id = ? );";
         DBConn db = new DBConn();
         Connection con = db.getConnection();
@@ -119,6 +122,7 @@ public class MessageModelDaoImpl implements MessageModelDao {
         ps.setInt(1, id);
         ps.executeUpdate();
         con.close();
+        return true;
     }
 
     @Override
@@ -135,8 +139,9 @@ public class MessageModelDaoImpl implements MessageModelDao {
                 MessageModel m = new MessageModel();
                 m.setId(r.getInt("id"));
                 m.setModelName(r.getString("modelname"));
+                m.setUseHead(r.getInt("usehead") == 1 ? true : false);
+                m.setTitle(r.getString("title"));
                 m.setContent(r.getString("content"));
-                m.setUsePoliteness(r.getInt("politeness") == 1 ? true : false);
                 m.setDescription(r.getString("description"));
                 modelList.add(m);
             }
@@ -166,5 +171,25 @@ public class MessageModelDaoImpl implements MessageModelDao {
             con.close();
         }
         return count;
+    }
+
+    @Override
+    public boolean modelNameExist(String modelName) throws SQLException {
+        String sql = "Select count(*) from model where modelname = ?;";
+        DBConn db = new DBConn();
+        Connection con = db.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, modelName);
+        ResultSet r = ps.executeQuery();
+        int count = 0;
+        if (r != null) {
+            while (r.next()) {
+                count = r.getInt(1);
+            }
+            r.close();
+            ps.close();
+            con.close();
+        }
+        return count > 0;
     }
 }
