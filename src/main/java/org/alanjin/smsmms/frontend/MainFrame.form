@@ -1,87 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.7" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="DeleteDialog">
-      <Properties>
-        <Property name="title" type="java.lang.String" value="&#x5220;&#x9664;&#x52fe;&#x9009;&#x7684;&#x4f1a;&#x5458;"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Default Cursor"/>
-        </Property>
-        <Property name="resizable" type="boolean" value="false"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton2" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton3" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton4" linkSize="1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="565" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x5168;&#x9009;"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x5220;&#x9664;"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x4f1a;&#x8d39;"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x57fa;&#x672c;&#x8d44;&#x6599;"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
@@ -94,10 +14,16 @@
         <Menu class="javax.swing.JMenu" name="homeMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x9996;&#x9875;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="showHomeMenu">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x663e;&#x793a;&#x9996;&#x9875;"/>
               </Properties>
               <Events>
@@ -110,10 +36,16 @@
         <Menu class="javax.swing.JMenu" name="MemberMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x4f1a;&#x5458;&#x7ba1;&#x7406;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ListAllMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x5168;&#x90e8;"/>
               </Properties>
               <Events>
@@ -122,6 +54,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="AddNewMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x6dfb;&#x52a0;&#x65b0;&#x4f1a;&#x5458;"/>
               </Properties>
               <Events>
@@ -133,15 +68,24 @@
         <Menu class="javax.swing.JMenu" name="SMSMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x77ed;&#x4fe1;&#x7ba1;&#x7406;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="ViewReplyMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x56de;&#x590d;"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MsgModelMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x77ed;&#x4fe1;&#x6a21;&#x7248;"/>
               </Properties>
               <Events>
@@ -150,33 +94,54 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="TimerMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x5b9a;&#x65f6;&#x53d1;&#x9001;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimerMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="AdminMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x7ba1;&#x7406;&#x5458;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="PasswdMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x5bc6;&#x7801;"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="AdminMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x767b;&#x9646;&#x7ba1;&#x7406;"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="HistoryMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x64cd;&#x4f5c;&#x8bb0;&#x5f55;"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SyncMenuItem">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#x6570;&#x636e;&#x540c;&#x6b65;"/>
               </Properties>
             </MenuItem>
@@ -185,12 +150,32 @@
         <Menu class="javax.swing.JMenu" name="AboutMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x5173;&#x4e8e;"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+            </Property>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="HelpMenuItem">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x8f6f;&#x4ef6;&#x5e2e;&#x52a9;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HelpMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="AboutAppMenuItem">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x5173;&#x4e8e;&#x672c;&#x8f6f;&#x4ef6;"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5fae;&#x8f6f;&#x96c5;&#x9ed1;" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x8054;&#x7cfb;&#x4f5c;&#x8005;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AboutAppMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -198,14 +183,20 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="&#x53f2;&#x5c71;&#x5bfa;&#x4f5b;&#x6069;&#x4e92;&#x52a9;&#x4f1a;&#x4f1a;&#x5458;&#x7ba1;&#x7406;&#x7cfb;&#x7edf;"/>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="title" type="java.lang.String" value="&#x53f2;&#x5c71;&#x5bfa;&#x4f5b;&#x6069;&#x4e92;&#x52a9;&#x4f1a;&#x4f1a;&#x5458;&#x7ba1;&#x7406;&#x7cfb;&#x7edf; 1.0"/>
+    <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code="Toolkit.getDefaultToolkit().createImage(this.getClass().getResource(&quot;/META-INF/logo0.png&quot;))" type="code"/>
+    </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -327,6 +318,9 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="memberTable">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="new DefaultTableModel(&#xa;    new String [] {&#xa;        &quot;select&quot;, &quot;&#x59d3;&#x540d;&quot;, &quot;&#x6027;&#x522b;&quot;, &quot;&#x624b;&#x673a;&#x53f7;&quot;, &quot;&#x51fa;&#x751f;&#x65e5;&#x671f;&quot;, &quot;&#x5165;&#x4f1a;&#x65e5;&#x671f;&quot;, &quot;&#x7d2f;&#x8ba1;&#x4f1a;&#x8d39;&quot;&#xa;    },0) {&#xa;        Class[] types = new Class [] {&#xa;            java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class&#xa;        };&#xa;        @Override&#xa;        public Class getColumnClass(int c) {&#xa;            Object value = getValueAt(0, c);&#xa;            if(value!=null)&#xa;            return value.getClass();&#xa;            else return super.getClass();&#xa;        }&#xa;        public boolean isCellEditable(int row, int column) {&#xa;            return false;&#xa;        }&#xa;    }" type="code"/>
                     </Property>
@@ -410,7 +404,7 @@
                               </Group>
                               <Component id="listAllMemberButton" alignment="1" min="-2" pref="224" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="193" max="32767" attributes="0"/>
+                          <EmptySpace pref="147" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -467,6 +461,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x9009;&#x62e9;&#x751f;&#x65e5;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -478,6 +475,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="selectByBirthday">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;"/>
                   </Properties>
                   <Events>
@@ -486,6 +486,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="ff" type="rgb"/>
                     </Property>
@@ -494,6 +497,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel3">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x9009;&#x62e9;&#x59d3;&#x540d;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -501,6 +507,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="selectByName">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;"/>
                   </Properties>
                   <Events>
@@ -509,6 +518,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="listAllMemberButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x5168;&#x90e8;(&#x5237;&#x65b0;)"/>
                   </Properties>
                   <Events>
@@ -517,6 +529,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x5165;&#x4f1a;&#x65e5;&#x671f;&#x4ece;"/>
                   </Properties>
                 </Component>
@@ -527,6 +542,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x5230;"/>
                   </Properties>
                 </Component>
@@ -537,6 +555,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="selectByJoinday">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;"/>
                   </Properties>
                   <Events>
@@ -545,6 +566,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x624b;&#x673a;&#x53f7;&#x7801;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -552,6 +576,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="selectByPhone">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;"/>
                   </Properties>
                   <Events>
@@ -560,6 +587,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x7d2f;&#x79ef;&#x4f1a;&#x8d39;&#x4ece;"/>
                   </Properties>
                 </Component>
@@ -569,11 +599,17 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x5230;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="selectByFee">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x627e;"/>
                   </Properties>
                   <Events>
@@ -598,6 +634,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="viewDetailButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x67e5;&#x770b;&#x8be6;&#x7ec6;"/>
                   </Properties>
                   <Events>
@@ -606,6 +645,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="modifyDetailButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x4fee;&#x6539;&#x8d44;&#x6599;"/>
                   </Properties>
                   <Events>
@@ -614,6 +656,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="addFeeButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x7f34;&#x7eb3;&#x4f1a;&#x8d39;"/>
                   </Properties>
                   <Events>
@@ -622,6 +667,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="broadcastButton">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x77ed;&#x4fe1;&#x7fa4;&#x53d1;"/>
                   </Properties>
                   <Events>
@@ -724,7 +772,7 @@
                                   <Component id="modelAddSuccess" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="198" max="32767" attributes="0"/>
+                          <EmptySpace pref="168" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -756,7 +804,7 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="modelAddSuccess" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="81" max="32767" attributes="0"/>
+                          <EmptySpace pref="27" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -764,6 +812,9 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x6a21;&#x7248;&#x540d;&#x79f0;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -771,6 +822,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x6a21;&#x7248;&#x5185;&#x5bb9;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -784,6 +838,9 @@
                     <Component class="javax.swing.JTextArea" name="modelContent">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                        </Property>
                         <Property name="lineWrap" type="boolean" value="true"/>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
@@ -792,6 +849,9 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel13">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x6a21;&#x7248;&#x8bf4;&#x660e;&#xff1a;"/>
                   </Properties>
                 </Component>
@@ -799,6 +859,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="addModel">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value=" &#x6dfb;  &#x52a0;"/>
                   </Properties>
                   <Events>
@@ -807,6 +870,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="resetModel">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x91cd;  &#x7f6e;"/>
                   </Properties>
                   <Events>
@@ -815,17 +881,26 @@
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="modelUseHead">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x4f7f;&#x7528;&#x62ac;&#x5934;&#xff1a;"/>
                     <Property name="horizontalTextPosition" type="int" value="2"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="&#x540e;&#x63a5;&#x79f0;&#x8c13;&#xff1a;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="titlesOfModel">
                   <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
                         <StringItem index="0" value="&#x4e0d;&#x4f7f;&#x7528;&#x79f0;&#x8c13;"/>
@@ -926,6 +1001,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="deleteModel">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="&#x5220;  &#x9664;"/>
                       </Properties>
                       <Events>
@@ -934,6 +1012,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="viewModel">
                       <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="&#x67e5;  &#x770b;"/>
                       </Properties>
                       <Events>
@@ -963,6 +1044,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JTable" name="modelTable">
                           <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                            </Property>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;        {null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null},&#xa;        {null, null, null, null, null, null}&#xa;    },&#xa;    new String [] {&#xa;        &quot;&#x7f16;&#x53f7;&quot;, &quot;&#x6a21;&#x7248;&#x540d;&#x79f0;&quot;, &quot;&#x662f;&#x5426;&#x62ac;&#x5934;&quot;, &quot;&#x540e;&#x63a5;&#x79f0;&#x8c13;&quot;, &quot;&#x5185;&#x5bb9;&quot;, &quot;&#x8bf4;&#x660e;&quot;&#xa;    }&#xa;)" type="code"/>
                             </Property>
@@ -992,15 +1076,290 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="800" max="32767" attributes="0"/>
+                  <Component id="jLabel15" alignment="1" pref="800" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="224" max="-2" attributes="0"/>
+                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel15" min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="221" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel15">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x6977;&#x4f53;" size="28" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="&#x4f5b;&#x6069;&#x4e92;&#x52a9;&#x4f1a; &#x751f;&#x65e5;&#x5b9a;&#x65f6;&#x53d1;&#x9001;"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jPanel7">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="&#x6dfb;&#x52a0;&#x4efb;&#x52a1;"/>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                          <Component id="taskModelComboBox" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="hourComboBox" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="minComboBox" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                                  <Component id="startTaskButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="stopTaskButton" max="32767" attributes="0"/>
+                                      <Component id="isOrNoLabel" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="taskModelComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hourComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="minComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="startTaskButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="isOrNoLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="stopTaskButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel18">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x9009;&#x62e9;&#x6a21;&#x7248;&#xff1a;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="taskModelComboBox">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="1">
+                        <StringItem index="0" value="&#x8bf7;&#x9009;&#x62e9;&#x4e00;&#x4e2a;&#x77ed;&#x4fe1;&#x6a21;&#x7248;"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="startTaskButton">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x542f;  &#x52a8;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startTaskButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="hourComboBox">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="24">
+                        <StringItem index="0" value="00&#x65f6;"/>
+                        <StringItem index="1" value="01&#x65f6;"/>
+                        <StringItem index="2" value="02&#x65f6;"/>
+                        <StringItem index="3" value="03&#x65f6;"/>
+                        <StringItem index="4" value="04&#x65f6;"/>
+                        <StringItem index="5" value="05&#x65f6;"/>
+                        <StringItem index="6" value="06&#x65f6;"/>
+                        <StringItem index="7" value="07&#x65f6;"/>
+                        <StringItem index="8" value="08&#x65f6;"/>
+                        <StringItem index="9" value="09&#x65f6;"/>
+                        <StringItem index="10" value="10&#x65f6;"/>
+                        <StringItem index="11" value="11&#x65f6;"/>
+                        <StringItem index="12" value="12&#x65f6;"/>
+                        <StringItem index="13" value="13&#x65f6;"/>
+                        <StringItem index="14" value="14&#x65f6;"/>
+                        <StringItem index="15" value="15&#x65f6;"/>
+                        <StringItem index="16" value="16&#x65f6;"/>
+                        <StringItem index="17" value="17&#x65f6;"/>
+                        <StringItem index="18" value="18&#x65f6;"/>
+                        <StringItem index="19" value="19&#x65f6;"/>
+                        <StringItem index="20" value="20&#x65f6;"/>
+                        <StringItem index="21" value="21&#x65f6;"/>
+                        <StringItem index="22" value="22&#x65f6;"/>
+                        <StringItem index="23" value="23&#x65f6;"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel21">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x751f;&#x65e5;&#x5f53;&#x5929;&#x53d1;&#x9001;&#x65f6;&#x95f4;:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel22">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x751f;&#x65e5;&#x4efb;&#x52a1;&#x662f;&#x5426;&#x5df2;&#x7ecf;&#x5f00;&#x542f;&#xff1a;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="isOrNoLabel">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" id="red" palette="1" red="ff" type="palette"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="&#x672a;&#x5f00;&#x542f;"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="stopTaskButton">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x5173;  &#x95ed;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopTaskButtonActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="minComboBox">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="60">
+                        <StringItem index="0" value="00&#x5206;"/>
+                        <StringItem index="1" value="01&#x5206;"/>
+                        <StringItem index="2" value="02&#x5206;"/>
+                        <StringItem index="3" value="03&#x5206;"/>
+                        <StringItem index="4" value="04&#x5206;"/>
+                        <StringItem index="5" value="05&#x5206;"/>
+                        <StringItem index="6" value="06&#x5206;"/>
+                        <StringItem index="7" value="07&#x5206;"/>
+                        <StringItem index="8" value="08&#x5206;"/>
+                        <StringItem index="9" value="09&#x5206;"/>
+                        <StringItem index="10" value="10&#x5206;"/>
+                        <StringItem index="11" value="11&#x5206;"/>
+                        <StringItem index="12" value="12&#x5206;"/>
+                        <StringItem index="13" value="13&#x5206;"/>
+                        <StringItem index="14" value="14&#x5206;"/>
+                        <StringItem index="15" value="15&#x5206;"/>
+                        <StringItem index="16" value="16&#x5206;"/>
+                        <StringItem index="17" value="17&#x5206;"/>
+                        <StringItem index="18" value="18&#x5206;"/>
+                        <StringItem index="19" value="19&#x5206;"/>
+                        <StringItem index="20" value="20&#x5206;"/>
+                        <StringItem index="21" value="21&#x5206;"/>
+                        <StringItem index="22" value="22&#x5206;"/>
+                        <StringItem index="23" value="23&#x5206;"/>
+                        <StringItem index="24" value="24&#x5206;"/>
+                        <StringItem index="25" value="25&#x5206;"/>
+                        <StringItem index="26" value="26&#x5206;"/>
+                        <StringItem index="27" value="27&#x5206;"/>
+                        <StringItem index="28" value="28&#x5206;"/>
+                        <StringItem index="29" value="29&#x5206;"/>
+                        <StringItem index="30" value="30&#x5206;"/>
+                        <StringItem index="31" value="31&#x5206;"/>
+                        <StringItem index="32" value="32&#x5206;"/>
+                        <StringItem index="33" value="33&#x5206;"/>
+                        <StringItem index="34" value="34&#x5206;"/>
+                        <StringItem index="35" value="35&#x5206;"/>
+                        <StringItem index="36" value="36&#x5206;"/>
+                        <StringItem index="37" value="37&#x5206;"/>
+                        <StringItem index="38" value="38&#x5206;"/>
+                        <StringItem index="39" value="39&#x5206;"/>
+                        <StringItem index="40" value="40&#x5206;"/>
+                        <StringItem index="41" value="41&#x5206;"/>
+                        <StringItem index="42" value="42&#x5206;"/>
+                        <StringItem index="43" value="43&#x5206;"/>
+                        <StringItem index="44" value="44&#x5206;"/>
+                        <StringItem index="45" value="45&#x5206;"/>
+                        <StringItem index="46" value="46&#x5206;"/>
+                        <StringItem index="47" value="47&#x5206;"/>
+                        <StringItem index="48" value="48&#x5206;"/>
+                        <StringItem index="49" value="49&#x5206;"/>
+                        <StringItem index="50" value="50&#x5206;"/>
+                        <StringItem index="51" value="51&#x5206;"/>
+                        <StringItem index="52" value="52&#x5206;"/>
+                        <StringItem index="53" value="53&#x5206;"/>
+                        <StringItem index="54" value="54&#x5206;"/>
+                        <StringItem index="55" value="55&#x5206;"/>
+                        <StringItem index="56" value="56&#x5206;"/>
+                        <StringItem index="57" value="57&#x5206;"/>
+                        <StringItem index="58" value="58&#x5206;"/>
+                        <StringItem index="59" value="59&#x5206;"/>
+                      </StringArray>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="viewReplyPanel">
           <Properties>
@@ -1026,6 +1385,97 @@
               </Group>
             </DimensionLayout>
           </Layout>
+        </Container>
+        <Container class="javax.swing.JPanel" name="helpPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card8"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel14" min="-2" pref="800" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPane4" min="-2" pref="134" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane5" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel14" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane4" pref="534" max="32767" attributes="0"/>
+                          <Component id="jScrollPane5" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel14">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x6977;&#x4f53;" size="28" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="&#x4f5b;&#x6069;&#x4e92;&#x52a9;&#x4f1a; &#x5e2e;&#x52a9;&#x6587;&#x6863;"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTree" name="helpTree">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
+                      <TreeModel code="&#x5e2e;&#x52a9;&#x6587;&#x6863;&#xa; &#x9996;&#x9875;&#xa;  &#x663e;&#x793a;&#x9996;&#x9875;&#xa;  &#x6253;&#x5370;&#xa; &#x4f1a;&#x5458;&#x7ba1;&#x7406;&#xa;  &#x67e5;&#x770b;&#x5168;&#x90e8;&#xa;  &#x6dfb;&#x52a0;&#x65b0;&#x4f1a;&#x5458;&#xa; &#x77ed;&#x4fe1;&#x7ba1;&#x7406;&#xa;  &#x67e5;&#x770b;&#x5168;&#x90e8;&#xa;  &#x77ed;&#x4fe1;&#x6a21;&#x7248;&#xa;  &#x5b9a;&#x65f6;&#x53d1;&#x9001;&#xa; &#x7ba1;&#x7406;&#x5458;&#xa;  &#x4fee;&#x6539;&#x5bc6;&#x7801;&#xa;  &#x767b;&#x9646;&#x7ba1;&#x7406;&#xa;  &#x5386;&#x53f2;&#x8bb0;&#x5f55;&#xa;  &#x6570;&#x636e;&#x540c;&#x6b65;&#xa; &#x5173;&#x4e8e;&#xa;  &#x8f6f;&#x4ef6;&#x5e2e;&#x52a9;&#xa;  &#x8054;&#x7cfb;&#x4f5c;&#x8005;"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                  <Properties>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="&#x5b8b;&#x4f53;" size="18" style="0"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
+                    <Property name="rows" type="int" value="5"/>
+                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                      <Color id="Text Cursor"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

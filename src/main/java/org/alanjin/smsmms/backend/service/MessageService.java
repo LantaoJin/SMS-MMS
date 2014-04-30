@@ -67,4 +67,13 @@ public class MessageService {
             return null;
         }
     }
+    
+    public MessageModel getMessageModelByName(String model) {
+        try {
+            return dao.selectMessageModel(model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

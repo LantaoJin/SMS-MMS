@@ -24,12 +24,22 @@ public class ScheduleService {
         }
 
         Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        calendar.set(year, month, day, hour, min, second);
-        timer.schedule(task, calendar.getTime());
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, min);
+        calendar.set(Calendar.SECOND, 0);
+        Date date = calendar.getTime();
+        if (date.before(new Date())) {
+            date = addDay(date, 1);
+        }
+        timer.schedule(task, calendar.getTime(), 24 * 60 * 60 * 1000);
         runingSchedules.put(task.getTaskName(), task);
+    }
+
+    private Date addDay(Date date, int i) {
+        Calendar startDT = Calendar.getInstance();
+        startDT.setTime(date);
+        startDT.add(Calendar.DAY_OF_MONTH, i);
+        return startDT.getTime();
     }
 
     public void addPeroidTaskAndRun(MassSendTask task, Date firstTime,
@@ -47,5 +57,18 @@ public class ScheduleService {
 
     public Map<String, MassSendTask> listRuningTasks() {
         return runingSchedules;
+    }
+    
+    public boolean hasTask() {
+        return runingSchedules.size() != 0;
+    }
+    
+    public void stopTask(String taskName) {
+        runingSchedules.remove(taskName);
+    }
+    
+    public void close() {
+        runingSchedules.clear();
+        timer.cancel();
     }
 }

@@ -129,7 +129,14 @@ public class BroadcastJForm extends JPanel {
         }
         
         List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> noneeds = new ArrayList<Map<String, String>>();
         for (SMSEntity entity : this.toSendSMSEntitys) {
+            if (entity.getPhone().isEmpty() || !Util.isMobileNO(entity.getPhone())) {
+                HashMap<String, String> noneed = new HashMap<String, String>();
+                noneed.put("mobilc", entity.getPhone());
+                noneeds.add(noneed);
+                continue;
+            }
             Map<String, String> senderPair = new HashMap<String, String>();
             StringBuilder contentBuilder = new StringBuilder();
             senderPair.put("mobile", entity.getPhone());
@@ -150,17 +157,22 @@ public class BroadcastJForm extends JPanel {
             messages.add(senderPair);
         }
         System.out.println("send message:");
-        List<Map<String, String>> failList = new ArrayList<Map<String, String>>();//srService.sendSms(messages, true);
+//        List<Map<String, String>> failList = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> failList = srService.sendSms(messages, true);
+        for(Map<String, String> noneed : noneeds) {
+            failList.add(noneed);
+        }
         if (failList.isEmpty()) {
             JOptionPane.showMessageDialog(this, "短信群发成功！", TITLE, JOptionPane.OK_OPTION);
         } else {
-             StringBuilder showSendToStringBuilder = new StringBuilder();
+            StringBuilder showSendToStringBuilder = new StringBuilder();
             for(Map<String, String> fails : failList) {
                 showSendToStringBuilder.append(fails.get("mobile"));
                 showSendToStringBuilder.append(";");
                 showSendToStringBuilder.append("\n");
             }
             this.failTextArea.setText(showSendToStringBuilder.toString());
+            JOptionPane.showMessageDialog(this, "短信群发部分成功，失败的见列表，可能是手机号错误或者手机号空！", TITLE, JOptionPane.OK_OPTION);
         }
     }
 

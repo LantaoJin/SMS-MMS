@@ -7,6 +7,7 @@ package org.alanjin.smsmms.frontend;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import javax.swing.ImageIcon;
 
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -63,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         setUIFont();
         setUI();
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -101,12 +104,6 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        DeleteDialog = new javax.swing.JDialog();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         indexPanel = new javax.swing.JPanel();
         welcomePanel = new javax.swing.JPanel();
@@ -168,7 +165,24 @@ public class MainFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         modelTable = new javax.swing.JTable();
         schedulePanel = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        taskModelComboBox = new javax.swing.JComboBox();
+        startTaskButton = new javax.swing.JButton();
+        hourComboBox = new javax.swing.JComboBox();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        isOrNoLabel = new javax.swing.JLabel();
+        stopTaskButton = new javax.swing.JButton();
+        minComboBox = new javax.swing.JComboBox();
         viewReplyPanel = new javax.swing.JPanel();
+        helpPanel = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        helpTree = new javax.swing.JTree();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         homeMenu = new javax.swing.JMenu();
         showHomeMenu = new javax.swing.JMenuItem();
@@ -185,68 +199,18 @@ public class MainFrame extends javax.swing.JFrame {
         HistoryMenuItem = new javax.swing.JMenuItem();
         SyncMenuItem = new javax.swing.JMenuItem();
         AboutMenu = new javax.swing.JMenu();
+        HelpMenuItem = new javax.swing.JMenuItem();
         AboutAppMenuItem = new javax.swing.JMenuItem();
 
-        DeleteDialog.setTitle("删除勾选的会员");
-        DeleteDialog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        DeleteDialog.setResizable(false);
-
-        javax.swing.GroupLayout DeleteDialogLayout = new javax.swing.GroupLayout(DeleteDialog.getContentPane());
-        DeleteDialog.getContentPane().setLayout(DeleteDialogLayout);
-        DeleteDialogLayout.setHorizontalGroup(
-            DeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        DeleteDialogLayout.setVerticalGroup(
-            DeleteDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        jButton1.setText("全选");
-
-        jButton2.setText("删除");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("史山寺佛恩互助会会员管理系统 1.0");
+        setIconImage(Toolkit.getDefaultToolkit().createImage(this.getClass().getResource("/META-INF/logo0.png")));
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
-
-        jButton3.setText("修改会费");
-
-        jButton4.setText("修改基本资料");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(0, 565, Short.MAX_VALUE))
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
-
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("史山寺佛恩互助会会员管理系统");
-        setResizable(false);
 
         indexPanel.setMinimumSize(new java.awt.Dimension(780, 560));
         indexPanel.setLayout(new java.awt.CardLayout());
@@ -285,6 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
         memberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         memberPanel.setLayout(new java.awt.BorderLayout());
 
+        memberTable.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         memberTable.setModel(new DefaultTableModel(
             new String [] {
                 "select", "姓名", "性别", "手机号", "出生日期", "入会日期", "累计会费"
@@ -322,8 +287,10 @@ public class MainFrame extends javax.swing.JFrame {
 
             memberPanel.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
+            jLabel1.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel1.setText("选择生日：");
 
+            selectByBirthday.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             selectByBirthday.setText("查找");
             selectByBirthday.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,11 +298,14 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            jLabel2.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel2.setForeground(new java.awt.Color(255, 0, 0));
             jLabel2.setText("说明：生日忽略年份");
 
+            jLabel3.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel3.setText("选择姓名：");
 
+            selectByName.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             selectByName.setText("查找");
             selectByName.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,6 +313,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            listAllMemberButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             listAllMemberButton.setText("查看全部(刷新)");
             listAllMemberButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -350,10 +321,13 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            jLabel4.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel4.setText("入会日期从");
 
+            jLabel5.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel5.setText("到");
 
+            selectByJoinday.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             selectByJoinday.setText("查找");
             selectByJoinday.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,8 +335,10 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            jLabel6.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel6.setText("手机号码：");
 
+            selectByPhone.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             selectByPhone.setText("查找");
             selectByPhone.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,10 +346,13 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            jLabel7.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel7.setText("累积会费从");
 
+            jLabel9.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel9.setText("到");
 
+            selectByFee.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             selectByFee.setText("查找");
             selectByFee.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,7 +410,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(selectByName)
                                 .addComponent(selectByPhone)))
                         .addComponent(listAllMemberButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(193, Short.MAX_VALUE))
+                    .addContainerGap(147, Short.MAX_VALUE))
             );
 
             filterPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {birthdayPicker, feeFromTextField, feeToTextField, joindayFrom, joindayTo, nameFilterTextField, phoneFilterTextField});
@@ -485,6 +464,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             buttonPanel1.setMinimumSize(new java.awt.Dimension(800, 33));
 
+            viewDetailButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             viewDetailButton.setText("查看详细");
             viewDetailButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,6 +473,7 @@ public class MainFrame extends javax.swing.JFrame {
             });
             buttonPanel1.add(viewDetailButton);
 
+            modifyDetailButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             modifyDetailButton.setText("修改资料");
             modifyDetailButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,6 +482,7 @@ public class MainFrame extends javax.swing.JFrame {
             });
             buttonPanel1.add(modifyDetailButton);
 
+            addFeeButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             addFeeButton.setText("缴纳会费");
             addFeeButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -509,6 +491,7 @@ public class MainFrame extends javax.swing.JFrame {
             });
             buttonPanel1.add(addFeeButton);
 
+            broadcastButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             broadcastButton.setText("短信群发");
             broadcastButton.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -521,19 +504,6 @@ public class MainFrame extends javax.swing.JFrame {
 
             indexPanel.add(memberPanel, "card2");
 
-            addMemberPanel.setPreferredSize(new java.awt.Dimension(800, 600));
-
-            javax.swing.GroupLayout addMemberPanelLayout = new javax.swing.GroupLayout(addMemberPanel);
-            addMemberPanel.setLayout(addMemberPanelLayout);
-            addMemberPanelLayout.setHorizontalGroup(
-                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 800, Short.MAX_VALUE)
-            );
-            addMemberPanelLayout.setVerticalGroup(
-                addMemberPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
-            );
-
             indexPanel.add(addMemberPanel, "card3");
 
             modelPanel.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -541,17 +511,22 @@ public class MainFrame extends javax.swing.JFrame {
 
             jPanel2.setPreferredSize(new java.awt.Dimension(800, 300));
 
+            jLabel10.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel10.setText("模版名称：");
 
+            jLabel11.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel11.setText("模版内容：");
 
             modelContent.setColumns(20);
+            modelContent.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             modelContent.setLineWrap(true);
             modelContent.setRows(5);
             jScrollPane3.setViewportView(modelContent);
 
+            jLabel13.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel13.setText("模版说明：");
 
+            addModel.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             addModel.setText(" 添  加");
             addModel.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -559,6 +534,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            resetModel.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             resetModel.setText("重  置");
             resetModel.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -566,11 +542,14 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            modelUseHead.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             modelUseHead.setText("使用抬头：");
             modelUseHead.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
+            jLabel12.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             jLabel12.setText("后接称谓：");
 
+            titlesOfModel.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             titlesOfModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "不使用称谓" }));
 
             modelAddSuccess.setFont(new java.awt.Font("宋体", 1, 12)); // NOI18N
@@ -608,7 +587,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createSequentialGroup()
                             .addGap(262, 262, 262)
                             .addComponent(modelAddSuccess)))
-                    .addContainerGap(198, Short.MAX_VALUE))
+                    .addContainerGap(168, Short.MAX_VALUE))
             );
             jPanel2Layout.setVerticalGroup(
                 jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,13 +613,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(resetModel))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(modelAddSuccess)
-                    .addContainerGap(81, Short.MAX_VALUE))
+                    .addContainerGap(27, Short.MAX_VALUE))
             );
 
             modelPanel.add(jPanel2, java.awt.BorderLayout.CENTER);
 
             jPanel3.setPreferredSize(new java.awt.Dimension(800, 50));
-            jPanel3.setLayout(new java.awt.GridLayout());
+            jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
             jLabel8.setFont(new java.awt.Font("楷体", 1, 28)); // NOI18N
             jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -654,6 +633,7 @@ public class MainFrame extends javax.swing.JFrame {
 
             jPanel5.setPreferredSize(new java.awt.Dimension(800, 50));
 
+            deleteModel.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             deleteModel.setText("删  除");
             deleteModel.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -661,6 +641,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
 
+            viewModel.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             viewModel.setText("查  看");
             viewModel.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,8 +671,9 @@ public class MainFrame extends javax.swing.JFrame {
 
             jPanel4.add(jPanel5, java.awt.BorderLayout.SOUTH);
 
-            jPanel6.setLayout(new java.awt.GridLayout());
+            jPanel6.setLayout(new java.awt.GridLayout(1, 0));
 
+            modelTable.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
             modelTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                     {null, null, null, null, null, null},
@@ -716,15 +698,121 @@ public class MainFrame extends javax.swing.JFrame {
 
             schedulePanel.setPreferredSize(new java.awt.Dimension(800, 600));
 
+            jLabel15.setFont(new java.awt.Font("楷体", 1, 28)); // NOI18N
+            jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jLabel15.setText("佛恩互助会 生日定时发送");
+
+            jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("添加任务"));
+
+            jLabel18.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            jLabel18.setText("选择模版：");
+
+            taskModelComboBox.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            taskModelComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "请选择一个短信模版" }));
+
+            startTaskButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            startTaskButton.setText("启  动");
+            startTaskButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    startTaskButtonActionPerformed(evt);
+                }
+            });
+
+            hourComboBox.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            hourComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00时", "01时", "02时", "03时", "04时", "05时", "06时", "07时", "08时", "09时", "10时", "11时", "12时", "13时", "14时", "15时", "16时", "17时", "18时", "19时", "20时", "21时", "22时", "23时" }));
+
+            jLabel21.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            jLabel21.setText("生日当天发送时间:");
+
+            jLabel22.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            jLabel22.setText("生日任务是否已经开启：");
+
+            isOrNoLabel.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
+            isOrNoLabel.setForeground(java.awt.Color.red);
+            isOrNoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            isOrNoLabel.setText("未开启");
+
+            stopTaskButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            stopTaskButton.setText("关  闭");
+            stopTaskButton.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    stopTaskButtonActionPerformed(evt);
+                }
+            });
+
+            minComboBox.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            minComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00分", "01分", "02分", "03分", "04分", "05分", "06分", "07分", "08分", "09分", "10分", "11分", "12分", "13分", "14分", "15分", "16分", "17分", "18分", "19分", "20分", "21分", "22分", "23分", "24分", "25分", "26分", "27分", "28分", "29分", "30分", "31分", "32分", "33分", "34分", "35分", "36分", "37分", "38分", "39分", "40分", "41分", "42分", "43分", "44分", "45分", "46分", "47分", "48分", "49分", "50分", "51分", "52分", "53分", "54分", "55分", "56分", "57分", "58分", "59分" }));
+
+            javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+            jPanel7.setLayout(jPanel7Layout);
+            jPanel7Layout.setHorizontalGroup(
+                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(taskModelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(hourComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(minComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(8, 8, 8)))
+                                .addComponent(jLabel22)))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(103, 103, 103)
+                            .addComponent(startTaskButton))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGap(104, 104, 104)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(stopTaskButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(isOrNoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addContainerGap(20, Short.MAX_VALUE))
+            );
+            jPanel7Layout.setVerticalGroup(
+                jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel18)
+                        .addComponent(taskModelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21)
+                        .addComponent(hourComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(minComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(29, 29, 29)
+                    .addComponent(startTaskButton)
+                    .addGap(18, 18, 18)
+                    .addComponent(jLabel22)
+                    .addGap(18, 18, 18)
+                    .addComponent(isOrNoLabel)
+                    .addGap(18, 18, 18)
+                    .addComponent(stopTaskButton)
+                    .addContainerGap(43, Short.MAX_VALUE))
+            );
+
             javax.swing.GroupLayout schedulePanelLayout = new javax.swing.GroupLayout(schedulePanel);
             schedulePanel.setLayout(schedulePanelLayout);
             schedulePanelLayout.setHorizontalGroup(
                 schedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 800, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addGroup(schedulePanelLayout.createSequentialGroup()
+                    .addGap(224, 224, 224)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())
             );
             schedulePanelLayout.setVerticalGroup(
                 schedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 600, Short.MAX_VALUE)
+                .addGroup(schedulePanelLayout.createSequentialGroup()
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 221, Short.MAX_VALUE))
             );
 
             indexPanel.add(schedulePanel, "card5");
@@ -744,10 +832,91 @@ public class MainFrame extends javax.swing.JFrame {
 
             indexPanel.add(viewReplyPanel, "card6");
 
+            jLabel14.setFont(new java.awt.Font("楷体", 1, 28)); // NOI18N
+            jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            jLabel14.setText("佛恩互助会 帮助文档");
+
+            helpTree.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+            javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("帮助文档");
+            javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("首页");
+            javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("显示首页");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("打印");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("会员管理");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("查看全部");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("添加新会员");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("短信管理");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("查看全部");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("短信模版");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("定时发送");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("管理员");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("修改密码");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("登陆管理");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("历史记录");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("数据同步");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("关于");
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("软件帮助");
+            treeNode2.add(treeNode3);
+            treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("联系作者");
+            treeNode2.add(treeNode3);
+            treeNode1.add(treeNode2);
+            helpTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+            jScrollPane4.setViewportView(helpTree);
+
+            jTextArea1.setColumns(20);
+            jTextArea1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+            jTextArea1.setLineWrap(true);
+            jTextArea1.setRows(5);
+            jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+            jScrollPane5.setViewportView(jTextArea1);
+
+            javax.swing.GroupLayout helpPanelLayout = new javax.swing.GroupLayout(helpPanel);
+            helpPanel.setLayout(helpPanelLayout);
+            helpPanelLayout.setHorizontalGroup(
+                helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, helpPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(helpPanelLayout.createSequentialGroup()
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane5)
+                            .addContainerGap())))
+            );
+            helpPanelLayout.setVerticalGroup(
+                helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(helpPanelLayout.createSequentialGroup()
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(helpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5))
+                    .addContainerGap())
+            );
+
+            indexPanel.add(helpPanel, "card8");
+
             jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
             homeMenu.setText("首页");
+            homeMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 
+            showHomeMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             showHomeMenu.setText("显示首页");
             showHomeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -764,7 +933,9 @@ public class MainFrame extends javax.swing.JFrame {
             jMenuBar1.add(homeMenu);
 
             MemberMenu.setText("会员管理");
+            MemberMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 
+            ListAllMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             ListAllMenuItem.setText("查看全部");
             ListAllMenuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -773,6 +944,7 @@ public class MainFrame extends javax.swing.JFrame {
             });
             MemberMenu.add(ListAllMenuItem);
 
+            AddNewMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             AddNewMenuItem.setText("添加新会员");
             AddNewMenuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -784,10 +956,13 @@ public class MainFrame extends javax.swing.JFrame {
             jMenuBar1.add(MemberMenu);
 
             SMSMenu.setText("短信管理");
+            SMSMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 
+            ViewReplyMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             ViewReplyMenuItem.setText("查看回复");
             SMSMenu.add(ViewReplyMenuItem);
 
+            MsgModelMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             MsgModelMenuItem.setText("短信模版");
             MsgModelMenuItem.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -796,30 +971,57 @@ public class MainFrame extends javax.swing.JFrame {
             });
             SMSMenu.add(MsgModelMenuItem);
 
+            TimerMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             TimerMenuItem.setText("定时发送");
+            TimerMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    TimerMenuItemActionPerformed(evt);
+                }
+            });
             SMSMenu.add(TimerMenuItem);
 
             jMenuBar1.add(SMSMenu);
 
             AdminMenu.setText("管理员");
+            AdminMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 
+            PasswdMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             PasswdMenuItem.setText("修改密码");
             AdminMenu.add(PasswdMenuItem);
 
+            AdminMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             AdminMenuItem.setText("登陆管理");
             AdminMenu.add(AdminMenuItem);
 
+            HistoryMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             HistoryMenuItem.setText("操作记录");
             AdminMenu.add(HistoryMenuItem);
 
+            SyncMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
             SyncMenuItem.setText("数据同步");
             AdminMenu.add(SyncMenuItem);
 
             jMenuBar1.add(AdminMenu);
 
             AboutMenu.setText("关于");
+            AboutMenu.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
 
-            AboutAppMenuItem.setText("关于本软件");
+            HelpMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
+            HelpMenuItem.setText("软件帮助");
+            HelpMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    HelpMenuItemActionPerformed(evt);
+                }
+            });
+            AboutMenu.add(HelpMenuItem);
+
+            AboutAppMenuItem.setFont(new java.awt.Font("微软雅黑", 0, 14)); // NOI18N
+            AboutAppMenuItem.setText("联系作者");
+            AboutAppMenuItem.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    AboutAppMenuItemActionPerformed(evt);
+                }
+            });
             AboutMenu.add(AboutAppMenuItem);
 
             jMenuBar1.add(AboutMenu);
@@ -971,13 +1173,102 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewModelActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO 获得所选择的memberId list， 并拿到个数
-        if (JOptionPane.showConfirmDialog(null, "确定删除所选则的N个会员？", "删除会员",
-                JOptionPane.OK_CANCEL_OPTION) == 0)
-            // TODO 删除所选会员信息
-            ;
-    }// GEN-LAST:event_jButton2ActionPerformed
+    private void AboutAppMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutAppMenuItemActionPerformed
+        JOptionPane.showMessageDialog(this, ABOUT_ME, "联系作者", JOptionPane.CLOSED_OPTION);
+    }//GEN-LAST:event_AboutAppMenuItemActionPerformed
+
+    private void HelpMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpMenuItemActionPerformed
+        // TODO add your handling code here:
+        LayoutManager layout = this.indexPanel.getLayout();
+        if (layout instanceof CardLayout) {
+            CardLayout card = (CardLayout) layout;
+            card.show(indexPanel, "card8");
+        }
+    }//GEN-LAST:event_HelpMenuItemActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        if(JOptionPane.showConfirmDialog(this, "确认关闭程序？\n\n(关闭程序后定时发送功能将失效!)", "确认关闭", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+            System.out.println("close");
+            if (scheduleService != null) {
+                this.scheduleService.close();
+            }
+            System.exit(0);
+        } else {
+            return;
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void TimerMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimerMenuItemActionPerformed
+        taskModelComboBox.removeAllItems();
+        taskModelComboBox.addItem("请选择一个短信模版");
+        taskModelComboBox.setSelectedIndex(0);
+        List<MessageModel> messageModels = messageService.getAllMessageModel();
+        for (MessageModel messageModel : messageModels) {
+            taskModelComboBox.addItem(messageModel.getModelName());
+        }
+        if(scheduleService.hasTask()) {
+            startTaskButton.setEnabled(false);
+            stopTaskButton.setEnabled(true);
+            isOrNoLabel.setText("已开启");
+        } else {
+            startTaskButton.setEnabled(true);
+            stopTaskButton.setEnabled(false);
+            isOrNoLabel.setText("未开启");
+        }
+        LayoutManager layout = this.indexPanel.getLayout();
+        if (layout instanceof CardLayout) {
+            CardLayout card = (CardLayout) layout;
+            card.show(indexPanel, "card5");
+        }
+    }//GEN-LAST:event_TimerMenuItemActionPerformed
+
+    private void startTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startTaskButtonActionPerformed
+        if(taskModelComboBox.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "未选择模版！");
+            return;
+        }
+        
+        if(JOptionPane.showConfirmDialog(this, "确定打开生日定时任务，且使用模版：\n" + (String)taskModelComboBox.getSelectedItem(), 
+                "定时发送", JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.CANCEL_OPTION) {
+            return;
+        } 
+        int defaultHour = hourComboBox.getSelectedIndex();
+        int defaultMinute = minComboBox.getSelectedIndex();
+        String defaultModelName = (String)taskModelComboBox.getSelectedItem();
+        MessageModel defaultMessageModel = MessageService.newInstance().getMessageModelByName(defaultModelName);
+        MassSendTask task = new MassSendTask(BIRTHDAY_TASK, defaultMessageModel);
+        scheduleService.addFixedTimeTaskAndRun(task, defaultHour, defaultMinute, 0);
+        if(scheduleService.hasTask()) {
+            startTaskButton.setEnabled(false);
+            stopTaskButton.setEnabled(true);
+            isOrNoLabel.setText("已开启");
+        } else {
+            startTaskButton.setEnabled(true);
+            stopTaskButton.setEnabled(false);
+            isOrNoLabel.setText("未开启");
+        }
+    }//GEN-LAST:event_startTaskButtonActionPerformed
+
+    private void stopTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopTaskButtonActionPerformed
+        if(JOptionPane.showConfirmDialog(this, "确定关闭生日当天的定时任务?", 
+                "定时发送", JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.CANCEL_OPTION) {
+            return;
+        }
+        if (scheduleService.taskExist(BIRTHDAY_TASK)) {
+            scheduleService.stopTask(BIRTHDAY_TASK);
+        }
+        if(scheduleService.hasTask()) {
+            startTaskButton.setEnabled(false);
+            stopTaskButton.setEnabled(true);
+            isOrNoLabel.setText("已开启");
+        } else {
+            startTaskButton.setEnabled(true);
+            stopTaskButton.setEnabled(false);
+            isOrNoLabel.setText("未开启");
+        }
+    }//GEN-LAST:event_stopTaskButtonActionPerformed
 
     private void ListAllMenuItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_ListAllMenuItemActionPerformed
         // TODO add your handling code here:
@@ -1065,24 +1356,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_selectByFeeActionPerformed
 
-    private static void initBackendMassSendTask(Properties prop)
-            throws SQLException {
-        ScheduleService smsAction = new ScheduleService();
-        String[] defaultTime = prop.getProperty("SMS.massSendTask.time",
-                "10:00:00").split(":");
-        int defaultHour = Integer.parseInt(defaultTime[0]);
-        int defaultMinute = Integer.parseInt(defaultTime[1]);
-        String defaultTaskName = prop.getProperty("SMS.massSendTask.taskName");
-        String defaultModelName = prop
-                .getProperty("SMS.massSendTask.modelName");
-        MessageModelDao mmDao = new MessageModelDaoImpl();
-        MessageModel defaultMessageModel = mmDao
-                .selectMessageModel(defaultModelName);
-        MassSendTask task = new MassSendTask(defaultTaskName,
-                defaultMessageModel);
-        smsAction.addFixedTimeTaskAndRun(task, defaultHour, defaultMinute, 0);
-    }
-
     /**
      * @throws InterruptedException 
      * @throws SMSLibException 
@@ -1095,14 +1368,9 @@ public class MainFrame extends javax.swing.JFrame {
     public static void main(String args[]) throws URISyntaxException, IOException, SQLException, TimeoutException, GatewayException, SMSLibException, InterruptedException {
         Properties prop = new Properties();
         prop.load(ClassLoader.getSystemResourceAsStream("config.properties"));
-        boolean hasSetted = Boolean.parseBoolean(prop.getProperty(
-                "SMS.massSendTask.setted", "false"));
-        //TODO debug
-//        String com = prop.getProperty("SMS.com", "COM1");
-//        senderAndReceiverService = SenderAndReceiverService.newInstance(com);
-        if (hasSetted) {
-            initBackendMassSendTask(prop);
-        }
+        String com = prop.getProperty("SMS.com", "COM1");
+        senderAndReceiverService = SenderAndReceiverService.newInstance(com);
+
         String titilFilePath = prop.getProperty("SMS.model.titlePath");
         File file = new File(titilFilePath);
         titleReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
@@ -1164,14 +1432,18 @@ public class MainFrame extends javax.swing.JFrame {
     private static final String BirthDayQueryFormat = "MM-dd";
     private static final Font datePickerFont = new Font("Times New Roman",
             Font.PLAIN, 14);
+    private static ScheduleService scheduleService = new ScheduleService();
+    private static final String BIRTHDAY_TASK = "DEFAULT_BIRTHDAY_TASK";
     private static List<String> titleList = new ArrayList<String>();
+    private static final String ABOUT_ME = "《史山寺佛恩互助会会员管理系统 1.0》，是义务开发的功德软件。\n"
+            + "开发时间仓促，难免存在一些软件错误。如果遇到错误或任何问题，\n请联系作者： 金澜涛，15921778090";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AboutAppMenuItem;
     private javax.swing.JMenu AboutMenu;
     private javax.swing.JMenuItem AddNewMenuItem;
     private javax.swing.JMenu AdminMenu;
     private javax.swing.JMenuItem AdminMenuItem;
-    private javax.swing.JDialog DeleteDialog;
+    private javax.swing.JMenuItem HelpMenuItem;
     private javax.swing.JMenuItem HistoryMenuItem;
     private javax.swing.JMenuItem ListAllMenuItem;
     private javax.swing.JMenu MemberMenu;
@@ -1192,18 +1464,23 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField feeFromTextField;
     private javax.swing.JTextField feeToTextField;
     private javax.swing.JPanel filterPanel;
+    private javax.swing.JPanel helpPanel;
+    private javax.swing.JTree helpTree;
     private javax.swing.JMenu homeMenu;
+    private javax.swing.JComboBox hourComboBox;
     private javax.swing.JPanel indexPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel isOrNoLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1212,15 +1489,18 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private com.eltima.components.ui.DatePicker joindayFrom;
     private com.eltima.components.ui.DatePicker joindayTo;
@@ -1228,6 +1508,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel memberPanel;
     private javax.swing.JTable memberTable;
     final CheckBoxRenderer check = new CheckBoxRenderer();
+    private javax.swing.JComboBox minComboBox;
     private javax.swing.JLabel modelAddSuccess;
     private javax.swing.JTextArea modelContent;
     private javax.swing.JTextField modelDescription;
@@ -1246,6 +1527,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton selectByName;
     private javax.swing.JButton selectByPhone;
     private javax.swing.JMenuItem showHomeMenu;
+    private javax.swing.JButton startTaskButton;
+    private javax.swing.JButton stopTaskButton;
+    private javax.swing.JComboBox taskModelComboBox;
     private javax.swing.JComboBox titlesOfModel;
     private javax.swing.JButton viewDetailButton;
     private javax.swing.JButton viewModel;

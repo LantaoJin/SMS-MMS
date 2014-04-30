@@ -141,12 +141,12 @@ public class MemberJForm extends JPanel {
 
     private boolean basicCheck() {
         if (textName.getText().trim().equals("")
-                || textPhone.getText().trim().equals("")
                 || textReceipt.getText().trim().equals("")
                 || textAttnName.getText().trim().equals("")) {
-            Util.verifyAlert("姓名|手机|收据单号|经办人员 不得为空", TITLE);
+            Util.verifyAlert("姓名|收据单号|经办人员 不得为空", TITLE);
             return false;
-        } else if (!Util.isMobileNO(textPhone.getText().trim())) {
+        } else if (!textPhone.getText().trim().isEmpty()
+                &&!Util.isMobileNO(textPhone.getText().trim())) {
             Util.verifyAlert("手机号格式不对", TITLE);
             return false;
         } else if (!textEmail.getText().trim().isEmpty()
@@ -232,6 +232,7 @@ public class MemberJForm extends JPanel {
         nextAddJButton = new JButton();
 
         //======== this ========
+        setPreferredSize(new Dimension(800, 550));
 
         // JFormDesigner evaluation mark
         setBorder(new javax.swing.border.CompoundBorder(
@@ -241,36 +242,38 @@ public class MemberJForm extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new FormLayout(
-            "default",
+            "65dlu, default",
             "20dlu, $lgap, default, $lgap, 15dlu, $lgap, 135dlu, 10dlu, default, 92dlu, 10dlu, default"));
 
         //---- label1 ----
         label1.setText("\u4f5b\u6069\u4e92\u52a9\u4f1a \u4f1a\u5458\u767b\u8bb0\u8868");
         label1.setFont(new Font("\u6977\u4f53", Font.BOLD, 26));
         label1.setHorizontalAlignment(SwingConstants.CENTER);
-        add(label1, CC.xy(1, 3));
+        add(label1, CC.xy(2, 3));
 
         //======== panel1 ========
         {
             panel1.setLayout(new FormLayout(
-                "35dlu, $lcgap, 80dlu, $lcgap, default:grow",
+                "54dlu, $lcgap, 99dlu, $lcgap, default:grow",
                 "default"));
 
             //---- label2 ----
-            label2.setText("\u7f16\u53f7\uff1a");
-            label2.setHorizontalAlignment(SwingConstants.RIGHT);
+            label2.setText("\u7f16    \u53f7");
+            label2.setHorizontalAlignment(SwingConstants.CENTER);
+            label2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel1.add(label2, CC.xy(1, 1));
 
             //---- memIdJTextField ----
             memIdJTextField.setEnabled(false);
+            memIdJTextField.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel1.add(memIdJTextField, CC.xy(3, 1));
 
             //---- successJLabel ----
             successJLabel.setForeground(Color.red);
-            successJLabel.setFont(successJLabel.getFont().deriveFont(successJLabel.getFont().getStyle() | Font.BOLD));
+            successJLabel.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel1.add(successJLabel, CC.xy(5, 1));
         }
-        add(panel1, CC.xy(1, 5));
+        add(panel1, CC.xy(2, 5));
 
         //======== panel2 ========
         {
@@ -282,12 +285,17 @@ public class MemberJForm extends JPanel {
             //---- label3 ----
             label3.setText("\u59d3    \u540d");
             label3.setHorizontalAlignment(SwingConstants.CENTER);
+            label3.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label3, CC.xy(1, 1));
+
+            //---- textName ----
+            textName.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textName, CC.xy(3, 1));
 
             //---- label4 ----
             label4.setText("\u6027    \u522b");
             label4.setHorizontalAlignment(SwingConstants.CENTER);
+            label4.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label4, CC.xy(5, 1));
 
             //======== panel3 ========
@@ -299,10 +307,12 @@ public class MemberJForm extends JPanel {
                 //---- radioButton1 ----
                 radioButton1.setText("\u7537");
                 radioButton1.setSelected(true);
+                radioButton1.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
                 panel3.add(radioButton1, CC.xy(1, 1));
 
                 //---- radioButton2 ----
                 radioButton2.setText("\u5973");
+                radioButton2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
                 panel3.add(radioButton2, CC.xy(3, 1));
             }
             panel2.add(panel3, CC.xy(7, 1));
@@ -310,42 +320,64 @@ public class MemberJForm extends JPanel {
             //---- label6 ----
             label6.setText("\u51fa\u751f\u65e5\u671f");
             label6.setHorizontalAlignment(SwingConstants.CENTER);
+            label6.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label6, CC.xy(1, 3));
             panel2.add(birthday, CC.xy(3, 3));
 
             //---- label5 ----
             label5.setText("\u90ae    \u7f16");
             label5.setHorizontalAlignment(SwingConstants.CENTER);
+            label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label5, CC.xy(5, 3));
+
+            //---- textZip ----
+            textZip.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textZip, CC.xy(7, 3));
 
             //---- label7 ----
             label7.setText("\u5730    \u5740");
             label7.setHorizontalAlignment(SwingConstants.CENTER);
+            label7.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label7, CC.xy(1, 5));
+
+            //---- textAddress ----
+            textAddress.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textAddress, CC.xywh(3, 5, 5, 1));
 
             //---- label8 ----
             label8.setText("\u56fa    \u8bdd");
             label8.setHorizontalAlignment(SwingConstants.CENTER);
+            label8.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label8, CC.xy(1, 7));
+
+            //---- textTel ----
+            textTel.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textTel, CC.xy(3, 7));
 
             //---- label10 ----
             label10.setText("\u624b    \u673a");
             label10.setHorizontalAlignment(SwingConstants.CENTER);
+            label10.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label10, CC.xy(5, 7));
+
+            //---- textPhone ----
+            textPhone.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textPhone, CC.xy(7, 7));
 
             //---- label9 ----
             label9.setText("\u7535\u5b50\u90ae\u7bb1");
             label9.setHorizontalAlignment(SwingConstants.CENTER);
+            label9.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label9, CC.xy(1, 9));
+
+            //---- textEmail ----
+            textEmail.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textEmail, CC.xy(3, 9));
 
             //---- label11 ----
             label11.setText("\u6587\u5316\u7a0b\u5ea6");
             label11.setHorizontalAlignment(SwingConstants.CENTER);
+            label11.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label11, CC.xy(5, 9));
 
             //---- eduComboBox ----
@@ -357,28 +389,41 @@ public class MemberJForm extends JPanel {
                 "\u7855\u58eb",
                 "\u535a\u58eb"
             }));
+            eduComboBox.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(eduComboBox, CC.xy(7, 9));
 
             //---- label12 ----
             label12.setText("\u884c    \u4e1a");
             label12.setHorizontalAlignment(SwingConstants.CENTER);
+            label12.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label12, CC.xy(1, 11));
+
+            //---- textIndustry ----
+            textIndustry.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textIndustry, CC.xy(3, 11));
 
             //---- label13 ----
             label13.setText("\u804c    \u79f0");
             label13.setHorizontalAlignment(SwingConstants.CENTER);
+            label13.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label13, CC.xy(5, 11));
+
+            //---- textTitle ----
+            textTitle.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textTitle, CC.xy(7, 11));
 
             //---- label21 ----
             label21.setText("\u5907    \u6ce8");
             label21.setHorizontalTextPosition(SwingConstants.LEADING);
             label21.setHorizontalAlignment(SwingConstants.CENTER);
+            label21.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(label21, CC.xy(1, 13));
+
+            //---- textNote ----
+            textNote.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel2.add(textNote, CC.xywh(3, 13, 5, 1));
         }
-        add(panel2, CC.xywh(1, 7, 1, 2));
+        add(panel2, CC.xywh(2, 7, 1, 2));
 
         //======== panel4 ========
         {
@@ -390,55 +435,75 @@ public class MemberJForm extends JPanel {
             //---- label14 ----
             label14.setText("\u5165\u4f1a\u65e5\u671f");
             label14.setHorizontalAlignment(SwingConstants.CENTER);
+            label14.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label14, CC.xy(1, 1));
             panel4.add(joinday, CC.xy(3, 1));
 
             //---- label15 ----
             label15.setText("\u5165\u4f1a\u5e74\u9650");
             label15.setHorizontalAlignment(SwingConstants.CENTER);
+            label15.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label15, CC.xy(5, 1));
             panel4.add(lastday, CC.xy(7, 1));
 
             //---- label16 ----
             label16.setText("\u7eed\u4f1a\u65f6\u9650");
             label16.setHorizontalAlignment(SwingConstants.CENTER);
+            label16.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label16, CC.xy(1, 3));
             panel4.add(disableday, CC.xy(3, 3));
 
             //---- label17 ----
             label17.setText("\u4f1a\u8d39\u6570\u989d");
             label17.setHorizontalAlignment(SwingConstants.CENTER);
+            label17.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label17, CC.xy(5, 3));
+
+            //---- textFee ----
+            textFee.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(textFee, CC.xy(7, 3));
 
             //---- label18 ----
             label18.setText("\u6536\u636e\u5355\u53f7");
             label18.setHorizontalAlignment(SwingConstants.CENTER);
+            label18.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label18, CC.xy(1, 5));
+
+            //---- textReceipt ----
+            textReceipt.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(textReceipt, CC.xy(3, 5));
 
             //---- label19 ----
             label19.setText("\u7ecf\u529e\u4eba\u5458");
             label19.setHorizontalAlignment(SwingConstants.CENTER);
+            label19.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label19, CC.xy(5, 5));
+
+            //---- textAttnName ----
+            textAttnName.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(textAttnName, CC.xy(7, 5));
 
             //---- label20 ----
             label20.setText("\u6536\u636e\u8bf4\u660e");
             label20.setHorizontalAlignment(SwingConstants.CENTER);
+            label20.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label20, CC.xy(1, 7));
+
+            //---- textDescription ----
+            textDescription.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(textDescription, CC.xywh(3, 7, 5, 1));
         }
-        add(panel4, CC.xy(1, 10, CC.DEFAULT, CC.FILL));
+        add(panel4, CC.xy(2, 10, CC.DEFAULT, CC.FILL));
 
         //======== panel5 ========
         {
             panel5.setLayout(new FormLayout(
-                "76dlu, $lcgap, 2*(50dlu, 10dlu), $lcgap, 55dlu, $lcgap, default:grow",
+                "76dlu, $lcgap, 2*(50dlu, 10dlu), $lcgap, 62dlu, $lcgap, default:grow",
                 "fill:default"));
 
             //---- confirmAddJButton ----
             confirmAddJButton.setText("\u786e  \u8ba4");
+            confirmAddJButton.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             confirmAddJButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     addMemberActionPerformed(e);
@@ -448,11 +513,13 @@ public class MemberJForm extends JPanel {
 
             //---- resetAddJButton ----
             resetAddJButton.setText("\u91cd  \u7f6e");
+            resetAddJButton.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel5.add(resetAddJButton, CC.xy(5, 1));
 
             //---- nextAddJButton ----
             nextAddJButton.setText("\u7ee7\u7eed\u6dfb\u52a0");
             nextAddJButton.setEnabled(false);
+            nextAddJButton.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             nextAddJButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     nextAddJButtonActionPerformed(e);
@@ -460,7 +527,7 @@ public class MemberJForm extends JPanel {
             });
             panel5.add(nextAddJButton, CC.xy(8, 1));
         }
-        add(panel5, CC.xy(1, 12));
+        add(panel5, CC.xy(2, 12));
 
         //---- genderGroup ----
         ButtonGroup genderGroup = new ButtonGroup();

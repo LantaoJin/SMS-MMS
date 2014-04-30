@@ -43,7 +43,7 @@ public class MemberAction {
     public List<Member> getMembersByBirthDay(String birthdayString) {
         String tmp = birthdayString.replace("-", "");
         int beginIndex = 0;
-        if (tmp.length() == 10) {
+        if (tmp.length() == 8) {
             beginIndex = 4;
         }
 

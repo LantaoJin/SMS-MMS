@@ -4,13 +4,17 @@
  */
 package org.alanjin.smsmms.frontend.util;
 
+import java.awt.Font;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +48,7 @@ public class Util {
         DefaultTableModel model = new DefaultTableModel(content, columnIdentifiers);
         model.setDataVector(content, columnIdentifiers);
         modelTable.setModel(model);
+        modelTable.getTableHeader().setFont(new Font("宋体", 0, 14));
         TableColumn column1 = modelTable.getColumnModel().getColumn(0);
         TableColumn column2 = modelTable.getColumnModel().getColumn(1);
         TableColumn column3 = modelTable.getColumnModel().getColumn(2);
@@ -95,6 +100,7 @@ public class Util {
         };
         model.setDataVector(content, columnIdentifiers);
         memberTable.setModel(model);
+        memberTable.getTableHeader().setFont(new Font("宋体", 0, 14));
     }
     
     public static void verifyAlert(String message, String title) {
@@ -169,7 +175,11 @@ public class Util {
         calendar.add(field, amount);
         return calendar.getTime();
     }
-
+    
+    public static final String HOME_SHOW    = "【显示首页】：首页上显示了当天是有哪些会员的生日,已经收到的短信提醒。\n\n"
+                + "（本版本尚未添加该功能），所以【显示首页】的作用主要是使操作员返回到一个安全的位置。";
+    public static final String HOME_PRINT   = "【打印】：连接打印机后，进行会员信息的打印和会员列表的打印（本版本尚未添加该功能）。";
+    
     public static void main(String[] args) throws IOException {
         System.out.println(Util.isMobileNO("15921778090"));
         System.out.println(Util.isMobileNO("1592177090"));

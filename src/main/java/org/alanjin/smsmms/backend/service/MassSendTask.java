@@ -44,13 +44,21 @@ public class MassSendTask extends TimerTask {
                 .getMembersByBirthDay(fullBirthdayString);
 
         List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
+        List<Map<String, String>> noneeds = new ArrayList<Map<String, String>>();
         for (Member toSend : memberToSend) {
             Map<String, String> senderPair = new HashMap<String, String>();
             senderPair.put("mobile", toSend.getPhone());
             senderPair.put("content", messageModel.getContent());
+            if (!org.alanjin.smsmms.frontend.util.Util.isMobileNO(toSend.getPhone())) {
+                noneeds.add(senderPair);
+                continue;
+            }
             messages.add(senderPair);
         }
         List<Map<String, String>> failList = SenderAndReceiverService.sendSms(messages, true);
+        for(Map<String, String> noneed : noneeds) {
+            failList.add(noneed);
+        }
         if (failList.size() != 0) {
             // TODO
         }
