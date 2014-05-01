@@ -14,33 +14,23 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-import javax.swing.ImageIcon;
 
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
-import org.alanjin.smsmms.backend.dao.MemberDao;
-import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
-import org.alanjin.smsmms.backend.dao.MessageModelDao;
-import org.alanjin.smsmms.backend.dao.MessageModelDaoImpl;
 import org.alanjin.smsmms.backend.service.MassSendTask;
 import org.alanjin.smsmms.backend.service.MemberAction;
 import org.alanjin.smsmms.backend.service.MessageService;
@@ -1366,11 +1356,12 @@ public class MainFrame extends javax.swing.JFrame {
      * @throws  
      */
     public static void main(String args[]) throws URISyntaxException, IOException, SQLException, TimeoutException, GatewayException, SMSLibException, InterruptedException {
+        System.out.print("main:");
         Properties prop = new Properties();
         prop.load(ClassLoader.getSystemResourceAsStream("config.properties"));
         String com = prop.getProperty("SMS.com", "COM1");
+        System.out.println("com is " + com);
         senderAndReceiverService = SenderAndReceiverService.newInstance(com);
-
         String titilFilePath = prop.getProperty("SMS.model.titlePath");
         File file = new File(titilFilePath);
         titleReader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));

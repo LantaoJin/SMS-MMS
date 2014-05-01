@@ -125,14 +125,6 @@ public class Util {
         return m.matches();
     }
     
-    public static String generateMemberId() throws SQLException {
-        MemberDao memDao = new MemberDaoImpl();
-        String newest = memDao.getLastMemberId();
-        if (newest == null) return "000001";
-        int beginNum = Integer.parseInt(newest);
-        return nextGoodNum(beginNum);
-    }
-    
     public static String preGoodNum(int i) {
         String tmp = Integer.toString(--i);
         int place = tmp.length();

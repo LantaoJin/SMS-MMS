@@ -11,10 +11,13 @@ import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.db.DBConn;
 
 public class ReceiptDaoImpl implements ReceiptDao {
+    private DBConn db;
+    public ReceiptDaoImpl(DBConn db) {
+        this.db = db;
+    }
 
     @Override
     public boolean insertReceipt(Receipt receipt) throws SQLException {
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
@@ -44,7 +47,6 @@ public class ReceiptDaoImpl implements ReceiptDao {
     @Override
     public Receipt selectReceipt(int id) throws SQLException {
         String sql = "Select * from receipt where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = null;
         ps = con.prepareStatement(sql);
@@ -79,7 +81,6 @@ public class ReceiptDaoImpl implements ReceiptDao {
     public void deleteReceipt(int id) throws SQLException {
         // TODO Auto-generated method stub
         String sql = "Delete from receipt where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
@@ -91,7 +92,6 @@ public class ReceiptDaoImpl implements ReceiptDao {
     public List<Receipt> getAllReceiptsByMemberId(String memId)
             throws SQLException {
         String sql = "Select * from receipt where (memId = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = null;
         ps = con.prepareStatement(sql);
@@ -122,7 +122,6 @@ public class ReceiptDaoImpl implements ReceiptDao {
     @Override
     public int count() throws SQLException {
         String sql = "Select count(*) from receipt;";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 

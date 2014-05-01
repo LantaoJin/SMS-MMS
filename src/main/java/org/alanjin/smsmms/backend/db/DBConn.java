@@ -10,7 +10,7 @@ public class DBConn {
     private String passwd;
 
     public DBConn() {
-        this("localhost", "3306", "SMS-MMS", "root", "");
+        this("localhost", "3306", "SMS-MMS", "root", "123456");
     }
 
     public DBConn(String ip, String port, String db, String username,

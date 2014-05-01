@@ -51,7 +51,7 @@ public class MemberJForm extends JPanel {
         if (basicCheck()) {
             String memId = null;
             try {
-                memId = Util.generateMemberId(); // TODO 生成会员号,异常处理
+                memId = memberAction.generateMemberId();
             } catch (SQLException ex) {
                 Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE,
                         null, ex);
@@ -141,9 +141,8 @@ public class MemberJForm extends JPanel {
 
     private boolean basicCheck() {
         if (textName.getText().trim().equals("")
-                || textReceipt.getText().trim().equals("")
                 || textAttnName.getText().trim().equals("")) {
-            Util.verifyAlert("姓名|收据单号|经办人员 不得为空", TITLE);
+            Util.verifyAlert("姓名|经办人员  不得为空", TITLE);
             return false;
         } else if (!textPhone.getText().trim().isEmpty()
                 &&!Util.isMobileNO(textPhone.getText().trim())) {

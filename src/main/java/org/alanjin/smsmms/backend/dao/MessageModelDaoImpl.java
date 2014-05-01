@@ -11,10 +11,14 @@ import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.db.DBConn;
 
 public class MessageModelDaoImpl implements MessageModelDao {
+    private DBConn db;
+    
+    public MessageModelDaoImpl(DBConn db) {
+        this.db = db;
+    }
 
     @Override
     public boolean insertMessageModel(MessageModel model) throws SQLException {
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
@@ -43,7 +47,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     @Override
     public MessageModel selectMessageModel(int id) throws SQLException {
         String sql = "Select * from model where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
@@ -71,7 +74,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     public MessageModel selectMessageModel(String modelName)
             throws SQLException {
         String sql = "Select * from model where (modelname = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, modelName);
@@ -99,7 +101,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     public boolean updateMessageModel(MessageModel model) throws SQLException {
         String sql = "UPDATE model set usehead=?, title=?, content=?, description=? where (id = ? );";
         System.out.println(sql);
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, model.isUseHead() ? 1 : 0);
@@ -116,7 +117,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     @Override
     public boolean deleteMessageModel(int id) throws SQLException {
         String sql = "Delete from model where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
@@ -128,7 +128,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     @Override
     public List<MessageModel> getAllMessageModels() throws SQLException {
         String sql = "Select * from model;";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -156,7 +155,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     @Override
     public int count() throws SQLException {
         String sql = "Select count(*) from model;";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -176,7 +174,6 @@ public class MessageModelDaoImpl implements MessageModelDao {
     @Override
     public boolean modelNameExist(String modelName) throws SQLException {
         String sql = "Select count(*) from model where modelname = ?;";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, modelName);

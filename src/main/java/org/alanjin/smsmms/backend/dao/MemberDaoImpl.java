@@ -15,10 +15,12 @@ import org.alanjin.smsmms.backend.db.DBConn;
 import org.alanjin.smsmms.backend.util.Util;
 
 public class MemberDaoImpl implements MemberDao {
-
+    private DBConn db;
+    public MemberDaoImpl(DBConn db) {
+        this.db = db;
+    }
     @Override
     public boolean insertMember(Member member) throws SQLException {
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
@@ -77,7 +79,6 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public boolean deleteMember(int id) throws SQLException {
         String sql = "Delete from member where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
@@ -89,7 +90,6 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public Member selectMember(int id) throws SQLException {
         String sql = "Select * from member where (id = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
@@ -129,7 +129,6 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public Member selectMember(String memId) throws SQLException {
         String sql = "Select * from member where (memId = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, memId);
@@ -174,7 +173,6 @@ public class MemberDaoImpl implements MemberDao {
                 + "title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?, birthdaystr=? "
                 + "where (id = ? );";
         System.out.println(sql);
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, member.getName());
@@ -210,7 +208,6 @@ public class MemberDaoImpl implements MemberDao {
     @Override
     public int count() throws SQLException {
         String sql = "Select count(*) from member;";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -236,7 +233,6 @@ public class MemberDaoImpl implements MemberDao {
 
     public String getLastMemberId() throws SQLException {
         String sql = "SELECT * FROM member WHERE id=(SELECT MAX(id) FROM member);";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
 
@@ -282,7 +278,6 @@ public class MemberDaoImpl implements MemberDao {
 
     private List<Member> filterBySql(String condition, String sql)
             throws SQLException {
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List<Member> memList = new ArrayList<Member>();
@@ -323,7 +318,6 @@ public class MemberDaoImpl implements MemberDao {
 
     private List<Member> filterBySql(Object from, Object to, String sql)
             throws SQLException {
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = con.prepareStatement(sql);
         List<Member> memList = new ArrayList<Member>();
@@ -371,7 +365,6 @@ public class MemberDaoImpl implements MemberDao {
     private List<Receipt> getAllReceiptsByMemberId(String memId)
             throws SQLException {
         String sql = "Select * from receipt where (memId = ? );";
-        DBConn db = new DBConn();
         Connection con = db.getConnection();
         PreparedStatement ps = null;
         ps = con.prepareStatement(sql);

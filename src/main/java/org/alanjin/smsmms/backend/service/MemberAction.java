@@ -12,7 +12,9 @@ import org.alanjin.smsmms.backend.dao.MemberDao;
 import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
 import org.alanjin.smsmms.backend.dao.ReceiptDao;
 import org.alanjin.smsmms.backend.dao.ReceiptDaoImpl;
+import org.alanjin.smsmms.backend.db.DBConn;
 import org.alanjin.smsmms.backend.util.Util;
+import org.alanjin.smsmms.frontend.MainFrame;
 
 public class MemberAction {
     private static MemberAction action;
@@ -24,8 +26,9 @@ public class MemberAction {
 
     public static MemberAction newInstance() {
         if (action == null) {
-            memberDao = new MemberDaoImpl();
-            receiptDao = new ReceiptDaoImpl();
+            DBConn db = new DBConn();
+            memberDao = new MemberDaoImpl(db);
+            receiptDao = new ReceiptDaoImpl(db);
             action = new MemberAction();
         }
         return action;
@@ -151,5 +154,12 @@ public class MemberAction {
             System.err.println(e.getMessage());
             return false;
         }
+    }
+    
+    public String generateMemberId() throws SQLException {
+        String newest = memberDao.getLastMemberId();
+        if (newest == null) return "000001";
+        int beginNum = Integer.parseInt(newest);
+        return org.alanjin.smsmms.frontend.util.Util.nextGoodNum(beginNum);
     }
 }

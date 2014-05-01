@@ -131,10 +131,9 @@ public class AddFeeJForm extends JPanel {
     }
 
     private boolean basicCheck() {
-        if (textReceipt.getText().trim().equals("")
-                || attnName.getText().trim().equals("")
+        if (attnName.getText().trim().equals("")
                 || addFeeTextField.getText().trim().equals("")) {
-            Util.verifyAlert("收据单号|经办人员|续费金额 不得为空", TITLE);
+            Util.verifyAlert("收据单号|续费金额 不得为空", TITLE);
             return false;
         } else if (!Util.isDigit(addFeeTextField.getText().trim())) {
             Util.verifyAlert("续费金额必须是有效金额数字", TITLE);

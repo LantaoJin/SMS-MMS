@@ -31,7 +31,7 @@ public class ScheduleService {
         if (date.before(new Date())) {
             date = addDay(date, 1);
         }
-        timer.schedule(task, calendar.getTime(), 24 * 60 * 60 * 1000);
+        timer.schedule(task, date, 24 * 60 * 60 * 1000);
         runingSchedules.put(task.getTaskName(), task);
     }
 
