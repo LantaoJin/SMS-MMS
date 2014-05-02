@@ -190,10 +190,16 @@ public class MemberJForm extends JPanel {
         panel3 = new JPanel();
         radioButton1 = new JRadioButton();
         radioButton2 = new JRadioButton();
-        label6 = new JLabel();
+        label25 = new JLabel();
+        label23 = new JLabel();
+        solarRadio = new JRadioButton();
         birthday = new DatePicker(new java.util.Date(0), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
-        label5 = new JLabel();
-        textZip = new JTextField();
+        lunarRadio = new JRadioButton();
+        panel6 = new JPanel();
+        textField1 = new JTextField();
+        label24 = new JLabel();
+        comboBox1 = new JComboBox();
+        comboBox2 = new JComboBox();
         label7 = new JLabel();
         textAddress = new JTextField();
         label8 = new JLabel();
@@ -209,7 +215,7 @@ public class MemberJForm extends JPanel {
         label13 = new JLabel();
         textTitle = new JTextField();
         label21 = new JLabel();
-        textNote = new JTextField();
+        textZip = new JTextField();
         panel4 = new JPanel();
         label14 = new JLabel();
         joinday = new DatePicker(new java.util.Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
@@ -222,7 +228,7 @@ public class MemberJForm extends JPanel {
         label18 = new JLabel();
         textReceipt = new JTextField();
         label19 = new JLabel();
-        textAttnName = new JTextField();
+        introduceName = new JTextField();
         label20 = new JLabel();
         textDescription = new JTextField();
         panel5 = new JPanel();
@@ -241,8 +247,8 @@ public class MemberJForm extends JPanel {
                 java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
         setLayout(new FormLayout(
-            "65dlu, default",
-            "20dlu, $lgap, default, $lgap, 15dlu, $lgap, 135dlu, 10dlu, default, 92dlu, 10dlu, default"));
+            "51dlu, 337dlu",
+            "10dlu, $lgap, default, $lgap, 15dlu, $lgap, 161dlu, 3dlu, 92dlu, 3dlu, default"));
 
         //---- label1 ----
         label1.setText("\u4f5b\u6069\u4e92\u52a9\u4f1a \u4f1a\u5458\u767b\u8bb0\u8868");
@@ -278,8 +284,8 @@ public class MemberJForm extends JPanel {
         {
             panel2.setBorder(new TitledBorder(null, "\u57fa\u672c\u4fe1\u606f", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, Color.gray));
             panel2.setLayout(new FormLayout(
-                "50dlu, $lcgap, 100dlu, $lcgap, 50dlu, $lcgap, 100dlu",
-                "7*(default, 5dlu)"));
+                "50dlu, $lcgap, 100dlu, 10dlu, 50dlu, $lcgap, 112dlu",
+                "8*(default, 5dlu)"));
 
             //---- label3 ----
             label3.setText("\u59d3    \u540d");
@@ -316,68 +322,156 @@ public class MemberJForm extends JPanel {
             }
             panel2.add(panel3, CC.xy(7, 1));
 
-            //---- label6 ----
-            label6.setText("\u51fa\u751f\u65e5\u671f");
-            label6.setHorizontalAlignment(SwingConstants.CENTER);
-            label6.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label6, CC.xy(1, 3));
-            panel2.add(birthday, CC.xy(3, 3));
+            //---- label25 ----
+            label25.setText("\u51fa\u751f\u65e5\u671f");
+            label25.setHorizontalAlignment(SwingConstants.CENTER);
+            label25.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            panel2.add(label25, CC.xy(1, 3));
 
-            //---- label5 ----
-            label5.setText("\u90ae    \u7f16");
-            label5.setHorizontalAlignment(SwingConstants.CENTER);
-            label5.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label5, CC.xy(5, 3));
+            //---- label23 ----
+            label23.setText("\u8bf7\u9009\u62e9\u516c\u5386\u6216\u8005\u519c\u5386\uff0c\u95f0\u4e03\u6708\u53ef\u80fd\u4f1a\u8ba1\u7b97\u51fa\u9519\u8bef\u516c\u5386\u65e5\u671f");
+            label23.setForeground(Color.red);
+            label23.setHorizontalAlignment(SwingConstants.LEFT);
+            panel2.add(label23, CC.xywh(3, 3, 5, 1));
 
-            //---- textZip ----
-            textZip.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textZip, CC.xy(7, 3));
+            //---- solarRadio ----
+            solarRadio.setText("\u516c  \u5386");
+            solarRadio.setHorizontalTextPosition(SwingConstants.LEFT);
+            solarRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+            solarRadio.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            solarRadio.setSelected(true);
+            panel2.add(solarRadio, CC.xy(1, 5));
+
+            //---- birthday ----
+            birthday.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            panel2.add(birthday, CC.xy(3, 5));
+
+            //---- lunarRadio ----
+            lunarRadio.setText("\u519c  \u5386");
+            lunarRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+            lunarRadio.setHorizontalTextPosition(SwingConstants.LEFT);
+            lunarRadio.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            panel2.add(lunarRadio, CC.xy(5, 5));
+
+            //======== panel6 ========
+            {
+                panel6.setLayout(new FormLayout(
+                    "31dlu, default, 2*(35dlu)",
+                    "default"));
+
+                //---- textField1 ----
+                textField1.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+                textField1.setHorizontalAlignment(SwingConstants.CENTER);
+                textField1.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+                panel6.add(textField1, CC.xy(1, 1));
+
+                //---- label24 ----
+                label24.setText("\u5e74");
+                label24.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+                panel6.add(label24, CC.xy(2, 1));
+
+                //---- comboBox1 ----
+                comboBox1.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+                comboBox1.setModel(new DefaultComboBoxModel(new String[] {
+                    "\u6b63\u6708",
+                    "\u4e8c\u6708",
+                    "\u4e09\u6708",
+                    "\u56db\u6708",
+                    "\u4e94\u6708",
+                    "\u516d\u6708",
+                    "\u4e03\u6708",
+                    "\u516b\u6708",
+                    "\u4e5d\u6708",
+                    "\u5341\u6708",
+                    "\u5341\u4e00",
+                    "\u814a\u6708"
+                }));
+                panel6.add(comboBox1, CC.xy(3, 1));
+
+                //---- comboBox2 ----
+                comboBox2.setModel(new DefaultComboBoxModel(new String[] {
+                    "\u521d\u4e00",
+                    "\u521d\u4e8c",
+                    "\u521d\u4e09",
+                    "\u521d\u56db",
+                    "\u521d\u4e94",
+                    "\u521d\u516d",
+                    "\u521d\u4e03",
+                    "\u521d\u516b",
+                    "\u521d\u4e5d",
+                    "\u521d\u5341",
+                    "\u5341\u4e00",
+                    "\u5341\u4e8c",
+                    "\u5341\u4e09",
+                    "\u5341\u56db",
+                    "\u5341\u4e94",
+                    "\u5341\u516d",
+                    "\u5341\u4e03",
+                    "\u5341\u516b",
+                    "\u5341\u4e5d",
+                    "\u4e8c\u5341",
+                    "\u4e8c\u4e00",
+                    "\u4e8c\u4e8c",
+                    "\u4e8c\u4e09",
+                    "\u4e8c\u56db",
+                    "\u4e8c\u4e94",
+                    "\u4e8c\u516d",
+                    "\u4e8c\u4e03",
+                    "\u4e8c\u516b",
+                    "\u4e8c\u4e5d",
+                    "\u4e09\u5341"
+                }));
+                comboBox2.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+                comboBox2.setPreferredSize(new Dimension(50, 22));
+                panel6.add(comboBox2, CC.xy(4, 1));
+            }
+            panel2.add(panel6, CC.xy(7, 5));
 
             //---- label7 ----
             label7.setText("\u5730    \u5740");
             label7.setHorizontalAlignment(SwingConstants.CENTER);
             label7.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label7, CC.xy(1, 5));
+            panel2.add(label7, CC.xy(1, 7));
 
             //---- textAddress ----
             textAddress.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textAddress, CC.xywh(3, 5, 5, 1));
+            panel2.add(textAddress, CC.xywh(3, 7, 5, 1));
 
             //---- label8 ----
             label8.setText("\u56fa    \u8bdd");
             label8.setHorizontalAlignment(SwingConstants.CENTER);
             label8.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label8, CC.xy(1, 7));
+            panel2.add(label8, CC.xy(1, 9));
 
             //---- textTel ----
             textTel.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textTel, CC.xy(3, 7));
+            panel2.add(textTel, CC.xy(3, 9));
 
             //---- label10 ----
             label10.setText("\u624b    \u673a");
             label10.setHorizontalAlignment(SwingConstants.CENTER);
             label10.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label10, CC.xy(5, 7));
+            panel2.add(label10, CC.xy(5, 9));
 
             //---- textPhone ----
             textPhone.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textPhone, CC.xy(7, 7));
+            panel2.add(textPhone, CC.xy(7, 9));
 
             //---- label9 ----
             label9.setText("\u7535\u5b50\u90ae\u7bb1");
             label9.setHorizontalAlignment(SwingConstants.CENTER);
             label9.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label9, CC.xy(1, 9));
+            panel2.add(label9, CC.xy(1, 11));
 
             //---- textEmail ----
             textEmail.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textEmail, CC.xy(3, 9));
+            panel2.add(textEmail, CC.xy(3, 11));
 
             //---- label11 ----
             label11.setText("\u6587\u5316\u7a0b\u5ea6");
             label11.setHorizontalAlignment(SwingConstants.CENTER);
             label11.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label11, CC.xy(5, 9));
+            panel2.add(label11, CC.xy(5, 11));
 
             //---- eduComboBox ----
             eduComboBox.setModel(new DefaultComboBoxModel(new String[] {
@@ -389,46 +483,46 @@ public class MemberJForm extends JPanel {
                 "\u535a\u58eb"
             }));
             eduComboBox.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(eduComboBox, CC.xy(7, 9));
+            panel2.add(eduComboBox, CC.xy(7, 11));
 
             //---- label12 ----
             label12.setText("\u884c    \u4e1a");
             label12.setHorizontalAlignment(SwingConstants.CENTER);
             label12.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label12, CC.xy(1, 11));
+            panel2.add(label12, CC.xy(1, 13));
 
             //---- textIndustry ----
             textIndustry.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textIndustry, CC.xy(3, 11));
+            panel2.add(textIndustry, CC.xy(3, 13));
 
             //---- label13 ----
             label13.setText("\u804c    \u79f0");
             label13.setHorizontalAlignment(SwingConstants.CENTER);
             label13.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label13, CC.xy(5, 11));
+            panel2.add(label13, CC.xy(5, 13));
 
             //---- textTitle ----
             textTitle.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textTitle, CC.xy(7, 11));
+            panel2.add(textTitle, CC.xy(7, 13));
 
             //---- label21 ----
             label21.setText("\u5907    \u6ce8");
             label21.setHorizontalTextPosition(SwingConstants.LEADING);
             label21.setHorizontalAlignment(SwingConstants.CENTER);
             label21.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(label21, CC.xy(1, 13));
+            panel2.add(label21, CC.xy(1, 15));
 
-            //---- textNote ----
-            textNote.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel2.add(textNote, CC.xywh(3, 13, 5, 1));
+            //---- textZip ----
+            textZip.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            panel2.add(textZip, CC.xywh(3, 15, 5, 1));
         }
-        add(panel2, CC.xywh(2, 7, 1, 2));
+        add(panel2, CC.xy(2, 7));
 
         //======== panel4 ========
         {
             panel4.setBorder(new TitledBorder(null, "\u4f1a\u5458\u4fe1\u606f", TitledBorder.LEADING, TitledBorder.DEFAULT_POSITION, null, Color.gray));
             panel4.setLayout(new FormLayout(
-                "50dlu, $lcgap, 100dlu, $lcgap, 50dlu, $lcgap, 100dlu",
+                "50dlu, $lcgap, 100dlu, 10dlu, 50dlu, $lcgap, 111dlu",
                 "4*(default, 5dlu)"));
 
             //---- label14 ----
@@ -473,14 +567,14 @@ public class MemberJForm extends JPanel {
             panel4.add(textReceipt, CC.xy(3, 5));
 
             //---- label19 ----
-            label19.setText("\u7ecf\u529e\u4eba\u5458");
+            label19.setText("\u4ecb\u7ecd\u4eba");
             label19.setHorizontalAlignment(SwingConstants.CENTER);
             label19.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(label19, CC.xy(5, 5));
 
-            //---- textAttnName ----
-            textAttnName.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
-            panel4.add(textAttnName, CC.xy(7, 5));
+            //---- introduceName ----
+            introduceName.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+            panel4.add(introduceName, CC.xy(7, 5));
 
             //---- label20 ----
             label20.setText("\u6536\u636e\u8bf4\u660e");
@@ -492,7 +586,7 @@ public class MemberJForm extends JPanel {
             textDescription.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
             panel4.add(textDescription, CC.xywh(3, 7, 5, 1));
         }
-        add(panel4, CC.xy(2, 10, CC.DEFAULT, CC.FILL));
+        add(panel4, CC.xy(2, 9, CC.DEFAULT, CC.FILL));
 
         //======== panel5 ========
         {
@@ -526,12 +620,17 @@ public class MemberJForm extends JPanel {
             });
             panel5.add(nextAddJButton, CC.xy(8, 1));
         }
-        add(panel5, CC.xy(2, 12));
+        add(panel5, CC.xy(2, 11));
 
         //---- genderGroup ----
         ButtonGroup genderGroup = new ButtonGroup();
         genderGroup.add(radioButton1);
         genderGroup.add(radioButton2);
+
+        //---- calendarGroup ----
+        ButtonGroup calendarGroup = new ButtonGroup();
+        calendarGroup.add(solarRadio);
+        calendarGroup.add(lunarRadio);
         // //GEN-END:initComponents
     }
 
@@ -550,10 +649,16 @@ public class MemberJForm extends JPanel {
     private JPanel panel3;
     private JRadioButton radioButton1;
     private JRadioButton radioButton2;
-    private JLabel label6;
+    private JLabel label25;
+    private JLabel label23;
+    private JRadioButton solarRadio;
     private DatePicker birthday;
-    private JLabel label5;
-    private JTextField textZip;
+    private JRadioButton lunarRadio;
+    private JPanel panel6;
+    private JTextField textField1;
+    private JLabel label24;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
     private JLabel label7;
     private JTextField textAddress;
     private JLabel label8;
@@ -569,7 +674,7 @@ public class MemberJForm extends JPanel {
     private JLabel label13;
     private JTextField textTitle;
     private JLabel label21;
-    private JTextField textNote;
+    private JTextField textZip;
     private JPanel panel4;
     private JLabel label14;
     private DatePicker joinday;
@@ -582,7 +687,7 @@ public class MemberJForm extends JPanel {
     private JLabel label18;
     private JTextField textReceipt;
     private JLabel label19;
-    private JTextField textAttnName;
+    private JTextField introduceName;
     private JLabel label20;
     private JTextField textDescription;
     private JPanel panel5;
