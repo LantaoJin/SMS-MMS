@@ -12,6 +12,7 @@ import org.alanjin.smsmms.backend.db.DBConn;
 
 public class ReceiptDaoImpl implements ReceiptDao {
     private DBConn db;
+
     public ReceiptDaoImpl(DBConn db) {
         this.db = db;
     }

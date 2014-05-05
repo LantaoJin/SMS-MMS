@@ -54,9 +54,9 @@ public class SenderAndReceiverService {
 
     // 构造类的实例，只产生一个对象实例
 
-    public static SenderAndReceiverService newInstance(String com) throws TimeoutException,
-            GatewayException, SMSLibException, IOException,
-            InterruptedException {
+    public static SenderAndReceiverService newInstance(String com)
+            throws TimeoutException, GatewayException, SMSLibException,
+            IOException, InterruptedException {
         if (smwps == null)
             smwps = new SenderAndReceiverService();
         if (srv == null)
@@ -64,9 +64,10 @@ public class SenderAndReceiverService {
         return smwps;
     }
 
-    public static SenderAndReceiverService newInstance(String com, GenericDelegator delegator)
-            throws TimeoutException, GatewayException, SMSLibException,
-            IOException, InterruptedException {
+    public static SenderAndReceiverService newInstance(String com,
+            GenericDelegator delegator) throws TimeoutException,
+            GatewayException, SMSLibException, IOException,
+            InterruptedException {
         if (smwps == null)
             smwps = new SenderAndReceiverService();
         if (srv == null)
@@ -75,9 +76,10 @@ public class SenderAndReceiverService {
         return smwps;
     }
 
-    public static SenderAndReceiverService newInstance(String com, GenericDelegator delegator,
-            String gateName) throws TimeoutException, GatewayException,
-            SMSLibException, IOException, InterruptedException {
+    public static SenderAndReceiverService newInstance(String com,
+            GenericDelegator delegator, String gateName)
+            throws TimeoutException, GatewayException, SMSLibException,
+            IOException, InterruptedException {
         if (smwps == null)
             smwps = new SenderAndReceiverService();
         if (srv == null)
@@ -239,10 +241,12 @@ public class SenderAndReceiverService {
                 SenderAndReceiverService.close();
                 break;
             } else if (str.equals("1"))
-                System.out.println(SenderAndReceiverService.sendSms(mob, content, false));
+                System.out.println(SenderAndReceiverService.sendSms(mob,
+                        content, false));
             else {
                 System.out.println("短消息!");
-                SenderAndReceiverService.readSms(SenderAndReceiverService.ALL_MESSAGE);
+                SenderAndReceiverService
+                        .readSms(SenderAndReceiverService.ALL_MESSAGE);
             }
         }
         // sms.readSms();

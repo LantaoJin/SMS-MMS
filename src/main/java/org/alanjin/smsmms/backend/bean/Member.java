@@ -21,9 +21,10 @@ public class Member {
     private String expert;
     private Date joinDate;
     private Date lastDate;
-    private Date disableDate;
     private BigDecimal feeSum;
     private List<Receipt> receiptList;
+    private String introducer;
+    private String description;
 
     public Member() {
     }
@@ -166,14 +167,6 @@ public class Member {
         this.lastDate = lastDate;
     }
 
-    public Date getDisableDate() {
-        return disableDate;
-    }
-
-    public void setDisableDate(Date disableDate) {
-        this.disableDate = disableDate;
-    }
-
     public BigDecimal getFeeSum() {
         return feeSum;
     }
@@ -190,6 +183,22 @@ public class Member {
         this.receiptList = receiptList;
     }
 
+    public String getIntroducer() {
+        return introducer;
+    }
+
+    public void setIntroducer(String introducer) {
+        this.introducer = introducer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Member [memId=" + memId + ", name=" + name + ", gender="
@@ -198,6 +207,6 @@ public class Member {
                 + ", email=" + email + ", edu=" + edu + ", industry="
                 + industry + ", title=" + title + ", expert=" + expert
                 + ", joinDate=" + joinDate + ", lastDate=" + lastDate
-                + ", disableDate=" + disableDate + ", feeSum=" + feeSum + "]";
+                + ", feeSum=" + feeSum + "]";
     }
 }

@@ -14,14 +14,14 @@ public interface MemberDao {
 
     public Member selectMember(int id) throws SQLException;
 
-    public Member selectMember(String memId) throws  SQLException;
+    public Member selectMember(String memId) throws SQLException;
 
     public boolean updateMember(Member member) throws SQLException;
 
     public List<Member> getAllMembers() throws SQLException;
 
-    public List<Member> getMembersByBirthday(String birthdaystr)
-            throws SQLException;
+    public List<Member> getMembersByBirthdayStr(String birthdaystr,
+            boolean isLunar) throws SQLException;
 
     public List<Member> getMembersByName(String name) throws SQLException;
 

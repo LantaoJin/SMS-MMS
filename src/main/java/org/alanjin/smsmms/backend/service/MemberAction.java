@@ -14,7 +14,6 @@ import org.alanjin.smsmms.backend.dao.ReceiptDao;
 import org.alanjin.smsmms.backend.dao.ReceiptDaoImpl;
 import org.alanjin.smsmms.backend.db.DBConn;
 import org.alanjin.smsmms.backend.util.Util;
-import org.alanjin.smsmms.frontend.MainFrame;
 
 public class MemberAction {
     private static MemberAction action;
@@ -43,7 +42,8 @@ public class MemberAction {
         }
     }
 
-    public List<Member> getMembersByBirthDay(String birthdayString) {
+    public List<Member> getMembersByBirthDayStr(String birthdayString,
+            boolean isLunar) {
         String tmp = birthdayString.replace("-", "");
         int beginIndex = 0;
         if (tmp.length() == 8) {
@@ -51,7 +51,8 @@ public class MemberAction {
         }
 
         try {
-            return memberDao.getMembersByBirthday(tmp.substring(beginIndex));
+            return memberDao.getMembersByBirthdayStr(tmp.substring(beginIndex),
+                    isLunar);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
             return new ArrayList<Member>();
@@ -66,7 +67,7 @@ public class MemberAction {
             return null;
         }
     }
-    
+
     public Member getMemberByMemId(String memId) {
         try {
             return memberDao.selectMember(memId);
@@ -146,7 +147,7 @@ public class MemberAction {
             return new ArrayList<Member>();
         }
     }
-    
+
     public boolean addReceipt(Receipt receipt) {
         try {
             return receiptDao.insertReceipt(receipt);
@@ -155,10 +156,11 @@ public class MemberAction {
             return false;
         }
     }
-    
+
     public String generateMemberId() throws SQLException {
         String newest = memberDao.getLastMemberId();
-        if (newest == null) return "000001";
+        if (newest == null)
+            return "000001";
         int beginNum = Integer.parseInt(newest);
         return org.alanjin.smsmms.frontend.util.Util.nextGoodNum(beginNum);
     }

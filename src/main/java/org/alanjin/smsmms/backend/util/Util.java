@@ -1,8 +1,9 @@
 package org.alanjin.smsmms.backend.util;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import org.alanjin.smsmms.frontend.util.Lunar;
 
 public class Util {
     public static final String dayFormatStr = "yyyy-MM-dd";
@@ -20,12 +21,23 @@ public class Util {
         return new java.sql.Date(dayFormat.parse(dateString).getTime());
     }
 
+    public static java.util.Date toNormalDate(String dateString)
+            throws ParseException {
+        return new java.util.Date(dayFormat.parse(dateString).getTime());
+    }
+
     public static String fromSQLDate(java.sql.Date date) {
         return fromNormalDate(new java.util.Date(date.getTime()));
     }
 
-    public static String toBirthDayStr(Date birthday) {
+    public static String toBirthDayStr(java.util.Date birthday) {
         return birthFormat.format(birthday);
+    }
+
+    public static String toBirthDayStrOfLunar(java.util.Date birthday)
+            throws ParseException {
+        return toBirthDayStr(toNormalDate(Lunar
+                .solarTolunar(fromNormalDate(birthday))));
     }
 
     public static String fromNormalDate(java.util.Date date) {
@@ -38,5 +50,34 @@ public class Util {
 
     public static java.sql.Date dateConvert(java.util.Date date) {
         return new java.sql.Date(date.getTime());
+    }
+
+    public static java.util.Date getNextYearFromNow() {
+        return getDateFromDate(new java.util.Date(), Calendar.YEAR, 1);
+    }
+
+    public static java.util.Date getNextMonthFromDate(java.util.Date date) {
+        return getDateFromDate(date, Calendar.MONTH, 1);
+    }
+
+    public static java.util.Date getNextNMonthFromDate(java.util.Date date,
+            int n) {
+        return getDateFromDate(date, Calendar.MONTH, n);
+    }
+
+    public static java.util.Date getDateFromDate(java.util.Date date,
+            int field, int amount) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(field, amount);
+        return calendar.getTime();
+    }
+
+    public static java.util.Date getNextYearFromDate(java.util.Date date) {
+        return getDateFromDate(date, Calendar.YEAR, 1);
+    }
+
+    public static java.util.Date getNextNYearFromDate(java.util.Date date, int n) {
+        return getDateFromDate(date, Calendar.YEAR, n);
     }
 }

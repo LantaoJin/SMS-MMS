@@ -10,13 +10,17 @@ import java.util.TimerTask;
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
 import org.alanjin.smsmms.backend.util.Util;
+import org.alanjin.smsmms.frontend.util.Lunar;
 
 public class MassSendTask extends TimerTask {
     private String taskName;
     private MessageModel messageModel;
+    private boolean useLunar;
 
-    public MassSendTask(String taskName, MessageModel messageModel) {
+    public MassSendTask(String taskName, boolean useLunar,
+            MessageModel messageModel) {
         this.taskName = taskName;
+        this.useLunar = useLunar;
         this.messageModel = messageModel;
     }
 
@@ -24,7 +28,7 @@ public class MassSendTask extends TimerTask {
         return taskName;
     }
 
-    public void setTaskName(String taskeName) {
+    public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 
@@ -39,9 +43,15 @@ public class MassSendTask extends TimerTask {
     @Override
     public void run() {
         MemberAction memberAction = MemberAction.newInstance();
-        String fullBirthdayString = Util.fromNormalDate(new Date());
-        List<Member> memberToSend = memberAction
-                .getMembersByBirthDay(fullBirthdayString);
+        String fullBirthdayString;
+        if (useLunar) {
+            fullBirthdayString = Lunar.solarTolunar(Util
+                    .fromNormalDate(new Date()));
+        } else {
+            fullBirthdayString = Util.fromNormalDate(new Date());
+        }
+        List<Member> memberToSend = memberAction.getMembersByBirthDayStr(
+                fullBirthdayString, useLunar);
 
         List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
         List<Map<String, String>> noneeds = new ArrayList<Map<String, String>>();
@@ -49,14 +59,16 @@ public class MassSendTask extends TimerTask {
             Map<String, String> senderPair = new HashMap<String, String>();
             senderPair.put("mobile", toSend.getPhone());
             senderPair.put("content", messageModel.getContent());
-            if (!org.alanjin.smsmms.frontend.util.Util.isMobileNO(toSend.getPhone())) {
+            if (!org.alanjin.smsmms.frontend.util.Util.isMobileNO(toSend
+                    .getPhone())) {
                 noneeds.add(senderPair);
                 continue;
             }
             messages.add(senderPair);
         }
-        List<Map<String, String>> failList = SenderAndReceiverService.sendSms(messages, true);
-        for(Map<String, String> noneed : noneeds) {
+        List<Map<String, String>> failList = SenderAndReceiverService.sendSms(
+                messages, true);
+        for (Map<String, String> noneed : noneeds) {
             failList.add(noneed);
         }
         if (failList.size() != 0) {

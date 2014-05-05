@@ -10,12 +10,12 @@ public class DBConn {
     private String passwd;
 
     public DBConn() {
-        this("localhost", "3306", "SMS-MMS", "root", "123456");
+        this("localhost", "3306", "SMS-MMS", "root", "123456");// TODO
     }
 
     public DBConn(String ip, String port, String db, String username,
             String passwd) {
-        this.connectionUrl = "jdbc:mysql://" + ip + ":" + port + "/" + db 
+        this.connectionUrl = "jdbc:mysql://" + ip + ":" + port + "/" + db
                 + "?useUnicode=true&characterEncoding=utf-8";
         this.user = username;
         this.passwd = passwd;

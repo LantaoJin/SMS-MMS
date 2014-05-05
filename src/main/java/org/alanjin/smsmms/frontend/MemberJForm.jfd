@@ -4,7 +4,7 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-			"$columnSpecs": "51dlu, 337dlu"
+			"$columnSpecs": "51dlu, 341dlu"
 			"$rowSpecs": "10dlu, linegap, default, linegap, 15dlu, linegap, 161dlu, 3dlu, 92dlu, 3dlu, default"
 		} ) {
 			name: "this"
@@ -53,7 +53,7 @@ new FormModel {
 				"gridY": 5
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-				"$columnSpecs": "50dlu, labelcompgap, 100dlu, 10dlu, 50dlu, labelcompgap, 112dlu"
+				"$columnSpecs": "50dlu, labelcompgap, 100dlu, 10dlu, 50dlu, labelcompgap, 115dlu"
 				"$rowSpecs": "default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu"
 			} ) {
 				name: "panel2"
@@ -137,7 +137,7 @@ new FormModel {
 					"horizontalAlignment": 4
 					"font": &Font1 new java.awt.Font( "宋体", 0, 14 )
 					"$buttonGroup": new FormReference( "calendarGroup" )
-					"selected": true
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "solarRadioStateChanged", true ) )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 5
@@ -159,20 +159,225 @@ new FormModel {
 					"horizontalTextPosition": 2
 					"font": #Font1
 					"$buttonGroup": new FormReference( "calendarGroup" )
+					"selected": true
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "lunarRadioStateChanged", true ) )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridY": 5
 					"gridX": 5
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-					"$columnSpecs": "31dlu, default, 35dlu, 35dlu"
+					"$columnSpecs": "35dlu, default, 35dlu, 35dlu"
 					"$rowSpecs": "default"
 				} ) {
 					name: "panel6"
-					add( new FormComponent( "javax.swing.JTextField" ) {
-						name: "textField1"
-						"font": #Font2
-						"horizontalAlignment": 0
-						"cursor": new java.awt.Cursor( 2 )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "lunarYear"
+						"maximumRowCount": 20
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "1900"
+							addElement( "1900" )
+							addElement( "1901" )
+							addElement( "1902" )
+							addElement( "1903" )
+							addElement( "1904" )
+							addElement( "1905" )
+							addElement( "1906" )
+							addElement( "1907" )
+							addElement( "1908" )
+							addElement( "1909" )
+							addElement( "1910" )
+							addElement( "1911" )
+							addElement( "1912" )
+							addElement( "1913" )
+							addElement( "1914" )
+							addElement( "1915" )
+							addElement( "1916" )
+							addElement( "1917" )
+							addElement( "1918" )
+							addElement( "1919" )
+							addElement( "1920" )
+							addElement( "1921" )
+							addElement( "1922" )
+							addElement( "1923" )
+							addElement( "1924" )
+							addElement( "1925" )
+							addElement( "1926" )
+							addElement( "1927" )
+							addElement( "1928" )
+							addElement( "1929" )
+							addElement( "1930" )
+							addElement( "1931" )
+							addElement( "1932" )
+							addElement( "1933" )
+							addElement( "1934" )
+							addElement( "1935" )
+							addElement( "1936" )
+							addElement( "1937" )
+							addElement( "1938" )
+							addElement( "1939" )
+							addElement( "1940" )
+							addElement( "1941" )
+							addElement( "1942" )
+							addElement( "1943" )
+							addElement( "1944" )
+							addElement( "1945" )
+							addElement( "1946" )
+							addElement( "1947" )
+							addElement( "1948" )
+							addElement( "1949" )
+							addElement( "1950" )
+							addElement( "1951" )
+							addElement( "1952" )
+							addElement( "1953" )
+							addElement( "1954" )
+							addElement( "1955" )
+							addElement( "1956" )
+							addElement( "1957" )
+							addElement( "1958" )
+							addElement( "1959" )
+							addElement( "1960" )
+							addElement( "1961" )
+							addElement( "1962" )
+							addElement( "1963" )
+							addElement( "1964" )
+							addElement( "1965" )
+							addElement( "1966" )
+							addElement( "1967" )
+							addElement( "1968" )
+							addElement( "1969" )
+							addElement( "1970" )
+							addElement( "1971" )
+							addElement( "1972" )
+							addElement( "1973" )
+							addElement( "1974" )
+							addElement( "1975" )
+							addElement( "1976" )
+							addElement( "1977" )
+							addElement( "1978" )
+							addElement( "1979" )
+							addElement( "1980" )
+							addElement( "1981" )
+							addElement( "1982" )
+							addElement( "1983" )
+							addElement( "1984" )
+							addElement( "1985" )
+							addElement( "1986" )
+							addElement( "1987" )
+							addElement( "1988" )
+							addElement( "1989" )
+							addElement( "1990" )
+							addElement( "1991" )
+							addElement( "1992" )
+							addElement( "1993" )
+							addElement( "1994" )
+							addElement( "1995" )
+							addElement( "1996" )
+							addElement( "1997" )
+							addElement( "1998" )
+							addElement( "1999" )
+							addElement( "2000" )
+							addElement( "2001" )
+							addElement( "2002" )
+							addElement( "2003" )
+							addElement( "2004" )
+							addElement( "2005" )
+							addElement( "2006" )
+							addElement( "2007" )
+							addElement( "2008" )
+							addElement( "2009" )
+							addElement( "2010" )
+							addElement( "2011" )
+							addElement( "2012" )
+							addElement( "2013" )
+							addElement( "2014" )
+							addElement( "2015" )
+							addElement( "2016" )
+							addElement( "2017" )
+							addElement( "2018" )
+							addElement( "2019" )
+							addElement( "2020" )
+							addElement( "2021" )
+							addElement( "2022" )
+							addElement( "2023" )
+							addElement( "2024" )
+							addElement( "2025" )
+							addElement( "2026" )
+							addElement( "2027" )
+							addElement( "2028" )
+							addElement( "2029" )
+							addElement( "2030" )
+							addElement( "2031" )
+							addElement( "2032" )
+							addElement( "2033" )
+							addElement( "2034" )
+							addElement( "2035" )
+							addElement( "2036" )
+							addElement( "2037" )
+							addElement( "2038" )
+							addElement( "2039" )
+							addElement( "2040" )
+							addElement( "2041" )
+							addElement( "2042" )
+							addElement( "2043" )
+							addElement( "2044" )
+							addElement( "2045" )
+							addElement( "2046" )
+							addElement( "2047" )
+							addElement( "2048" )
+							addElement( "2049" )
+							addElement( "2050" )
+							addElement( "2051" )
+							addElement( "2052" )
+							addElement( "2053" )
+							addElement( "2054" )
+							addElement( "2055" )
+							addElement( "2056" )
+							addElement( "2057" )
+							addElement( "2058" )
+							addElement( "2059" )
+							addElement( "2060" )
+							addElement( "2061" )
+							addElement( "2062" )
+							addElement( "2063" )
+							addElement( "2064" )
+							addElement( "2065" )
+							addElement( "2066" )
+							addElement( "2067" )
+							addElement( "2068" )
+							addElement( "2069" )
+							addElement( "2070" )
+							addElement( "2071" )
+							addElement( "2072" )
+							addElement( "2073" )
+							addElement( "2074" )
+							addElement( "2075" )
+							addElement( "2076" )
+							addElement( "2077" )
+							addElement( "2078" )
+							addElement( "2079" )
+							addElement( "2080" )
+							addElement( "2081" )
+							addElement( "2082" )
+							addElement( "2083" )
+							addElement( "2084" )
+							addElement( "2085" )
+							addElement( "2086" )
+							addElement( "2087" )
+							addElement( "2088" )
+							addElement( "2089" )
+							addElement( "2090" )
+							addElement( "2091" )
+							addElement( "2092" )
+							addElement( "2093" )
+							addElement( "2094" )
+							addElement( "2095" )
+							addElement( "2096" )
+							addElement( "2097" )
+							addElement( "2098" )
+							addElement( "2099" )
+							addElement( "2100" )
+						}
+						"font": new java.awt.Font( "宋体", 0, 14 )
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 1
 						"gridY": 1
@@ -186,7 +391,7 @@ new FormModel {
 						"gridY": 1
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "lunarMonth"
 						"font": new java.awt.Font( "宋体", 0, 14 )
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "正月"
@@ -203,12 +408,13 @@ new FormModel {
 							addElement( "十一" )
 							addElement( "腊月" )
 						}
+						"maximumRowCount": 12
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 3
 						"gridY": 1
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox2"
+						name: "lunarDay"
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "初一"
 							addElement( "初一" )
@@ -244,6 +450,7 @@ new FormModel {
 						}
 						"font": #Font2
 						"preferredSize": new java.awt.Dimension( 50, 22 )
+						"maximumRowCount": 15
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 4
 					} )
@@ -384,7 +591,7 @@ new FormModel {
 					"gridY": 15
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textZip"
+					name: "personDescription"
 					"font": #Font0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
@@ -428,31 +635,25 @@ new FormModel {
 					"gridX": 5
 					"gridY": 1
 				} )
-				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
-					name: "lastday"
-					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(nextYearDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "yearsComboBox"
+					"font": new java.awt.Font( "宋体", 0, 14 )
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "1年"
+						addElement( "1年" )
+						addElement( "2年" )
+						addElement( "3年" )
+						addElement( "4年" )
+						addElement( "5年" )
+						addElement( "6年" )
+						addElement( "7年" )
+						addElement( "8年" )
+						addElement( "9年" )
+						addElement( "10年" )
 					}
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
-				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label16"
-					"text": "续会时限"
-					"horizontalAlignment": 0
-					"font": #Font0
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 1
-					"gridY": 3
-				} )
-				add( new FormComponent( "com.eltima.components.ui.DatePicker" ) {
-					name: "disableday"
-					auxiliary() {
-						"JavaCodeGenerator.customCreateCode": "new DatePicker(nextYearNextMonthDate, org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);"
-					}
-				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 3
-					"gridY": 3
+					"gridY": 1
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label17"
@@ -460,11 +661,26 @@ new FormModel {
 					"horizontalAlignment": 0
 					"font": #Font0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-					"gridX": 5
 					"gridY": 3
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textFee"
+					"font": #Font0
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 3
+					"gridY": 3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label19"
+					"text": "介绍人"
+					"horizontalAlignment": 0
+					"font": #Font0
+				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+					"gridX": 5
+					"gridY": 3
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "introducer"
 					"font": #Font0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
@@ -487,17 +703,17 @@ new FormModel {
 					"gridY": 5
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label19"
-					"text": "介绍人"
+					name: "label5"
+					"text": "经办人"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 					"horizontalAlignment": 0
-					"font": #Font0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 5
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "introduceName"
-					"font": #Font0
+					name: "attnName"
+					"font": new java.awt.Font( "宋体", 0, 14 )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 5
@@ -541,6 +757,7 @@ new FormModel {
 					name: "resetAddJButton"
 					"text": "重  置"
 					"font": #Font0
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "resetAddJButtonActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 				} )

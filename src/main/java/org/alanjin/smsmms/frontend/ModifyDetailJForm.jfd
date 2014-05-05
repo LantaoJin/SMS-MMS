@@ -4,10 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-			"$columnSpecs": "default"
+			"$columnSpecs": "341dlu"
 			"$rowSpecs": "20dlu, linegap, default, linegap, 15dlu, linegap, 135dlu, 10dlu, default, default"
 		} ) {
 			name: "this"
+			"font": &Font0 new java.awt.Font( "宋体", 0, 14 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "佛恩互助会 资料修改"
@@ -26,6 +27,7 @@ new FormModel {
 					name: "label2"
 					"text": "编号："
 					"horizontalAlignment": 4
+					"font": &Font1 new java.awt.Font( "宋体", 0, 14 )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 1
@@ -33,6 +35,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "memIdJTextField"
 					"enabled": false
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 1
@@ -40,7 +43,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "successJLabel"
 					"foreground": sfield java.awt.Color red
-					"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 1
@@ -50,7 +53,7 @@ new FormModel {
 				"gridY": 5
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-				"$columnSpecs": "50dlu, labelcompgap, 100dlu, labelcompgap, 50dlu, labelcompgap, 100dlu"
+				"$columnSpecs": "50dlu, labelcompgap, 100dlu, labelcompgap, 50dlu, labelcompgap, 119dlu"
 				"$rowSpecs": "default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu, default, 5dlu"
 			} ) {
 				name: "panel2"
@@ -59,12 +62,14 @@ new FormModel {
 					name: "label3"
 					"text": "姓    名"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 1
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textName"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 1
@@ -73,6 +78,7 @@ new FormModel {
 					name: "label4"
 					"text": "性    别"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 1
@@ -82,6 +88,7 @@ new FormModel {
 					"$rowSpecs": "default"
 				} ) {
 					name: "panel3"
+					"font": #Font1
 					add( new FormComponent( "javax.swing.JRadioButton" ) {
 						name: "radioButton1"
 						"text": "男"
@@ -103,10 +110,13 @@ new FormModel {
 					"gridX": 7
 					"gridY": 1
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label6"
-					"text": "出生日期"
-					"horizontalAlignment": 0
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "solarRadio"
+					"text": "公  历"
+					"font": #Font0
+					"horizontalAlignment": 4
+					"horizontalTextPosition": 2
+					"$buttonGroup": &FormReference0 new FormReference( "birthdayGroup" )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 3
@@ -120,16 +130,307 @@ new FormModel {
 					"gridX": 3
 					"gridY": 3
 				} )
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label5"
-					"text": "邮    编"
-					"horizontalAlignment": 0
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton4"
+					"text": "农  历"
+					"font": new java.awt.Font( "宋体", 0, 14 )
+					"horizontalAlignment": 4
+					"horizontalTextPosition": 2
+					"selected": true
+					"$buttonGroup": #FormReference0
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 3
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "textZip"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "37dlu, default, 36dlu, default"
+					"$rowSpecs": "default"
+				} ) {
+					name: "panel4"
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxYear"
+						"font": #Font0
+						"maximumRowCount": 20
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "1900"
+							addElement( "1900" )
+							addElement( "1901" )
+							addElement( "1902" )
+							addElement( "1903" )
+							addElement( "1904" )
+							addElement( "1905" )
+							addElement( "1906" )
+							addElement( "1907" )
+							addElement( "1908" )
+							addElement( "1909" )
+							addElement( "1910" )
+							addElement( "1911" )
+							addElement( "1912" )
+							addElement( "1913" )
+							addElement( "1914" )
+							addElement( "1915" )
+							addElement( "1916" )
+							addElement( "1917" )
+							addElement( "1918" )
+							addElement( "1919" )
+							addElement( "1920" )
+							addElement( "1921" )
+							addElement( "1922" )
+							addElement( "1923" )
+							addElement( "1924" )
+							addElement( "1925" )
+							addElement( "1926" )
+							addElement( "1927" )
+							addElement( "1928" )
+							addElement( "1929" )
+							addElement( "1930" )
+							addElement( "1931" )
+							addElement( "1932" )
+							addElement( "1933" )
+							addElement( "1934" )
+							addElement( "1935" )
+							addElement( "1936" )
+							addElement( "1937" )
+							addElement( "1938" )
+							addElement( "1939" )
+							addElement( "1940" )
+							addElement( "1941" )
+							addElement( "1942" )
+							addElement( "1943" )
+							addElement( "1944" )
+							addElement( "1945" )
+							addElement( "1946" )
+							addElement( "1947" )
+							addElement( "1948" )
+							addElement( "1949" )
+							addElement( "1950" )
+							addElement( "1951" )
+							addElement( "1952" )
+							addElement( "1953" )
+							addElement( "1954" )
+							addElement( "1955" )
+							addElement( "1956" )
+							addElement( "1957" )
+							addElement( "1958" )
+							addElement( "1959" )
+							addElement( "1960" )
+							addElement( "1961" )
+							addElement( "1962" )
+							addElement( "1963" )
+							addElement( "1964" )
+							addElement( "1965" )
+							addElement( "1966" )
+							addElement( "1967" )
+							addElement( "1968" )
+							addElement( "1969" )
+							addElement( "1970" )
+							addElement( "1971" )
+							addElement( "1972" )
+							addElement( "1973" )
+							addElement( "1974" )
+							addElement( "1975" )
+							addElement( "1976" )
+							addElement( "1977" )
+							addElement( "1978" )
+							addElement( "1979" )
+							addElement( "1980" )
+							addElement( "1981" )
+							addElement( "1982" )
+							addElement( "1983" )
+							addElement( "1984" )
+							addElement( "1985" )
+							addElement( "1986" )
+							addElement( "1987" )
+							addElement( "1988" )
+							addElement( "1989" )
+							addElement( "1990" )
+							addElement( "1991" )
+							addElement( "1992" )
+							addElement( "1993" )
+							addElement( "1994" )
+							addElement( "1995" )
+							addElement( "1996" )
+							addElement( "1997" )
+							addElement( "1998" )
+							addElement( "1999" )
+							addElement( "2000" )
+							addElement( "2001" )
+							addElement( "2002" )
+							addElement( "2003" )
+							addElement( "2004" )
+							addElement( "2005" )
+							addElement( "2006" )
+							addElement( "2007" )
+							addElement( "2008" )
+							addElement( "2009" )
+							addElement( "2010" )
+							addElement( "2011" )
+							addElement( "2012" )
+							addElement( "2013" )
+							addElement( "2014" )
+							addElement( "2015" )
+							addElement( "2016" )
+							addElement( "2017" )
+							addElement( "2018" )
+							addElement( "2019" )
+							addElement( "2020" )
+							addElement( "2021" )
+							addElement( "2022" )
+							addElement( "2023" )
+							addElement( "2024" )
+							addElement( "2025" )
+							addElement( "2026" )
+							addElement( "2027" )
+							addElement( "2028" )
+							addElement( "2029" )
+							addElement( "2030" )
+							addElement( "2031" )
+							addElement( "2032" )
+							addElement( "2033" )
+							addElement( "2034" )
+							addElement( "2035" )
+							addElement( "2036" )
+							addElement( "2037" )
+							addElement( "2038" )
+							addElement( "2039" )
+							addElement( "2040" )
+							addElement( "2041" )
+							addElement( "2042" )
+							addElement( "2043" )
+							addElement( "2044" )
+							addElement( "2045" )
+							addElement( "2046" )
+							addElement( "2047" )
+							addElement( "2048" )
+							addElement( "2049" )
+							addElement( "2050" )
+							addElement( "2051" )
+							addElement( "2052" )
+							addElement( "2053" )
+							addElement( "2054" )
+							addElement( "2055" )
+							addElement( "2056" )
+							addElement( "2057" )
+							addElement( "2058" )
+							addElement( "2059" )
+							addElement( "2060" )
+							addElement( "2061" )
+							addElement( "2062" )
+							addElement( "2063" )
+							addElement( "2064" )
+							addElement( "2065" )
+							addElement( "2066" )
+							addElement( "2067" )
+							addElement( "2068" )
+							addElement( "2069" )
+							addElement( "2070" )
+							addElement( "2071" )
+							addElement( "2072" )
+							addElement( "2073" )
+							addElement( "2074" )
+							addElement( "2075" )
+							addElement( "2076" )
+							addElement( "2077" )
+							addElement( "2078" )
+							addElement( "2079" )
+							addElement( "2080" )
+							addElement( "2081" )
+							addElement( "2082" )
+							addElement( "2083" )
+							addElement( "2084" )
+							addElement( "2085" )
+							addElement( "2086" )
+							addElement( "2087" )
+							addElement( "2088" )
+							addElement( "2089" )
+							addElement( "2090" )
+							addElement( "2091" )
+							addElement( "2092" )
+							addElement( "2093" )
+							addElement( "2094" )
+							addElement( "2095" )
+							addElement( "2096" )
+							addElement( "2097" )
+							addElement( "2098" )
+							addElement( "2099" )
+							addElement( "2100" )
+						}
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 1
+						"gridY": 1
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "年"
+						"font": #Font0
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 2
+						"gridY": 1
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxMonth"
+						"font": #Font0
+						"maximumRowCount": 12
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "正月"
+							addElement( "正月" )
+							addElement( "二月" )
+							addElement( "三月" )
+							addElement( "四月" )
+							addElement( "五月" )
+							addElement( "六月" )
+							addElement( "七月" )
+							addElement( "八月" )
+							addElement( "九月" )
+							addElement( "十月" )
+							addElement( "十一" )
+							addElement( "腊月" )
+						}
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 1
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBoxDay"
+						"font": #Font0
+						"maximumRowCount": 15
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "初一"
+							addElement( "初一" )
+							addElement( "初二" )
+							addElement( "初三" )
+							addElement( "初四" )
+							addElement( "初五" )
+							addElement( "初六" )
+							addElement( "初七" )
+							addElement( "初八" )
+							addElement( "初九" )
+							addElement( "初十" )
+							addElement( "十一" )
+							addElement( "十二" )
+							addElement( "十三" )
+							addElement( "十四" )
+							addElement( "十五" )
+							addElement( "十六" )
+							addElement( "十七" )
+							addElement( "十八" )
+							addElement( "十九" )
+							addElement( "二十" )
+							addElement( "二一" )
+							addElement( "二二" )
+							addElement( "二三" )
+							addElement( "二四" )
+							addElement( "二五" )
+							addElement( "二六" )
+							addElement( "二七" )
+							addElement( "二八" )
+							addElement( "二九" )
+							addElement( "三十" )
+						}
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 4
+						"gridY": 1
+					} )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 3
@@ -138,12 +439,14 @@ new FormModel {
 					name: "label7"
 					"text": "地    址"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 5
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textAddress"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 5
@@ -153,12 +456,14 @@ new FormModel {
 					name: "label8"
 					"text": "固    话"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 7
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textTel"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 7
@@ -167,12 +472,14 @@ new FormModel {
 					name: "label10"
 					"text": "手    机"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 7
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textPhone"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 7
@@ -181,12 +488,14 @@ new FormModel {
 					name: "label9"
 					"text": "电子邮箱"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 9
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textEmail"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 9
@@ -195,6 +504,7 @@ new FormModel {
 					name: "label11"
 					"text": "文化程度"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 9
@@ -210,6 +520,7 @@ new FormModel {
 						addElement( "硕士" )
 						addElement( "博士" )
 					}
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 9
@@ -218,12 +529,14 @@ new FormModel {
 					name: "label12"
 					"text": "行    业"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 11
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textIndustry"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 11
@@ -232,12 +545,14 @@ new FormModel {
 					name: "label13"
 					"text": "职    称"
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 5
 					"gridY": 11
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textTitle"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 7
 					"gridY": 11
@@ -247,12 +562,14 @@ new FormModel {
 					"text": "备    注"
 					"horizontalTextPosition": 10
 					"horizontalAlignment": 0
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 13
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "noteTextField"
+					"font": #Font1
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
 					"gridY": 13
@@ -270,6 +587,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "confirmJButton"
 					"text": "修  改"
+					"font": #Font1
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "confirmJButtonActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 3
@@ -280,12 +598,17 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 485, 395 )
+			"size": new java.awt.Dimension( 515, 395 )
 		} )
 		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
 			name: "genderGroup"
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 520 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "birthdayGroup"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 573 )
 		} )
 	}
 }

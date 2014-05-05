@@ -19,31 +19,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
+ * 
  * @author Administrator
  */
 @Entity
 @Table(name = "member", catalog = "SMS-MMS", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Member1.findAll", query = "SELECT m FROM Member1 m"),
-    @NamedQuery(name = "Member1.findByKeyId", query = "SELECT m FROM Member1 m WHERE m.keyId = :keyId"),
-    @NamedQuery(name = "Member1.findByMemId", query = "SELECT m FROM Member1 m WHERE m.memId = :memId"),
-    @NamedQuery(name = "Member1.findByName", query = "SELECT m FROM Member1 m WHERE m.name = :name"),
-    @NamedQuery(name = "Member1.findByGender", query = "SELECT m FROM Member1 m WHERE m.gender = :gender"),
-    @NamedQuery(name = "Member1.findByBirthday", query = "SELECT m FROM Member1 m WHERE m.birthday = :birthday"),
-    @NamedQuery(name = "Member1.findByZip", query = "SELECT m FROM Member1 m WHERE m.zip = :zip"),
-    @NamedQuery(name = "Member1.findByAddress", query = "SELECT m FROM Member1 m WHERE m.address = :address"),
-    @NamedQuery(name = "Member1.findByTel", query = "SELECT m FROM Member1 m WHERE m.tel = :tel"),
-    @NamedQuery(name = "Member1.findByPhone", query = "SELECT m FROM Member1 m WHERE m.phone = :phone"),
-    @NamedQuery(name = "Member1.findByEmail", query = "SELECT m FROM Member1 m WHERE m.email = :email"),
-    @NamedQuery(name = "Member1.findByEdu", query = "SELECT m FROM Member1 m WHERE m.edu = :edu"),
-    @NamedQuery(name = "Member1.findByIndustry", query = "SELECT m FROM Member1 m WHERE m.industry = :industry"),
-    @NamedQuery(name = "Member1.findByTitle", query = "SELECT m FROM Member1 m WHERE m.title = :title"),
-    @NamedQuery(name = "Member1.findByExpert", query = "SELECT m FROM Member1 m WHERE m.expert = :expert"),
-    @NamedQuery(name = "Member1.findByJoindate", query = "SELECT m FROM Member1 m WHERE m.joindate = :joindate"),
-    @NamedQuery(name = "Member1.findByLastdate", query = "SELECT m FROM Member1 m WHERE m.lastdate = :lastdate"),
-    @NamedQuery(name = "Member1.findByDisable", query = "SELECT m FROM Member1 m WHERE m.disable = :disable"),
-    @NamedQuery(name = "Member1.findByFeesum", query = "SELECT m FROM Member1 m WHERE m.feesum = :feesum")})
+        @NamedQuery(name = "Member1.findAll", query = "SELECT m FROM Member1 m"),
+        @NamedQuery(name = "Member1.findByKeyId", query = "SELECT m FROM Member1 m WHERE m.keyId = :keyId"),
+        @NamedQuery(name = "Member1.findByMemId", query = "SELECT m FROM Member1 m WHERE m.memId = :memId"),
+        @NamedQuery(name = "Member1.findByName", query = "SELECT m FROM Member1 m WHERE m.name = :name"),
+        @NamedQuery(name = "Member1.findByGender", query = "SELECT m FROM Member1 m WHERE m.gender = :gender"),
+        @NamedQuery(name = "Member1.findByBirthday", query = "SELECT m FROM Member1 m WHERE m.birthday = :birthday"),
+        @NamedQuery(name = "Member1.findByZip", query = "SELECT m FROM Member1 m WHERE m.zip = :zip"),
+        @NamedQuery(name = "Member1.findByAddress", query = "SELECT m FROM Member1 m WHERE m.address = :address"),
+        @NamedQuery(name = "Member1.findByTel", query = "SELECT m FROM Member1 m WHERE m.tel = :tel"),
+        @NamedQuery(name = "Member1.findByPhone", query = "SELECT m FROM Member1 m WHERE m.phone = :phone"),
+        @NamedQuery(name = "Member1.findByEmail", query = "SELECT m FROM Member1 m WHERE m.email = :email"),
+        @NamedQuery(name = "Member1.findByEdu", query = "SELECT m FROM Member1 m WHERE m.edu = :edu"),
+        @NamedQuery(name = "Member1.findByIndustry", query = "SELECT m FROM Member1 m WHERE m.industry = :industry"),
+        @NamedQuery(name = "Member1.findByTitle", query = "SELECT m FROM Member1 m WHERE m.title = :title"),
+        @NamedQuery(name = "Member1.findByExpert", query = "SELECT m FROM Member1 m WHERE m.expert = :expert"),
+        @NamedQuery(name = "Member1.findByJoindate", query = "SELECT m FROM Member1 m WHERE m.joindate = :joindate"),
+        @NamedQuery(name = "Member1.findByLastdate", query = "SELECT m FROM Member1 m WHERE m.lastdate = :lastdate"),
+        @NamedQuery(name = "Member1.findByDisable", query = "SELECT m FROM Member1 m WHERE m.disable = :disable"),
+        @NamedQuery(name = "Member1.findByFeesum", query = "SELECT m FROM Member1 m WHERE m.feesum = :feesum") })
 public class Member1 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -103,7 +103,8 @@ public class Member1 implements Serializable {
         this.keyId = keyId;
     }
 
-    public Member1(Integer keyId, String memId, String name, boolean gender, Date birthday, Date joindate, long feesum) {
+    public Member1(Integer keyId, String memId, String name, boolean gender,
+            Date birthday, Date joindate, long feesum) {
         this.keyId = keyId;
         this.memId = memId;
         this.name = name;
@@ -266,12 +267,14 @@ public class Member1 implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the id fields are
+        // not set
         if (!(object instanceof Member1)) {
             return false;
         }
         Member1 other = (Member1) object;
-        if ((this.keyId == null && other.keyId != null) || (this.keyId != null && !this.keyId.equals(other.keyId))) {
+        if ((this.keyId == null && other.keyId != null)
+                || (this.keyId != null && !this.keyId.equals(other.keyId))) {
             return false;
         }
         return true;
@@ -281,5 +284,5 @@ public class Member1 implements Serializable {
     public String toString() {
         return "org.alanjin.smsmms.frontend.Member1[ keyId=" + keyId + " ]";
     }
-    
+
 }

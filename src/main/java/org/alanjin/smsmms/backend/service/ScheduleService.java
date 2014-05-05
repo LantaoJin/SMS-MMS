@@ -58,15 +58,15 @@ public class ScheduleService {
     public Map<String, MassSendTask> listRuningTasks() {
         return runingSchedules;
     }
-    
+
     public boolean hasTask() {
         return runingSchedules.size() != 0;
     }
-    
+
     public void stopTask(String taskName) {
         runingSchedules.remove(taskName);
     }
-    
+
     public void close() {
         runingSchedules.clear();
         timer.cancel();

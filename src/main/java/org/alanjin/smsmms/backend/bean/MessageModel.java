@@ -60,7 +60,8 @@ public class MessageModel {
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + this.id;
-        hash = 23 * hash + (this.modelName != null ? this.modelName.hashCode() : 0);
+        hash = 23 * hash
+                + (this.modelName != null ? this.modelName.hashCode() : 0);
         return hash;
     }
 
@@ -76,7 +77,8 @@ public class MessageModel {
         if (this.id != other.id) {
             return false;
         }
-        if ((this.modelName == null) ? (other.modelName != null) : !this.modelName.equals(other.modelName)) {
+        if ((this.modelName == null) ? (other.modelName != null)
+                : !this.modelName.equals(other.modelName)) {
             return false;
         }
         return true;

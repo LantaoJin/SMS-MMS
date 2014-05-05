@@ -12,7 +12,7 @@ import org.alanjin.smsmms.backend.db.DBConn;
 
 public class MessageModelDaoImpl implements MessageModelDao {
     private DBConn db;
-    
+
     public MessageModelDaoImpl(DBConn db) {
         this.db = db;
     }

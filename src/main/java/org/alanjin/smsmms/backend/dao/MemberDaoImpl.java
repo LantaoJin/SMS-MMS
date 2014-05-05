@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,19 +17,22 @@ import org.alanjin.smsmms.backend.util.Util;
 
 public class MemberDaoImpl implements MemberDao {
     private DBConn db;
+
     public MemberDaoImpl(DBConn db) {
         this.db = db;
     }
+
     @Override
     public boolean insertMember(Member member) throws SQLException {
         Connection con = db.getConnection();
         con.setAutoCommit(false);
         try {
-            String sql = "insert into member (" + "memId,name,gender,birthday,"
+            String sql = "insert into member ("
+                    + "memId,name,gender,birthday,"
                     + "zip,address,tel,phone,email,"
                     + "edu,industry,title,expert,"
-                    + "joindate,lastdate,disabledate,feesum,birthdaystr"
-                    + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                    + "joindate,lastdate,introducer,feesum,birthdaystr,description,lunarstr"
+                    + ") values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, member.getMemId());
             ps.setString(2, member.getName());
@@ -45,9 +49,11 @@ public class MemberDaoImpl implements MemberDao {
             ps.setString(13, member.getExpert());
             ps.setDate(14, member.getJoinDate());
             ps.setDate(15, member.getLastDate());
-            ps.setDate(16, member.getDisableDate());
+            ps.setString(16, member.getIntroducer());
             ps.setBigDecimal(17, member.getFeeSum());
             ps.setString(18, Util.toBirthDayStr(member.getBirthday()));
+            ps.setString(19, member.getDescription());
+            ps.setString(20, Util.toBirthDayStrOfLunar(member.getBirthday()));
             ps.executeUpdate();
             ps.close();
 
@@ -114,9 +120,10 @@ public class MemberDaoImpl implements MemberDao {
                 e.setExpert(r.getString("expert"));
                 e.setJoinDate(r.getDate("joindate"));
                 e.setLastDate(r.getDate("lastdate"));
-                e.setDisableDate(r.getDate("disabledate"));
+                e.setIntroducer(r.getString("introducer"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
                 e.setReceiptList(getAllReceiptsByMemberId(r.getString("memId")));
+                e.setDescription(r.getString("description"));
             }
             r.close();
             ps.close();
@@ -154,9 +161,10 @@ public class MemberDaoImpl implements MemberDao {
                 e.setExpert(r.getString("expert"));
                 e.setJoinDate(r.getDate("joindate"));
                 e.setLastDate(r.getDate("lastdate"));
-                e.setDisableDate(r.getDate("disabledate"));
+                e.setIntroducer(r.getString("introducer"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
                 e.setReceiptList(getAllReceiptsByMemberId(memId));
+                e.setDescription(r.getString("description"));
             }
             r.close();
             ps.close();
@@ -170,7 +178,7 @@ public class MemberDaoImpl implements MemberDao {
     public boolean updateMember(Member member) throws SQLException {
         String sql = "UPDATE member set name=?, gender=?, birthday=?,"
                 + "zip=?, address=?, tel=?, phone=?, email=?, edu=?, industry=?,"
-                + "title=?, expert=?, joindate=?, lastdate=?, disabledate=?, feesum=?, birthdaystr=? "
+                + "title=?, expert=?, joindate=?, lastdate=?, introducer=?, feesum=?, birthdaystr=?, description=?, lunarstr=? "
                 + "where (id = ? );";
         System.out.println(sql);
         Connection con = db.getConnection();
@@ -189,10 +197,18 @@ public class MemberDaoImpl implements MemberDao {
         ps.setString(12, member.getExpert());
         ps.setDate(13, member.getJoinDate());
         ps.setDate(14, member.getLastDate());
-        ps.setDate(15, member.getDisableDate());
+        ps.setString(15, member.getIntroducer());
         ps.setBigDecimal(16, member.getFeeSum());
         ps.setString(17, Util.toBirthDayStr(member.getBirthday()));
-        ps.setInt(18, member.getId());
+        ps.setString(18, member.getDescription());
+        try {
+            ps.setString(19, Util.toBirthDayStrOfLunar(member.getBirthday()));
+        } catch (ParseException e) {
+            con.close();
+            e.printStackTrace();
+            return false;
+        }
+        ps.setInt(20, member.getId());
         ps.executeUpdate();
         ps.close();
         con.close();
@@ -225,9 +241,14 @@ public class MemberDaoImpl implements MemberDao {
     }
 
     @Override
-    public List<Member> getMembersByBirthday(String birthdayStr)
-            throws SQLException {
-        String sql = "Select * from member where (birthdaystr = ? );";
+    public List<Member> getMembersByBirthdayStr(String birthdayStr,
+            boolean isLunar) throws SQLException {
+        String sql;
+        if (isLunar) {
+            sql = "Select * from member where (lunarstr = ? );";
+        } else {
+            sql = "Select * from member where (birthdaystr = ? );";
+        }
         return filterBySql(birthdayStr, sql);
     }
 
@@ -304,9 +325,10 @@ public class MemberDaoImpl implements MemberDao {
                 e.setExpert(r.getString("expert"));
                 e.setJoinDate(r.getDate("joindate"));
                 e.setLastDate(r.getDate("lastdate"));
-                e.setDisableDate(r.getDate("disabledate"));
+                e.setIntroducer(r.getString("introducer"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
                 e.setReceiptList(getAllReceiptsByMemberId(r.getString("memId")));
+                e.setDescription(r.getString("description"));
                 memList.add(e);
             }
             r.close();
@@ -351,8 +373,9 @@ public class MemberDaoImpl implements MemberDao {
                 e.setExpert(r.getString("expert"));
                 e.setJoinDate(r.getDate("joindate"));
                 e.setLastDate(r.getDate("lastdate"));
-                e.setDisableDate(r.getDate("disabledate"));
+                e.setIntroducer(r.getString("introducer"));
                 e.setFeeSum(r.getBigDecimal("feesum"));
+                e.setDescription(r.getString("description"));
                 memList.add(e);
             }
             r.close();
@@ -361,7 +384,7 @@ public class MemberDaoImpl implements MemberDao {
         }
         return memList;
     }
-    
+
     private List<Receipt> getAllReceiptsByMemberId(String memId)
             throws SQLException {
         String sql = "Select * from receipt where (memId = ? );";

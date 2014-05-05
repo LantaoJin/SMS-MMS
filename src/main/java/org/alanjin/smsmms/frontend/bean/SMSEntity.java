@@ -5,7 +5,7 @@
 package org.alanjin.smsmms.frontend.bean;
 
 /**
- *
+ * 
  * @author Alan Jin
  */
 public class SMSEntity {
@@ -13,7 +13,7 @@ public class SMSEntity {
     private String name;
     private String sexString;
     private String phone;
-    
+
     public SMSEntity(String memId, String name, String sexString, String phone) {
         this.memId = memId;
         this.name = name;
@@ -69,7 +69,8 @@ public class SMSEntity {
             return false;
         }
         final SMSEntity other = (SMSEntity) obj;
-        if ((this.memId == null) ? (other.memId != null) : !this.memId.equals(other.memId)) {
+        if ((this.memId == null) ? (other.memId != null) : !this.memId
+                .equals(other.memId)) {
             return false;
         }
         return true;
@@ -77,7 +78,8 @@ public class SMSEntity {
 
     @Override
     public String toString() {
-        return "SMSEntity{" + "memId=" + memId + ", name=" + name + ", phone=" + phone + '}';
+        return "SMSEntity{" + "memId=" + memId + ", name=" + name + ", phone="
+                + phone + '}';
     }
-    
+
 }
