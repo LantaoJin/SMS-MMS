@@ -607,6 +607,7 @@ public class MemberJForm extends JPanel {
                     "2100"
                 }));
                 lunarYear.setFont(new Font("\u5b8b\u4f53", Font.PLAIN, 14));
+                lunarYear.setSelectedIndex(70);
                 panel6.add(lunarYear, CC.xy(1, 1));
 
                 //---- label24 ----

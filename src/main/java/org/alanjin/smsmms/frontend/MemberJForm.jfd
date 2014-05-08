@@ -378,6 +378,7 @@ new FormModel {
 							addElement( "2100" )
 						}
 						"font": new java.awt.Font( "宋体", 0, 14 )
+						"selectedIndex": 70
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 1
 						"gridY": 1
