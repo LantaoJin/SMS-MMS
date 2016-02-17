@@ -1,257 +1,183 @@
 package org.alanjin.smsmms.backend.service;
 
-import java.io.BufferedReader;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.ofbiz.entity.GenericDelegator;
-import org.smslib.GatewayException;
-import org.smslib.IInboundMessageNotification;
-import org.smslib.IOutboundMessageNotification;
-import org.smslib.InboundMessage;
-import org.smslib.OutboundMessage;
-import org.smslib.SMSLibException;
-import org.smslib.Service;
-import org.smslib.TimeoutException;
-import org.smslib.Message.MessageEncodings;
-import org.smslib.Message.MessageTypes;
-import org.smslib.modem.SerialModemGateway;
-
+/**
+ * 短信http接口的java代码调用示例
+ * 基于Apache HttpClient 4.3
+ *
+ * @author songchao
+ * @since 2015-04-03
+ */
 public class SenderAndReceiverService {
-    // 自身类
-    static SenderAndReceiverService smwps = null;
-    // 读取全部消息
-    public static final org.smslib.InboundMessage.MessageClasses ALL_MESSAGE =
-
-    org.smslib.InboundMessage.MessageClasses.ALL;
-    // 读取已读消息
-    public static final org.smslib.InboundMessage.MessageClasses READ_MESSAGE =
-
-    org.smslib.InboundMessage.MessageClasses.READ;
-    // 读取未读消息
-    public static final org.smslib.InboundMessage.MessageClasses UNREAD_MESSAGE =
-
-    org.smslib.InboundMessage.MessageClasses.UNREAD;
-    // 消息服务
-    private static Service srv = null;
-    // 发送消息回调实现类
-    OutboundNotification outboundNotification = new OutboundNotification();
-    // 读取消息回调实现类
-    InboundNotification inboundNotification = new InboundNotification();
-    // 数据库柄
-    private GenericDelegator delegator = null;
-
-    // 设备名称
-    private static String gateName = "SMS";
-
-    private SenderAndReceiverService() {
+    private static String apikey;
+    
+    public SenderAndReceiverService(String apikey) {
+        SenderAndReceiverService.apikey = apikey;
     }
 
-    // 构造类的实例，只产生一个对象实例
+    // 查账户信息的http地址
+    private static String URI_GET_USER_INFO = "http://yunpian.com/v1/user/get.json";
 
-    public static SenderAndReceiverService newInstance(String com)
-            throws TimeoutException, GatewayException, SMSLibException,
-            IOException, InterruptedException {
-        if (smwps == null)
-            smwps = new SenderAndReceiverService();
-        if (srv == null)
-            smwps.open(com, gateName);
-        return smwps;
+    //通用发送接口的http地址
+    private static String URI_SEND_SMS = "http://yunpian.com/v1/sms/send.json";
+
+    // 模板发送接口的http地址
+    private static String URI_TPL_SEND_SMS = "http://yunpian.com/v1/sms/tpl_send.json";
+
+    // 发送语音验证码接口的http地址
+    private static String URI_SEND_VOICE = "http://yunpian.com/v1/voice/send.json";
+
+    //编码格式。发送编码格式统一用UTF-8
+    private static String ENCODING = "UTF-8";
+
+    /**
+     * 取账户信息
+     *
+     * @return json格式字符串
+     * @throws java.io.IOException
+     */
+    public static String getUserInfo(String apikey) throws IOException, URISyntaxException {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("apikey", apikey);
+        return post(URI_GET_USER_INFO, params);
     }
 
-    public static SenderAndReceiverService newInstance(String com,
-            GenericDelegator delegator) throws TimeoutException,
-            GatewayException, SMSLibException, IOException,
-            InterruptedException {
-        if (smwps == null)
-            smwps = new SenderAndReceiverService();
-        if (srv == null)
-            smwps.open(com, gateName);
-        smwps.delegator = delegator;
-        return smwps;
+    /**
+     * 通用接口发短信
+     *
+     * @param apikey apikey
+     * @param text   　短信内容
+     * @param mobile 　接受的手机号
+     * @return json格式字符串
+     * @throws IOException
+     */
+    public static String sendSms(String text, String mobile) throws IOException {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("apikey", apikey);
+        params.put("text", text);
+        params.put("mobile", mobile);
+        return post(URI_SEND_SMS, params);
     }
 
-    public static SenderAndReceiverService newInstance(String com,
-            GenericDelegator delegator, String gateName)
-            throws TimeoutException, GatewayException, SMSLibException,
-            IOException, InterruptedException {
-        if (smwps == null)
-            smwps = new SenderAndReceiverService();
-        if (srv == null)
-            smwps.open(com, gateName);
-        smwps.delegator = delegator;
-        SenderAndReceiverService.gateName = gateName;
-        return smwps;
+    /**
+     * 通过模板发送短信(不推荐)
+     *
+     * @param apikey    apikey
+     * @param tpl_id    　模板id
+     * @param tpl_value 　模板变量值
+     * @param mobile    　接受的手机号
+     * @return json格式字符串
+     * @throws IOException
+     */
+    public static String tplSendSms(long tpl_id, String tpl_value, String mobile) throws IOException {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("apikey", apikey);
+        params.put("tpl_id", String.valueOf(tpl_id));
+        params.put("tpl_value", tpl_value);
+        params.put("mobile", mobile);
+        return post(URI_TPL_SEND_SMS, params);
     }
 
-    // 打开端口，开启服务
-    private void open(String com, String gateName) throws TimeoutException,
-            GatewayException, SMSLibException, IOException,
-            InterruptedException {
-        srv = new Service();
-        // comPort 串口名，比如COM1或者/dev/ttyS1
-        // baudRate 端口速度，WAVECOM是9600
-        // manufacturer,model 制造商和型号随便填
-        SerialModemGateway gateway = new SerialModemGateway(gateName, com,
-                9600, "", "");
-        gateway.setInbound(true);
-        gateway.setOutbound(true);
-        // gateway.setSimPin("0000");
-        // gateway.setOutboundNotification(outboundNotification);
-
-        // gateway.setInboundNotification(inboundNotification);
-        // srv.setOutboundNotification(outboundNotification);
-        // srv.setInboundNotification(inboundNotification);
-        // srv.S.SERIAL_POLLING_INTERVAL=10;
-        // srv.S.SERIAL_POLLING=true;
-        srv.addGateway(gateway);
-        srv.startService();
+    /**
+     * 通过接口发送语音验证码
+     * @param apikey apikey
+     * @param mobile 接收的手机号
+     * @param code   验证码
+     * @return
+     */
+    public static String sendVoice(String mobile, String code) {
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("apikey", apikey);
+        params.put("mobile", mobile);
+        params.put("code", code);
+        return post(URI_SEND_VOICE, params);
     }
 
-    // 读取信息
-    public static List<org.smslib.InboundMessage> readSms(
-            org.smslib.InboundMessage.MessageClasses messageType)
-            throws TimeoutException, GatewayException, IOException,
-            InterruptedException {
-        List<InboundMessage> smss = new LinkedList<InboundMessage>();
-        // InboundMessage inm=null;
-        srv.readMessages(smss, messageType, gateName);
-        // System.out.println(smss);
-        // System.out.println(msg);
-        return smss;
-    }
-
-    // 发送单条消息
-    public static boolean sendSms(String mobile, String content,
-            boolean tryAgain) {
-        OutboundMessage msg = new OutboundMessage(mobile, content);
-        msg.setEncoding(MessageEncodings.ENCUCS2);
-        // msg.setStatusReport(true);
+    /**
+     * 基于HttpClient 4.3的通用POST方法
+     *
+     * @param url       提交的URL
+     * @param paramsMap 提交<参数，值>Map
+     * @return 提交响应
+     */
+    public static String post(String url, Map<String, String> paramsMap) {
+        CloseableHttpClient client = HttpClients.createDefault();
+        String responseText = "";
+        CloseableHttpResponse response = null;
         try {
-            srv.sendMessage(msg);
-            // System.out.println(msg);
-        } catch (InterruptedException e) {
-            // TODO LOG
-        } catch (Exception e) {
-            // System.out.println("--"+e);
-            if (tryAgain) {
-                try {
-                    srv.sendMessage(msg);
-                } catch (InterruptedException e1) {
-                } catch (Exception e1) {
-                    return false;
+            HttpPost method = new HttpPost(url);
+            if (paramsMap != null) {
+                List<NameValuePair> paramList = new ArrayList<NameValuePair>();
+                for (Map.Entry<String, String> param : paramsMap.entrySet()) {
+                    NameValuePair pair = new BasicNameValuePair(param.getKey(), param.getValue());
+                    paramList.add(pair);
                 }
-            } else {
-                return false;
+                method.setEntity(new UrlEncodedFormEntity(paramList, ENCODING));
             }
-        }
-        return true;
-    }
-
-    // 群发消息
-    public static List<Map<String, String>> sendSms(
-            List<Map<String, String>> messages, boolean tryAgain) {
-        List<Map<String, String>> failList = new ArrayList<Map<String, String>>();
-        Iterator<Map<String, String>> itr = messages.iterator();
-        while (itr.hasNext()) {
-            Map<String, String> message = (Map<String, String>) itr.next();
-            String mobile = (String) message.get("mobile");
-            String content = (String) message.get("content");
-            if (!sendSms(mobile, content, tryAgain)) {
-                failList.add(message);
+            response = client.execute(method);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                responseText = EntityUtils.toString(entity);
             }
-        }
-        return failList;
-    }
-
-    // 关闭服务
-    public static void close() {
-        try {
-            srv.stopService();
-        } catch (Exception ex) {
-            System.out.println("**" + ex);
-        }
-    }
-
-    public class OutboundNotification implements IOutboundMessageNotification {
-        public void process(String gatewayId, OutboundMessage msg) {
-            System.out.println("Outbound handler called from Gateway: "
-                    + gatewayId);
-            System.out.println(msg);
-        }
-    }
-
-    public class InboundNotification implements IInboundMessageNotification {
-
-        public void process(String arg0, MessageTypes arg1, InboundMessage arg2) {
-            // TODO Auto-generated method stub
-            // System.out.println(arg0);
-            // System.out.println(arg1);
-            // System.out.println(arg2);
-
-        }
-
-    }
-
-    public static void main(String[] args) throws TimeoutException,
-            GatewayException, IOException, InterruptedException {
-        String mob = "13636316288";
-        String content = "一只小熊去山里创业，农夫给了他一把镰刀，木匠给了他一把锤子， 小熊来到山里遇到老虎，吓得把镰刀、锤子举在头顶， 老虎说：没看出来，就你这熊样还是个党员来！";
-        SenderAndReceiverService sms = new SenderAndReceiverService();// newInstance();
-        try {
-            sms.open("COM6", "SMS");
-        } catch (TimeoutException e) {
-            // TODO Auto-generated catch block
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (GatewayException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SMSLibException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println("1、发送短消息");
-        System.out.println("quit、退出");
-        String str = "";
-        System.out.println("1、发送短消息");
-
-        System.out.println("quit、退出");
-        while (true) {
-            System.out.print("请选择：   ");
-            InputStreamReader stdin = new InputStreamReader(System.in);// 键盘输入
-            BufferedReader bufin = new BufferedReader(stdin);
+        } finally {
             try {
-                str = bufin.readLine();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
+                response.close();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (str.equals("quit")) {
-                SenderAndReceiverService.close();
-                break;
-            } else if (str.equals("1"))
-                System.out.println(SenderAndReceiverService.sendSms(mob,
-                        content, false));
-            else {
-                System.out.println("短消息!");
-                SenderAndReceiverService
-                        .readSms(SenderAndReceiverService.ALL_MESSAGE);
-            }
         }
-        // sms.readSms();
-        // sms.sendSms(mob, content);
-        // sms.close();
+        return responseText;
     }
+    
+    public static void main(String[] args) throws IOException, URISyntaxException {
+        //修改为您的apikey.apikey可在官网（http://www.yuanpian.com)登录后用户中心首页看到
+        String apikey = args[0];
+        //修改为您要发送的手机号
+        String mobile = args[1];
+        SenderAndReceiverService service = new SenderAndReceiverService(apikey);
 
+        /**************** 查账户信息调用示例 *****************/
+        System.out.println(SenderAndReceiverService.getUserInfo(apikey));
+
+//        /**************** 使用通用接口发短信(推荐) *****************/
+//        //设置您要发送的内容(内容必须和某个模板匹配。以下例子匹配的是系统提供的1号模板）
+//        String text = "【云片网】您的验证码是1234";
+//        //发短信调用示例
+//        System.out.println(JavaSmsApi.sendSms(apikey, text, mobile));
+
+        /**************** 使用模板接口发短信(不推荐，建议使用通用接口) *****************/
+        //设置模板ID，如使用1号模板:【#company#】您的验证码是#code#
+        long tpl_id = Long.parseLong(args[2]);
+        //设置对应的模板变量值
+        //如果变量名或者变量值中带有#&=%中的任意一个特殊符号，需要先分别进行urlencode编码
+        //如code值是#1234#,需作如下编码转换
+        String codeValue = URLEncoder.encode("#1234#", ENCODING);
+//        String tpl_value = "#code#=" + codeValue + "&#company#=云片网";
+        String tpl_value = "";
+        //模板发送的调用示例
+        System.out.println(SenderAndReceiverService.tplSendSms(tpl_id, tpl_value, mobile));
+
+//        /**************** 使用接口发语音验证码 *****************/
+//        String code = "1234";
+//        System.out.println(JavaSmsApi.sendVoice(apikey, mobile ,code));
+    }
 }

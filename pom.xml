@@ -14,20 +14,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
-	<plugins>
-	  <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-jar-plugin</artifactId>
-		<configuration>
-			<archive>
-				<manifest>
-					<addClasspath>true</addClasspath>
-					<mainClass>org.alanjin.smsmms.frontend.MainFrame</mainClass>
-				</manifest>
-			</archive>
-		</configuration>
-	  </plugin>
-	</plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.alanjin.smsmms.frontend.MainFrame</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 	<repositories>
@@ -51,9 +51,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.alanjin</groupId>
-			<artifactId>datepicker</artifactId>
-			<version>1.0.0</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.5</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -82,9 +82,9 @@
 			<version>2.0.3</version>
 		</dependency>
 		<dependency>
-			<groupId>unknown.binary</groupId>
-			<artifactId>mysql-connector-java-5.1.18-bin</artifactId>
-			<version>SNAPSHOT</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jdesktop</groupId>
@@ -107,14 +107,19 @@
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>unknown.binary</groupId>
-			<artifactId>jgoodies-forms</artifactId>
-			<version>SNAPSHOT</version>
+			<groupId>org.alanjin</groupId>
+			<artifactId>datepicker</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
-			<groupId>unknown.binary</groupId>
+			<groupId>com.jgoodies</groupId>
+			<artifactId>jgoodies-forms</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jgoodies</groupId>
 			<artifactId>jgoodies-common</artifactId>
-			<version>SNAPSHOT</version>
+			<version>1.6.0</version>
 		</dependency>
 	</dependencies>
 </project>
