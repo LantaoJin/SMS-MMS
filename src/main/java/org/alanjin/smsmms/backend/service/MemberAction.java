@@ -13,7 +13,8 @@ import org.alanjin.smsmms.backend.dao.MemberDaoImpl;
 import org.alanjin.smsmms.backend.dao.ReceiptDao;
 import org.alanjin.smsmms.backend.dao.ReceiptDaoImpl;
 import org.alanjin.smsmms.backend.db.DBConn;
-import org.alanjin.smsmms.backend.util.Util;
+import org.alanjin.smsmms.backend.util.BackendUtil;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 public class MemberAction {
     private static MemberAction action;
@@ -127,8 +128,8 @@ public class MemberAction {
     public List<Member> getMembersBetweenJoinday(String fromStr, String toStr) {
         Date from, to;
         try {
-            from = Util.toSQLDate(fromStr);
-            to = Util.toSQLDate(toStr);
+            from = BackendUtil.toSQLDate(fromStr);
+            to = BackendUtil.toSQLDate(toStr);
             return memberDao.getMembersBetweenJoinday(from, to);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -162,6 +163,6 @@ public class MemberAction {
         if (newest == null)
             return "000001";
         int beginNum = Integer.parseInt(newest);
-        return org.alanjin.smsmms.frontend.util.Util.nextGoodNum(beginNum);
+        return FrontendUtil.nextGoodNum(beginNum);
     }
 }

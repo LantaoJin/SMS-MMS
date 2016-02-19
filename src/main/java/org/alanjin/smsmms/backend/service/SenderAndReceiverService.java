@@ -26,10 +26,18 @@ import java.util.Map;
  * @since 2015-04-03
  */
 public class SenderAndReceiverService {
+    private static SenderAndReceiverService smwps = null;
     private static String apikey;
     
-    public SenderAndReceiverService(String apikey) {
-        SenderAndReceiverService.apikey = apikey;
+    private SenderAndReceiverService() {
+    }
+    
+    public static SenderAndReceiverService newInstance(String key) {
+        if (smwps == null) {
+            apikey = key;
+            smwps = new SenderAndReceiverService();
+        }
+        return smwps;
     }
 
     // 查账户信息的http地址
@@ -68,12 +76,29 @@ public class SenderAndReceiverService {
      * @return json格式字符串
      * @throws IOException
      */
-    public static String sendSms(String text, String mobile) throws IOException {
+    public static String sendSms(String text, String mobile) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("apikey", apikey);
         params.put("text", text);
         params.put("mobile", mobile);
         return post(URI_SEND_SMS, params);
+    }
+    
+    /**
+     * 通用接口发短信
+     *
+     * @param apikey apikey
+     * @param text   　短信内容
+     * @param mobilelist 　接受的手机号列表
+     * @return json格式字符串
+     */
+    public static String sendSms(String text, List<String> mobilelist) {
+        StringBuffer buffer = new StringBuffer();
+        for (String mobile : mobilelist) {
+            buffer.append(",").append(mobile);
+        }
+        buffer.deleteCharAt(0);
+        return sendSms(text, buffer.toString());
     }
 
     /**
@@ -84,9 +109,8 @@ public class SenderAndReceiverService {
      * @param tpl_value 　模板变量值
      * @param mobile    　接受的手机号
      * @return json格式字符串
-     * @throws IOException
      */
-    public static String tplSendSms(long tpl_id, String tpl_value, String mobile) throws IOException {
+    public static String tplSendSms(long tpl_id, String tpl_value, String mobile) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("apikey", apikey);
         params.put("tpl_id", String.valueOf(tpl_id));
@@ -153,7 +177,7 @@ public class SenderAndReceiverService {
         String apikey = args[0];
         //修改为您要发送的手机号
         String mobile = args[1];
-        SenderAndReceiverService service = new SenderAndReceiverService(apikey);
+        SenderAndReceiverService service = SenderAndReceiverService.newInstance(apikey);
 
         /**************** 查账户信息调用示例 *****************/
         System.out.println(SenderAndReceiverService.getUserInfo(apikey));

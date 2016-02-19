@@ -1,11 +1,15 @@
 package org.alanjin.smsmms.backend.util;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import org.alanjin.smsmms.frontend.util.Lunar;
 
-public class Util {
+import org.alanjin.smsmms.backend.bean.Response;
+import org.alanjin.smsmms.frontend.util.Lunar;
+import org.json.JSONObject;
+
+public class BackendUtil {
     public static final String dayFormatStr = "yyyy-MM-dd";
     public static final String timeFormatStr = "yyyy-MM-dd hh:mm:ss";
     public static final String birthFormatStr = "MMdd";
@@ -79,5 +83,26 @@ public class Util {
 
     public static java.util.Date getNextNYearFromDate(java.util.Date date, int n) {
         return getDateFromDate(date, Calendar.YEAR, n);
+    }
+    
+    public static Response parseResponse(String jsonStr) throws IOException {
+        try {
+            JSONObject rootObject = new JSONObject(jsonStr);
+            int code = rootObject.getInt("code");
+            String msg = rootObject.getString("msg");
+            String detail = rootObject.getString("detail");
+            JSONObject resultObject = rootObject.getJSONObject("result");
+            int count = resultObject.getInt("count");
+            double fee = resultObject.getDouble("fee");
+            Response response = new Response();
+            response.setCode(code);
+            response.setMsg(msg);
+            response.setDetail(detail);
+            response.setCount(count);
+            response.setFee(fee);
+            return response;
+        } catch (Exception e) {
+            throw new IOException("json parse fail" ,e);
+        }
     }
 }

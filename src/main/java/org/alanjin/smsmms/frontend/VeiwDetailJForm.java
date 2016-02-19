@@ -6,13 +6,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import org.alanjin.smsmms.frontend.util.Util;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.service.MemberAction;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 import org.alanjin.smsmms.frontend.util.Lunar;
 
 /*
@@ -44,15 +45,10 @@ public class VeiwDetailJForm extends JPanel {
     private void fillAllComponent(Member m) {
         memIdJTextField.setText(m.getMemId());
         textName.setText(m.getName());
-        birthdayTextField.setText(org.alanjin.smsmms.backend.util.Util
-                .fromSQLDate(m.getBirthday()));
-        lunarBirthdayTextField.setText(Lunar
-                .solarTolunar(org.alanjin.smsmms.backend.util.Util
-                        .fromSQLDate(m.getBirthday())));
-        joindayTextField.setText(org.alanjin.smsmms.backend.util.Util
-                .fromSQLDate(m.getJoinDate()));
-        lastdayTextField.setText(org.alanjin.smsmms.backend.util.Util
-                .fromSQLDate(m.getLastDate()));
+        birthdayTextField.setText(BackendUtil.fromSQLDate(m.getBirthday()));
+        lunarBirthdayTextField.setText(Lunar.solarTolunar(BackendUtil.fromSQLDate(m.getBirthday())));
+        joindayTextField.setText(BackendUtil.fromSQLDate(m.getJoinDate()));
+        lastdayTextField.setText(BackendUtil.fromSQLDate(m.getLastDate()));
         introducerTextField.setText(m.getIntroducer());
         textAddress.setText(m.getAddress());
         textTel.setText(m.getTel());
@@ -75,7 +71,7 @@ public class VeiwDetailJForm extends JPanel {
     private void preJButtonActionPerformed(ActionEvent e) {
         int currentMemberIdInt = Integer.parseInt(currentMemId);
         if (currentMemberIdInt > 0) {
-            String preMemId = Util.preGoodNum(currentMemberIdInt);
+            String preMemId = FrontendUtil.preGoodNum(currentMemberIdInt);
             Member m = memberAction.getMemberByMemId(preMemId);
             if (m == null) {
                 return;
@@ -87,7 +83,7 @@ public class VeiwDetailJForm extends JPanel {
 
     private void nextJButtonActionPerformed(ActionEvent e) {
         int currentMemberIdInt = Integer.parseInt(currentMemId);
-        String nextMemId = Util.nextGoodNum(currentMemberIdInt);
+        String nextMemId = FrontendUtil.nextGoodNum(currentMemberIdInt);
         Member m = memberAction.getMemberByMemId(nextMemId);
         if (m == null) {
             return;

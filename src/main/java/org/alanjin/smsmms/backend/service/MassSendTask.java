@@ -2,14 +2,15 @@ package org.alanjin.smsmms.backend.service;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TimerTask;
+
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
-import org.alanjin.smsmms.backend.util.Util;
+import org.alanjin.smsmms.backend.bean.Response;
+import org.alanjin.smsmms.backend.util.BackendUtil;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 import org.alanjin.smsmms.frontend.util.Lunar;
 
 public class MassSendTask extends TimerTask {
@@ -45,34 +46,39 @@ public class MassSendTask extends TimerTask {
         MemberAction memberAction = MemberAction.newInstance();
         String fullBirthdayString;
         if (useLunar) {
-            fullBirthdayString = Lunar.solarTolunar(Util
+            fullBirthdayString = Lunar.solarTolunar(BackendUtil
                     .fromNormalDate(new Date()));
         } else {
-            fullBirthdayString = Util.fromNormalDate(new Date());
+            fullBirthdayString = BackendUtil.fromNormalDate(new Date());
         }
         List<Member> memberToSend = memberAction.getMembersByBirthDayStr(
                 fullBirthdayString, useLunar);
 
-        List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
-        List<Map<String, String>> noneeds = new ArrayList<Map<String, String>>();
+        List<String> toSendList = new ArrayList<String>();
+        List<Member> noSendList = new ArrayList<Member>();
         for (Member toSend : memberToSend) {
-            Map<String, String> senderPair = new HashMap<String, String>();
-            senderPair.put("mobile", toSend.getPhone());
-            senderPair.put("content", messageModel.getContent());
-            if (!org.alanjin.smsmms.frontend.util.Util.isMobileNO(toSend
-                    .getPhone())) {
-                noneeds.add(senderPair);
+            if (toSend.getPhone().isEmpty()
+                    || !FrontendUtil.isMobileNO(toSend.getPhone())) {
+                noSendList.add(toSend);
                 continue;
             }
-            messages.add(senderPair);
+            toSendList.add(toSend.getPhone());
         }
-        List<Map<String, String>> failList = SenderAndReceiverService.sendSms(
-                messages, true);
-        for (Map<String, String> noneed : noneeds) {
-            failList.add(noneed);
+        System.out.println("定时短信to Send list:" + toSendList);
+        String resultJson = SenderAndReceiverService.sendSms(messageModel.getContent(), toSendList);
+        Response response = null;
+        try {
+            response = BackendUtil.parseResponse(resultJson);
+        } catch (Exception e1) {
+            System.out.println("未知异常，请联系管理员！提示:" + e1.getStackTrace());
+            return;
         }
-        if (failList.size() != 0) {
-            // TODO
+        if (response.getCode() == 0) {
+            System.out.println("定时短信群发成功!选择发送" + toSendList.size()
+                    + "条,实际发送" + response.getCount() + "条!帐号扣费" + response.getFee()
+                    +"元,另外有" + noSendList.size() + "个因手机号不合格而未发送.");
+        } else {
+            System.out.println("定时短信群发失败！原因:"+ response.getMsg() + ",提示:" + response.getDetail());
         }
     }
 

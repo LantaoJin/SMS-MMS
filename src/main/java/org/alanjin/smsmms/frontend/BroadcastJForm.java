@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import org.alanjin.smsmms.frontend.bean.SMSEntity;
-import org.alanjin.smsmms.frontend.util.Util;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 import com.jgoodies.forms.factories.*;
 import com.jgoodies.forms.layout.*;
@@ -17,8 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.alanjin.smsmms.backend.bean.MessageModel;
+import org.alanjin.smsmms.backend.bean.Response;
 import org.alanjin.smsmms.backend.service.MessageService;
 import org.alanjin.smsmms.backend.service.SenderAndReceiverService;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 
 /*
  * Created by JFormDesigner on Sat Apr 19 16:52:18 CST 2014
@@ -73,41 +75,19 @@ public class BroadcastJForm extends JPanel {
         }
     }
 
+    @SuppressWarnings("static-access")
     private void sendButtonActionPerformed(ActionEvent e) {
         String content = "";
-        String finalContent;
-        boolean useCustom = false;
-        boolean useHead = false;
-        String title = "";
-        String[] titleSplit = null;
         if (this.tabbedPane.getSelectedIndex() == 0) {
-            useHead = false;
-            useCustom = true;
-            if (this.useHeadCheckBox.isSelected()) {
-                useHead = true;
-                title = (String) this.titleComboBox.getSelectedItem();
-                if (title.equals("不使用称谓词")) {
-                    title = "";
-                } else {
-                    titleSplit = title.split("/");
-                }
-            } else {
-            }
-            content = messageTextArea.getText();
-            if (content.equals("")) {
-                JOptionPane.showMessageDialog(this, "短信内容为空，请重新编辑。", TITLE,
-                        JOptionPane.OK_OPTION);
-                return;
-            }
-        } else if (this.tabbedPane.getSelectedIndex() == 1) {
-            useHead = false;
+            JOptionPane.showMessageDialog(this, "新版本必须选择模板！", TITLE,
+                    JOptionPane.OK_OPTION);
+            return;
+        } else {
             if (this.modelComboBox.getSelectedIndex() != 0) {
                 String modelName = (String) this.modelComboBox
                         .getSelectedItem();
                 MessageModel model = modelsMap.get(modelName);
                 if (model != null) {
-                    useHead = model.isUseHead();
-                    titleSplit = model.getTitle().split("/");
                     content = model.getContent();
                 }
             }
@@ -118,62 +98,46 @@ public class BroadcastJForm extends JPanel {
                         JOptionPane.OK_OPTION);
                 return;
             }
-        } else {
-            return;
         }
 
-        List<Map<String, String>> messages = new ArrayList<Map<String, String>>();
-        List<Map<String, String>> noneeds = new ArrayList<Map<String, String>>();
+        List<String> toSendList = new ArrayList<String>();
+        List<SMSEntity> noSendList = new ArrayList<SMSEntity>();
         for (SMSEntity entity : this.toSendSMSEntitys) {
             if (entity.getPhone().isEmpty()
-                    || !Util.isMobileNO(entity.getPhone())) {
-                HashMap<String, String> noneed = new HashMap<String, String>();
-                noneed.put("mobilc", entity.getPhone());
-                noneeds.add(noneed);
+                    || !FrontendUtil.isMobileNO(entity.getPhone())) {
+                noSendList.add(entity);
                 continue;
             }
-            Map<String, String> senderPair = new HashMap<String, String>();
-            StringBuilder contentBuilder = new StringBuilder();
-            senderPair.put("mobile", entity.getPhone());
-            if (useHead) {
-                if (titleSplit != null && titleSplit.length == 2) {
-                    if (entity.getSexString().equals("男")) {
-                        title = titleSplit[0];
-                    } else {
-                        title = titleSplit[1];
-                    }
-                }
-                finalContent = contentBuilder.append(entity.getName())
-                        .append(title).append(",").append(content).toString();
-            } else {
-                finalContent = contentBuilder.append(content).toString();
-            }
-            senderPair.put("content", finalContent);
-            System.out.println(senderPair);
-            messages.add(senderPair);
+            toSendList.add(entity.getPhone());
         }
-        System.out.println("send message:");
-        // List<Map<String, String>> failList = new ArrayList<Map<String,
-        // String>>();
-        List<Map<String, String>> failList = srService.sendSms(messages, true);
-        for (Map<String, String> noneed : noneeds) {
-            failList.add(noneed);
-        }
-        if (failList.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "短信群发成功！", TITLE,
-                    JOptionPane.OK_OPTION);
-        } else {
-            StringBuilder showSendToStringBuilder = new StringBuilder();
-            for (Map<String, String> fails : failList) {
-                showSendToStringBuilder.append(fails.get("mobile"));
-                showSendToStringBuilder.append(";");
-                showSendToStringBuilder.append("\n");
-            }
-            this.failTextArea.setText(showSendToStringBuilder.toString());
+        System.out.println("群发短信to Send list:" + toSendList);
+        String resultJson = srService.sendSms(content, toSendList);
+        Response response = null;
+        try {
+            response = BackendUtil.parseResponse(resultJson);
+        } catch (Exception e1) {
             JOptionPane.showMessageDialog(this,
-                    "短信群发部分成功，失败的见列表，可能是手机号错误或者手机号空！", TITLE,
+                    "未知异常，请联系管理员！提示:" + e1.getStackTrace(), TITLE,
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (response.getCode() == 0) {
+            JOptionPane.showMessageDialog(this, "短信群发成功!选择发送" + toSendList.size()
+                    + "条,实际发送" + response.getCount() + "条!帐号扣费" + response.getFee()
+                    +"元,另外有" + noSendList.size() + "个因手机号不合格而未发送.", TITLE,
+                    JOptionPane.OK_OPTION);
+            
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "短信群发失败！原因:"+ response.getMsg() + ",提示:" + response.getDetail(), TITLE,
                     JOptionPane.OK_OPTION);
         }
+        StringBuilder builder = new StringBuilder();
+        for (SMSEntity nosend : noSendList) {
+            builder.append(",").append(nosend.getName()).append(":").append(nosend.getPhone());
+        }
+        builder.deleteCharAt(0);
+        this.nosendTextArea.setText(builder.toString());
     }
 
     private void modelComboBoxItemStateChanged(ItemEvent e) {
@@ -210,7 +174,7 @@ public class BroadcastJForm extends JPanel {
         panel4 = new JPanel();
         label3 = new JLabel();
         scrollPane3 = new JScrollPane();
-        failTextArea = new JTextArea();
+        nosendTextArea = new JTextArea();
         panel5 = new JPanel();
         sendButton = new JButton();
 
@@ -339,9 +303,9 @@ public class BroadcastJForm extends JPanel {
             // ======== scrollPane3 ========
             {
 
-                // ---- failTextArea ----
-                failTextArea.setEditable(false);
-                scrollPane3.setViewportView(failTextArea);
+                // ---- nosendTextArea ----
+                nosendTextArea.setEditable(false);
+                scrollPane3.setViewportView(nosendTextArea);
             }
             panel4.add(scrollPane3, CC.xy(1, 3));
         }
@@ -390,7 +354,7 @@ public class BroadcastJForm extends JPanel {
     private JPanel panel4;
     private JLabel label3;
     private JScrollPane scrollPane3;
-    private JTextArea failTextArea;
+    private JTextArea nosendTextArea;
     private JPanel panel5;
     private JButton sendButton;
     // JFormDesigner - End of variables declaration //GEN-END:variables

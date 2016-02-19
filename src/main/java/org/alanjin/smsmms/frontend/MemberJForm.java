@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
 
-import org.alanjin.smsmms.frontend.util.Util;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 import com.eltima.components.ui.*;
 import com.jgoodies.forms.factories.*;
@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.service.MemberAction;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 import org.alanjin.smsmms.frontend.util.Lunar;
 
 /*
@@ -58,8 +59,7 @@ public class MemberJForm extends JPanel {
             java.sql.Date lastDate = null;
             try {
                 if (this.solarRadio.isSelected()) {
-                    birthDate = org.alanjin.smsmms.backend.util.Util
-                            .toSQLDate(birthday.getText());
+                    birthDate = BackendUtil.toSQLDate(birthday.getText());
                 } else {
                     StringBuilder birthdayBuilder = new StringBuilder();
                     birthdayBuilder.append(this.lunarYear.getSelectedItem())
@@ -74,16 +74,11 @@ public class MemberJForm extends JPanel {
                     }
                     birthdayBuilder
                             .append(this.lunarDay.getSelectedIndex() + 1);
-                    birthDate = org.alanjin.smsmms.backend.util.Util
-                            .toSQLDate(Lunar.lunarTosolar(birthdayBuilder
-                                    .toString()));
+                    birthDate = BackendUtil.toSQLDate(Lunar.lunarTosolar(birthdayBuilder.toString()));
                 }
-                joinDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(joinday.getText());
-                lastDate = org.alanjin.smsmms.backend.util.Util
-                        .dateConvert(org.alanjin.smsmms.backend.util.Util.getNextNYearFromDate(
-                                org.alanjin.smsmms.backend.util.Util
-                                        .dateConvert(joinDate),
+                joinDate = BackendUtil.toSQLDate(joinday.getText());
+                lastDate = BackendUtil.dateConvert(BackendUtil.getNextNYearFromDate(
+                                BackendUtil.dateConvert(joinDate),
                                 this.yearsComboBox.getSelectedIndex() + 1));
 
             } catch (ParseException ex) {
@@ -136,8 +131,9 @@ public class MemberJForm extends JPanel {
     private void clearAllComponent() {
         memIdJTextField.setText("");
         textName.setText("");
-        birthday = new DatePicker(new java.util.Date(0),
-                org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+//        birthday = new DatePicker(new java.util.Date(0), BackendUtil.dayFormatStr, null, null);
+        birthday = new DatePicker(this, new java.util.Date(0));
+        birthday.setPattern(BackendUtil.dayFormatStr);
         textAddress.setText("");
         textTel.setText("");
         textPhone.setText("");
@@ -159,18 +155,18 @@ public class MemberJForm extends JPanel {
 
     private boolean basicCheck() {
         if (textName.getText().trim().equals("")) {
-            Util.verifyAlert("姓名 不得为空", TITLE);
+            FrontendUtil.verifyAlert("姓名 不得为空", TITLE);
             return false;
         } else if (!textPhone.getText().trim().isEmpty()
-                && !Util.isMobileNO(textPhone.getText().trim())) {
-            Util.verifyAlert("手机号格式不对", TITLE);
+                && !FrontendUtil.isMobileNO(textPhone.getText().trim())) {
+            FrontendUtil.verifyAlert("手机号格式不对", TITLE);
             return false;
         } else if (!textEmail.getText().trim().isEmpty()
-                && !Util.isEmail(textEmail.getText().trim())) {
-            Util.verifyAlert("电子邮箱格式不对", TITLE);
+                && !FrontendUtil.isEmail(textEmail.getText().trim())) {
+            FrontendUtil.verifyAlert("电子邮箱格式不对", TITLE);
             return false;
-        } else if (!Util.isDigit(textFee.getText().trim())) {
-            Util.verifyAlert("会费必须是有效金额数字", TITLE);
+        } else if (!FrontendUtil.isDigit(textFee.getText().trim())) {
+            FrontendUtil.verifyAlert("会费必须是有效金额数字", TITLE);
             return false;
         }
         return true;
@@ -225,7 +221,9 @@ public class MemberJForm extends JPanel {
         label25 = new JLabel();
         label23 = new JLabel();
         solarRadio = new JRadioButton();
-        birthday = new DatePicker(new java.util.Date(0), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+//        birthday = new DatePicker(new java.util.Date(0), BackendUtil.dayFormatStr, null, null);
+        birthday = new DatePicker(this, new java.util.Date(0));
+        birthday.setPattern(BackendUtil.dayFormatStr);
         lunarRadio = new JRadioButton();
         panel6 = new JPanel();
         lunarYear = new JComboBox();
@@ -250,7 +248,9 @@ public class MemberJForm extends JPanel {
         personDescription = new JTextField();
         panel4 = new JPanel();
         label14 = new JLabel();
-        joinday = new DatePicker(new java.util.Date(), org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+//        joinday = new DatePicker(new java.util.Date(), BackendUtil.dayFormatStr, null, null);
+        joinday = new DatePicker(this, new java.util.Date());
+        joinday.setPattern(BackendUtil.dayFormatStr);
         label15 = new JLabel();
         yearsComboBox = new JComboBox();
         label17 = new JLabel();

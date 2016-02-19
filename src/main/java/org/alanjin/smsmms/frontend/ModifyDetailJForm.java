@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import org.alanjin.smsmms.frontend.util.Util;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 import com.eltima.components.ui.*;
 import com.jgoodies.forms.factories.*;
@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.service.MemberAction;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 import org.alanjin.smsmms.frontend.util.Lunar;
 
 /*
@@ -58,8 +59,7 @@ public class ModifyDetailJForm extends JPanel {
             radioButton2.setSelected(true);
         }
         String lunarBirthday = Lunar
-                .solarTolunar(org.alanjin.smsmms.backend.util.Util
-                        .fromSQLDate(m.getBirthday()));
+                .solarTolunar(BackendUtil.fromSQLDate(m.getBirthday()));
         String[] lunarBirthdayStrArray = lunarBirthday.split("-");
         comboBoxYear.setSelectedItem(lunarBirthdayStrArray[0]);
         comboBoxMonth.setSelectedIndex(Integer
@@ -78,8 +78,7 @@ public class ModifyDetailJForm extends JPanel {
             java.sql.Date birthDate = null;
             try {
                 if (this.solarRadio.isSelected()) {
-                    birthDate = org.alanjin.smsmms.backend.util.Util
-                            .toSQLDate(birthdayPicker.getText());
+                    birthDate = BackendUtil.toSQLDate(birthdayPicker.getText());
                 } else {
                     StringBuilder birthdayBuilder = new StringBuilder();
                     birthdayBuilder.append(this.comboBoxYear.getSelectedItem())
@@ -93,11 +92,8 @@ public class ModifyDetailJForm extends JPanel {
                     if (this.comboBoxDay.getSelectedIndex() < 9) {
                         birthdayBuilder.append("0");
                     }
-                    birthdayBuilder
-                            .append(this.comboBoxDay.getSelectedIndex() + 1);
-                    birthDate = org.alanjin.smsmms.backend.util.Util
-                            .toSQLDate(Lunar.lunarTosolar(birthdayBuilder
-                                    .toString()));
+                    birthdayBuilder.append(this.comboBoxDay.getSelectedIndex() + 1);
+                    birthDate = BackendUtil.toSQLDate(Lunar.lunarTosolar(birthdayBuilder.toString()));
                 }
             } catch (ParseException ex) {
                 Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE,
@@ -129,14 +125,14 @@ public class ModifyDetailJForm extends JPanel {
     private boolean basicCheck() {
         if (textName.getText().trim().equals("")
                 || textPhone.getText().trim().equals("")) {
-            Util.verifyAlert("姓名|手机| 不得为空", TITLE);
+            FrontendUtil.verifyAlert("姓名|手机| 不得为空", TITLE);
             return false;
-        } else if (!Util.isMobileNO(textPhone.getText().trim())) {
-            Util.verifyAlert("手机号格式不对", TITLE);
+        } else if (!FrontendUtil.isMobileNO(textPhone.getText().trim())) {
+            FrontendUtil.verifyAlert("手机号格式不对", TITLE);
             return false;
         } else if (!textEmail.getText().trim().isEmpty()
-                && !Util.isEmail(textEmail.getText().trim())) {
-            Util.verifyAlert("电子邮箱格式不对", TITLE);
+                && !FrontendUtil.isEmail(textEmail.getText().trim())) {
+            FrontendUtil.verifyAlert("电子邮箱格式不对", TITLE);
             return false;
         }
         return true;
@@ -159,10 +155,10 @@ public class ModifyDetailJForm extends JPanel {
         radioButton1 = new JRadioButton();
         radioButton2 = new JRadioButton();
         solarRadio = new JRadioButton();
-        birthdayPicker = new DatePicker(
-                org.alanjin.smsmms.backend.util.Util.dateConvert(m
-                        .getBirthday()),
-                org.alanjin.smsmms.backend.util.Util.dayFormatStr, null, null);
+//        birthdayPicker = new DatePicker(BackendUtil.dateConvert(m.getBirthday()),
+//                BackendUtil.dayFormatStr, null, null);
+        birthdayPicker = new DatePicker(this, BackendUtil.dateConvert(m.getBirthday()));
+        birthdayPicker.setPattern(BackendUtil.dayFormatStr);
         radioButton4 = new JRadioButton();
         panel4 = new JPanel();
         comboBoxYear = new JComboBox();

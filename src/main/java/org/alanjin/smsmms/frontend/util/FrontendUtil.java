@@ -17,12 +17,13 @@ import javax.swing.table.TableColumn;
 
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.MessageModel;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 
 /**
  * 
  * @author Administrator
  */
-public class Util {
+public class FrontendUtil {
     public static void fillModelTable(JTable modelTable,
             List<MessageModel> messageModels) {
         Object[][] content = new Object[messageModels.size()][6];
@@ -69,9 +70,7 @@ public class Util {
             content[i][2] = members.get(i).getGender() == 1 ? "男" : "女";
             content[i][3] = members.get(i).getPhone();
             content[i][4] = members.get(i).getBirthday();
-            content[i][5] = Lunar
-                    .solarTolunar(org.alanjin.smsmms.backend.util.Util
-                            .fromSQLDate(members.get(i).getBirthday()));
+            content[i][5] = Lunar.solarTolunar(BackendUtil.fromSQLDate(members.get(i).getBirthday()));
             content[i][6] = members.get(i).getJoinDate();
             content[i][7] = members.get(i).getLastDate();
             content[i][8] = members.get(i).getFeeSum();
@@ -153,24 +152,24 @@ public class Util {
     public static final String HOME_PRINT = "【打印】：连接打印机后，进行会员信息的打印和会员列表的打印（本版本尚未添加该功能）。";
 
     public static void main(String[] args) throws IOException {
-        System.out.println(Util.isMobileNO("15921778090"));
-        System.out.println(Util.isMobileNO("1592177090"));
-        System.out.println(Util.isEmail("w232@dfd.dsfd"));
-        System.out.println(Util.isEmail("232@dfd.ds. fd"));
-        System.out.println(Util.isDigit("23.03"));
-        System.out.println(Util.isDigit("1dsa.1e"));
+        System.out.println(FrontendUtil.isMobileNO("15921778090"));
+        System.out.println(FrontendUtil.isMobileNO("1592177090"));
+        System.out.println(FrontendUtil.isEmail("w232@dfd.dsfd"));
+        System.out.println(FrontendUtil.isEmail("232@dfd.ds. fd"));
+        System.out.println(FrontendUtil.isDigit("23.03"));
+        System.out.println(FrontendUtil.isDigit("1dsa.1e"));
 
         String tmp = "1234";
         System.out.println(tmp.lastIndexOf('4'));
         System.out.println(tmp.indexOf('4'));
 
-        System.out.println(Util.nextGoodNum(3));
-        System.out.println(Util.nextGoodNum(13));
-        System.out.println(Util.nextGoodNum(33));
-        System.out.println(Util.nextGoodNum(39));
-        System.out.println(Util.nextGoodNum(339));
-        System.out.println(Util.nextGoodNum(399));
-        System.out.println(Util.nextGoodNum(3999));
+        System.out.println(FrontendUtil.nextGoodNum(3));
+        System.out.println(FrontendUtil.nextGoodNum(13));
+        System.out.println(FrontendUtil.nextGoodNum(33));
+        System.out.println(FrontendUtil.nextGoodNum(39));
+        System.out.println(FrontendUtil.nextGoodNum(339));
+        System.out.println(FrontendUtil.nextGoodNum(399));
+        System.out.println(FrontendUtil.nextGoodNum(3999));
 
         System.out.println(Integer.parseInt("000011"));
     }

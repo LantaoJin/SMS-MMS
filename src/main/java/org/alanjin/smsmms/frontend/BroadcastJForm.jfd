@@ -145,7 +145,7 @@ new FormModel {
 				name: "panel4"
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
-					"text": "以下号码未发送成功："
+					"text": "以下因手机号不合格未发送："
 				}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 					"gridX": 1
 					"gridY": 1

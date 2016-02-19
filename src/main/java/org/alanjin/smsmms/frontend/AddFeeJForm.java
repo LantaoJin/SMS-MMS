@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import org.alanjin.smsmms.frontend.util.Util;
+import org.alanjin.smsmms.frontend.util.FrontendUtil;
 
 import com.eltima.components.ui.*;
 import com.jgoodies.forms.factories.*;
@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.service.MemberAction;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 
 /*
  * Created by JFormDesigner on Sat Apr 19 16:52:18 CST 2014
@@ -52,10 +53,8 @@ public class AddFeeJForm extends JPanel {
     private void fillAllComponent(Member m) {
         memIdJTextField.setText(m.getMemId());
         textName.setText(m.getName());
-        joindayTextField.setText(org.alanjin.smsmms.backend.util.Util
-                .fromSQLDate(m.getJoinDate()));
-        lastdayTextField.setText(org.alanjin.smsmms.backend.util.Util
-                .fromSQLDate(m.getLastDate()));
+        joindayTextField.setText(BackendUtil.fromSQLDate(m.getJoinDate()));
+        lastdayTextField.setText(BackendUtil.fromSQLDate(m.getLastDate()));
         textIntroducer.setText(m.getIntroducer());
         textAddress.setText(m.getAddress());
         textTel.setText(m.getTel());
@@ -75,13 +74,10 @@ public class AddFeeJForm extends JPanel {
             java.sql.Date lastDate = null;
             java.sql.Date addFeeDate = null;
             try {
-                lastDate = org.alanjin.smsmms.backend.util.Util
-                        .dateConvert(org.alanjin.smsmms.backend.util.Util.getNextNYearFromDate(
-                                org.alanjin.smsmms.backend.util.Util
-                                        .dateConvert(m.getLastDate()),
+                lastDate = BackendUtil.dateConvert(BackendUtil.getNextNYearFromDate(
+                                BackendUtil.dateConvert(m.getLastDate()),
                                 this.addYearComboBox.getSelectedIndex() + 1));
-                addFeeDate = org.alanjin.smsmms.backend.util.Util
-                        .toSQLDate(addFeedatePicker.getText());
+                addFeeDate = BackendUtil.toSQLDate(addFeedatePicker.getText());
             } catch (ParseException ex) {
                 Logger.getLogger(MemberJForm.class.getName()).log(Level.SEVERE,
                         null, ex);
@@ -129,10 +125,10 @@ public class AddFeeJForm extends JPanel {
     private boolean basicCheck() {
         if (attnName.getText().trim().equals("")
                 || addFeeTextField.getText().trim().equals("")) {
-            Util.verifyAlert("收据单号|续费金额 不得为空", TITLE);
+            FrontendUtil.verifyAlert("收据单号|续费金额 不得为空", TITLE);
             return false;
-        } else if (!Util.isDigit(addFeeTextField.getText().trim())) {
-            Util.verifyAlert("续费金额必须是有效金额数字", TITLE);
+        } else if (!FrontendUtil.isDigit(addFeeTextField.getText().trim())) {
+            FrontendUtil.verifyAlert("续费金额必须是有效金额数字", TITLE);
             return false;
         }
         return true;
@@ -179,8 +175,10 @@ public class AddFeeJForm extends JPanel {
         label18 = new JLabel();
         textReceipt = new JTextField();
         label23 = new JLabel();
-        addFeedatePicker = new DatePicker(new java.util.Date(),
-                org.alanjin.smsmms.backend.util.Util.timeFormatStr, null, null);
+//        addFeedatePicker = new DatePicker(new java.util.Date(),
+//                BackendUtil.timeFormatStr, null, null);
+        addFeedatePicker = new DatePicker(this, new java.util.Date());
+        addFeedatePicker.setPattern(BackendUtil.timeFormatStr);
         label20 = new JLabel();
         attnName = new JTextField();
         label24 = new JLabel();

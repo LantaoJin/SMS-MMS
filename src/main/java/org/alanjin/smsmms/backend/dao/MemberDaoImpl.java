@@ -13,7 +13,7 @@ import java.util.List;
 import org.alanjin.smsmms.backend.bean.Member;
 import org.alanjin.smsmms.backend.bean.Receipt;
 import org.alanjin.smsmms.backend.db.DBConn;
-import org.alanjin.smsmms.backend.util.Util;
+import org.alanjin.smsmms.backend.util.BackendUtil;
 
 public class MemberDaoImpl implements MemberDao {
     private DBConn db;
@@ -51,9 +51,9 @@ public class MemberDaoImpl implements MemberDao {
             ps.setDate(15, member.getLastDate());
             ps.setString(16, member.getIntroducer());
             ps.setBigDecimal(17, member.getFeeSum());
-            ps.setString(18, Util.toBirthDayStr(member.getBirthday()));
+            ps.setString(18, BackendUtil.toBirthDayStr(member.getBirthday()));
             ps.setString(19, member.getDescription());
-            ps.setString(20, Util.toBirthDayStrOfLunar(member.getBirthday()));
+            ps.setString(20, BackendUtil.toBirthDayStrOfLunar(member.getBirthday()));
             ps.executeUpdate();
             ps.close();
 
@@ -199,10 +199,10 @@ public class MemberDaoImpl implements MemberDao {
         ps.setDate(14, member.getLastDate());
         ps.setString(15, member.getIntroducer());
         ps.setBigDecimal(16, member.getFeeSum());
-        ps.setString(17, Util.toBirthDayStr(member.getBirthday()));
+        ps.setString(17, BackendUtil.toBirthDayStr(member.getBirthday()));
         ps.setString(18, member.getDescription());
         try {
-            ps.setString(19, Util.toBirthDayStrOfLunar(member.getBirthday()));
+            ps.setString(19, BackendUtil.toBirthDayStrOfLunar(member.getBirthday()));
         } catch (ParseException e) {
             con.close();
             e.printStackTrace();
