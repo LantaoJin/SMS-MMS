@@ -47,6 +47,10 @@ public class BackendUtil {
     public static String fromNormalDate(java.util.Date date) {
         return dayFormat.format(date);
     }
+    
+    public static String fromNormalDateForTime(java.util.Date date) {
+        return timeFormat.format(date);
+    }
 
     public static java.util.Date dateConvert(java.sql.Date date) {
         return new java.util.Date(date.getTime());
@@ -88,18 +92,21 @@ public class BackendUtil {
     public static Response parseResponse(String jsonStr) throws IOException {
         try {
             JSONObject rootObject = new JSONObject(jsonStr);
-            int code = rootObject.getInt("code");
-            String msg = rootObject.getString("msg");
-            String detail = rootObject.getString("detail");
-            JSONObject resultObject = rootObject.getJSONObject("result");
-            int count = resultObject.getInt("count");
-            double fee = resultObject.getDouble("fee");
             Response response = new Response();
+            int code = rootObject.getInt("code");
             response.setCode(code);
+            String msg = rootObject.getString("msg");
             response.setMsg(msg);
-            response.setDetail(detail);
-            response.setCount(count);
-            response.setFee(fee);
+            if(code != 0) {
+            	String detail = rootObject.getString("detail");
+            	response.setDetail(detail);
+            } else {
+	            JSONObject resultObject = rootObject.getJSONObject("result");
+	            int count = resultObject.getInt("count");
+	            double fee = resultObject.getDouble("fee");
+	            response.setCount(count);
+	            response.setFee(fee);
+            }
             return response;
         } catch (Exception e) {
             throw new IOException("json parse fail" ,e);

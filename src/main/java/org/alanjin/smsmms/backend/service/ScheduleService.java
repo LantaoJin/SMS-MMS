@@ -7,7 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 
+import org.alanjin.smsmms.backend.util.BackendUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class ScheduleService {
+	private static final Log LOG = LogFactory.getLog(ScheduleService.class);
     private Map<String, MassSendTask> runingSchedules;
     private Timer timer;
 
@@ -20,6 +25,7 @@ public class ScheduleService {
     public void addFixedTimeTaskAndRun(MassSendTask task, int hour, int min,
             int second) {
         if (runingSchedules.containsKey(task.getTaskName())) {
+        	LOG.warn("定时任务已经存在" + task.getTaskName());
             return;
         }
 
@@ -33,6 +39,8 @@ public class ScheduleService {
         }
         timer.schedule(task, date, 24 * 60 * 60 * 1000);
         runingSchedules.put(task.getTaskName(), task);
+        System.out.println("定时任务首次将于" + BackendUtil.fromNormalDateForTime(date) + "时启动，周期24小时");
+        LOG.info("定时任务首次将于" + BackendUtil.fromNormalDateForTime(date) + "时启动，周期24小时");
     }
 
     private Date addDay(Date date, int i) {

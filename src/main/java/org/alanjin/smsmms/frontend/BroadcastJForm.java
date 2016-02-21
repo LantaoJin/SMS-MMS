@@ -21,6 +21,8 @@ import org.alanjin.smsmms.backend.bean.Response;
 import org.alanjin.smsmms.backend.service.MessageService;
 import org.alanjin.smsmms.backend.service.SenderAndReceiverService;
 import org.alanjin.smsmms.backend.util.BackendUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /*
  * Created by JFormDesigner on Sat Apr 19 16:52:18 CST 2014
@@ -30,6 +32,7 @@ import org.alanjin.smsmms.backend.util.BackendUtil;
  * @author AlanJin
  */
 public class BroadcastJForm extends JPanel {
+	private static final Log LOG = LogFactory.getLog(BroadcastJForm.class);
     private static final long serialVersionUID = 1L;
     private static final String TITLE = "短信群发";
     private SenderAndReceiverService srService;
@@ -111,14 +114,16 @@ public class BroadcastJForm extends JPanel {
             toSendList.add(entity.getPhone());
         }
         System.out.println("群发短信to Send list:" + toSendList);
+        LOG.info("群发短信to Send list:" + toSendList);
         String resultJson = srService.sendSms(content, toSendList);
         Response response = null;
         try {
             response = BackendUtil.parseResponse(resultJson);
         } catch (Exception e1) {
             JOptionPane.showMessageDialog(this,
-                    "未知异常，请联系管理员！提示:" + e1.getStackTrace(), TITLE,
+                    "未知异常，请联系管理员！提示:" + e1.getMessage(), TITLE,
                     JOptionPane.ERROR_MESSAGE);
+            LOG.error("未知异常，请联系管理员！返回结果" + resultJson, e1);
             return;
         }
         if (response.getCode() == 0) {
@@ -126,18 +131,24 @@ public class BroadcastJForm extends JPanel {
                     + "条,实际发送" + response.getCount() + "条!帐号扣费" + response.getFee()
                     +"元,另外有" + noSendList.size() + "个因手机号不合格而未发送.", TITLE,
                     JOptionPane.OK_OPTION);
+            LOG.info("定时短信群发成功!选择发送" + toSendList.size()
+                    + "条,实际发送" + response.getCount() + "条!帐号扣费" + response.getFee()
+                    +"元,另外有" + noSendList.size() + "个因手机号不合格而未发送.");
             
         } else {
             JOptionPane.showMessageDialog(this,
                     "短信群发失败！原因:"+ response.getMsg() + ",提示:" + response.getDetail(), TITLE,
                     JOptionPane.OK_OPTION);
+            LOG.info("定时短信群发失败！原因:"+ response.getMsg() + ",提示:" + response.getDetail());
         }
         StringBuilder builder = new StringBuilder();
         for (SMSEntity nosend : noSendList) {
             builder.append(",").append(nosend.getName()).append(":").append(nosend.getPhone());
         }
-        builder.deleteCharAt(0);
-        this.nosendTextArea.setText(builder.toString());
+        if (noSendList.size() != 0) {
+        	builder.deleteCharAt(0);
+        	this.nosendTextArea.setText(builder.toString());
+		}
     }
 
     private void modelComboBoxItemStateChanged(ItemEvent e) {

@@ -35,6 +35,8 @@ import org.alanjin.smsmms.backend.service.SenderAndReceiverService;
 import org.alanjin.smsmms.backend.util.BackendUtil;
 import org.alanjin.smsmms.frontend.bean.SMSEntity;
 import org.alanjin.smsmms.frontend.util.FrontendUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.smslib.GatewayException;
 import org.smslib.SMSLibException;
 import org.smslib.TimeoutException;
@@ -46,7 +48,7 @@ import com.eltima.components.ui.DatePicker;
  * @author Alan Jin
  */
 public class MainFrame extends javax.swing.JFrame {
-
+	private static final Log LOG = LogFactory.getLog(MainFrame.class);
     private static final long serialVersionUID = 1L;
     /**
      * Creates new form MainFrame
@@ -1298,6 +1300,8 @@ public class MainFrame extends javax.swing.JFrame {
                 defaultMessageModel);
         scheduleService.addFixedTimeTaskAndRun(task, defaultHour,
                 defaultMinute, 0);
+        System.out.println("定时任务已经启动，使用模板" + defaultModelName + ", 任务将运行于" + defaultHour + "时" + defaultMinute + "分");
+        LOG.info("定时任务已经启动，使用模板" + defaultModelName + ", 任务将运行于" + defaultHour + "时" + defaultMinute + "分");
         if (scheduleService.hasTask()) {
             startTaskButton.setEnabled(false);
             stopTaskButton.setEnabled(true);
@@ -1436,9 +1440,9 @@ public class MainFrame extends javax.swing.JFrame {
         System.out.print("main:");
         Properties prop = new Properties();
         prop.load(ClassLoader.getSystemResourceAsStream("config.properties"));
-        String com = prop.getProperty("SMS.com", "COM1");
-        System.out.println("com is " + com);
-        senderAndReceiverService = SenderAndReceiverService.newInstance(com);
+        String key = prop.getProperty("SMS.key", "xxxxxxxx");
+        System.out.println("key is " + key);
+        senderAndReceiverService = SenderAndReceiverService.newInstance(key);
         String titilFilePath = prop.getProperty("SMS.model.titlePath");
         File file = new File(titilFilePath);
         titleReader = new BufferedReader(new InputStreamReader(
